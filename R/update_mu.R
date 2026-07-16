@@ -94,7 +94,7 @@ update_nu_mu <- function(Y, C, list_cp_C, list_cp_C_Y,
       prec <- c_val * (inv_prior + mu_q_recip_sigsq_eps[s, j] * sum_list_cp_C[[s]])
 
       # ---- Posterior covariance ----
-      Sigma_q_nu_mu[[s]][[j]] <- solve(prec)
+      Sigma_q_nu_mu[[s]][[j]] <- solve(prec + 1e-8 * diag(K_total))
       inv_Sigma_q_nu_mu[[s]][[j]] <- inv_prior
 
       # ---- Residual assembly: r^mu_{sij} (excludes mu's own contribution) ----
@@ -110,7 +110,7 @@ update_nu_mu <- function(Y, C, list_cp_C, list_cp_C_Y,
           for (r in 1:d) {
             beta_val <- as.vector(C[[s]][[i]] %*% mu_q_nu_beta[[j]][[r]])
             residual_contrib <- residual_contrib +
-              Z[[s]][i, r] * crossprod(C[[s]][[i]], beta_val)
+              Z[[s]][i, r] * as.vector(crossprod(C[[s]][[i]], beta_val))
           }
         }
 
@@ -121,7 +121,7 @@ update_nu_mu <- function(Y, C, list_cp_C, list_cp_C_Y,
               C[[s]][[i]] %*% mu_q_nu_phi[[l]] %*% mu_q_zeta[[s]][[l]][i, ]
             )
             residual_contrib <- residual_contrib +
-              mu_q_a[j, l] * crossprod(C[[s]][[i]], f_sil)
+              mu_q_a[j, l] * as.vector(crossprod(C[[s]][[i]], f_sil))
           }
         }
 
@@ -132,7 +132,7 @@ update_nu_mu <- function(Y, C, list_cp_C, list_cp_C_Y,
               C[[s]][[i]] %*% mu_q_nu_psi[[s]][[l]] %*% mu_q_xi[[s]][[l]][i, ]
             )
             residual_contrib <- residual_contrib +
-              mu_q_b_specific[[s]][j, l] * crossprod(C[[s]][[i]], g_sil)
+              mu_q_b_specific[[s]][j, l] * as.vector(crossprod(C[[s]][[i]], g_sil))
           }
         }
 

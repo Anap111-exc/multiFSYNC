@@ -80,7 +80,7 @@ update_zeta <- function(Y, C, list_cp_C, list_cp_C_Y,
 
         # ---- Posterior precision and covariance ----
         prec_zeta <- c_val * (sum_sigma_a_l * H_phi + inv_Sigma_zeta)
-        Sigma_q_zeta_new[[s]][[l]][[i]] <- solve(prec_zeta)
+        Sigma_q_zeta_new[[s]][[l]][[i]] <- solve(prec_zeta + 1e-8 * diag(M_l))
 
         # ---- Linear term (residual excluding current factor l) ----
         sum_mu <- rep(0, ncol(C_si))  # length K_total

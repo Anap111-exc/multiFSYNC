@@ -47,7 +47,8 @@ orthonormalise_multi <- function(C_g, time_g,
                                   mu_q_xi, Sigma_q_xi,
                                   mu_q_a, mu_q_b_specific,
                                   mu_q_gamma_a, mu_q_gamma_b,
-                                  S, n_s, p, L_f, L_s, M_f, M_s) {
+                                  S, n_s, p, L_f, L_s, M_f, M_s,
+                                  zeta_true = NULL) {
 
   n_g <- length(time_g)
   one_N_all <- lapply(n_s, function(ns) rep(1, ns))
@@ -67,6 +68,7 @@ orthonormalise_multi <- function(C_g, time_g,
   list_Cov_zeta_hat <- vector("list", L_f)
   list_eigenvalues <- vector("list", L_f)
   list_cumulated_pve <- vector("list", L_f)
+  list_effective_M <- vector("list", L_f)
 
   for (l in seq_len(L_f)) {
 
@@ -118,6 +120,12 @@ orthonormalise_multi <- function(C_g, time_g,
         Phi_hat[, m] <- Phi_hat[, m] / norm_const[m]
         Zeta_hat[, m] <- Zeta_hat[, m] * norm_const[m]
       }
+      # Sign convention: first non-zero element positive (MMGFM A2)
+      first_nz <- which(abs(Phi_hat[, m]) > 1e-10)[1]
+      if (!is.na(first_nz) && Phi_hat[first_nz, m] < 0) {
+        Phi_hat[, m] <- -Phi_hat[, m]
+        Zeta_hat[, m] <- -Zeta_hat[, m]
+      }
     }
 
     # Transform posterior covariance of zeta
@@ -137,11 +145,16 @@ orthonormalise_multi <- function(C_g, time_g,
     eigenvalues <- apply(Zeta_hat, 2, var)
     cumulated_pve <- cumsum(eigenvalues) / sum(eigenvalues) * 100
 
-    list_Phi_hat[[l]] <- Phi_hat
-    list_Zeta_hat[[l]] <- Zeta_hat
+    # Automatic truncation: retain components until cumulative PVE exceeds 99%
+    effective_M <- which(cumulated_pve > 99)[1]
+    if (is.na(effective_M)) effective_M <- length(eigenvalues)
+
+    list_Phi_hat[[l]] <- Phi_hat[, 1:effective_M, drop = FALSE]
+    list_Zeta_hat[[l]] <- Zeta_hat[, 1:effective_M, drop = FALSE]
     list_Cov_zeta_hat[[l]] <- Cov_zeta_hat
     list_eigenvalues[[l]] <- eigenvalues
     list_cumulated_pve[[l]] <- cumulated_pve
+    list_effective_M[[l]] <- effective_M
   }
 
   # ---- Specific factor orthonormalisation ----
@@ -194,6 +207,11 @@ orthonormalise_multi <- function(C_g, time_g,
             Phi_psi_hat[, m] <- Phi_psi_hat[, m] / norm_const[m]
             Xi_hat[, m] <- Xi_hat[, m] * norm_const[m]
           }
+          first_nz <- which(abs(Phi_psi_hat[, m]) > 1e-10)[1]
+          if (!is.na(first_nz) && Phi_psi_hat[first_nz, m] < 0) {
+            Phi_psi_hat[, m] <- -Phi_psi_hat[, m]
+            Xi_hat[, m] <- -Xi_hat[, m]
+          }
         }
 
         list_Phi_hat_spec[[s]][[l]] <- Phi_psi_hat
@@ -213,9 +231,20 @@ orthonormalise_multi <- function(C_g, time_g,
     })
   }
 
+  # ---- Procrustes alignment to true scores (evaluation only) ----
+  if (!is.null(zeta_true)) {
+    for (l in seq_len(L_f)) {
+      z_true <- do.call(rbind, lapply(1:S, function(s) zeta_true[[s]][[l]]))
+      z_est  <- list_Zeta_hat[[l]]
+      proc <- svd(t(z_true) %*% z_est)
+      list_Zeta_hat[[l]] <- z_est %*% proc$v %*% t(proc$u)
+      list_Phi_hat[[l]] <- list_Phi_hat[[l]] %*% proc$u %*% t(proc$v)
+    }
+  }
+
   create_named_list(
     list_Phi_hat, list_Zeta_hat, list_Cov_zeta_hat,
-    list_eigenvalues, list_cumulated_pve,
+    list_eigenvalues, list_cumulated_pve, list_effective_M,
     list_Phi_hat_spec, list_Zeta_hat_spec, list_pve_spec,
     list_mu_hat,
     factor_ppi_shared, factor_ppi_specific

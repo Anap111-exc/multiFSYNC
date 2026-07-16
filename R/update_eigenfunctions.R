@@ -43,6 +43,7 @@ update_nu_phi <- function(Y, C, list_cp_C, list_cp_C_Y,
                            mu_q_xi, mu_q_nu_psi,
                            mu_q_a, term_a,
                            mu_q_b_specific,
+                           term_b_specific = NULL,
                            mu_q_recip_sigsq_eps, mu_q_recip_sigsq_phi,
                            inv_Sigma_beta,
                            S, n_s, p, d, L_f, L_s, M_f, K, K_total,
@@ -82,9 +83,39 @@ update_nu_phi <- function(Y, C, list_cp_C, list_cp_C_Y,
         }
       }
 
+      # --- Soft orthogonal penalty: penalize overlap with other shared factors ---
+      if (L_f > 1) {
+        lambda_orth <- 0.1  # penalty strength
+        for (l_other in setdiff(seq_len(L_f), l)) {
+          w_other <- sum(mu_q_recip_sigsq_eps[, 1] * term_a[, l_other])  # rough scalar per study
+          for (s in 1:S) {
+            w_s_other <- sum(mu_q_recip_sigsq_eps[s, ] * term_a[, l_other])
+            for (i in 1:n_s[s]) {
+              f_other <- as.vector(C[[s]][[i]] %*% mu_q_nu_phi[[l_other]] %*% mu_q_zeta[[s]][[l_other]][i, ])
+              f_ct <- crossprod(C[[s]][[i]], f_other)
+              prec_data <- prec_data + lambda_orth * w_s_other * tcrossprod(f_ct)
+            }
+          }
+        }
+      }
+
+      # --- 3) Shared vs specific (prevent shared from absorbing specific signal) ---
+      if (L_s > 0 && !is.null(mu_q_nu_psi) && !is.null(mu_q_b_specific)) {
+        for (s in 1:S) {
+          for (l_spec in seq_len(L_s)) {
+            w_s_spec <- sum(mu_q_recip_sigsq_eps[s, ] * term_b_specific[[s]][, l_spec])
+            for (i in 1:n_s[s]) {
+              g_spec <- as.vector(C[[s]][[i]] %*% mu_q_nu_psi[[s]][[l_spec]] %*% mu_q_xi[[s]][[l_spec]][i, ])
+              g_ct <- crossprod(C[[s]][[i]], g_spec)
+              prec_data <- prec_data + lambda_orth * w_s_spec * tcrossprod(g_ct)
+            }
+          }
+        }
+      }
+
       # --- Posterior precision ---
       prec <- c_val * (prec_data + inv_prior)
-      Sigma_q_nu_phi_new[[l]][[m]] <- solve(prec)
+      Sigma_q_nu_phi_new[[l]][[m]] <- solve(prec + 1e-8 * diag(K_total))
       inv_Sigma_q_nu_phi_new[[l]][[m]] <- inv_prior
 
       # --- Linear term (Appendix C.4): cross-study aggregation ---
@@ -204,6 +235,7 @@ update_nu_psi <- function(Y, C, list_cp_C, list_cp_C_Y,
                            mu_q_zeta, mu_q_nu_phi,
                            mu_q_xi, Sigma_q_xi, mu_q_nu_psi,
                            mu_q_a,
+                           term_a = NULL,
                            mu_q_b_specific, term_b_specific,
                            mu_q_recip_sigsq_eps, mu_q_recip_sigsq_psi,
                            inv_Sigma_beta,
@@ -247,9 +279,36 @@ update_nu_psi <- function(Y, C, list_cp_C, list_cp_C_Y,
           list_sum_psi_slm <- list_sum_psi_slm + Ex2 * list_cp_C[[s]][[i]]
         }
 
+        # --- Soft orthogonal penalties ---
+        lambda_orth <- 0.1
+        
+        # 1) Specific vs other specific factors in the same study
+        if (L_s > 1) {
+          for (l_other in setdiff(seq_len(L_s), l)) {
+            w_s_other <- sum(mu_q_recip_sigsq_eps[s, ] * term_b_specific[[s]][, l_other])
+            for (i in 1:n_s[s]) {
+              g_other <- as.vector(C[[s]][[i]] %*% mu_q_nu_psi[[s]][[l_other]] %*% mu_q_xi[[s]][[l_other]][i, ])
+              g_ct <- crossprod(C[[s]][[i]], g_other)
+              list_sum_psi_slm <- list_sum_psi_slm + lambda_orth * w_s_other * tcrossprod(g_ct)
+            }
+          }
+        }
+        
+        # 2) Specific vs all shared factors (prevent shared from absorbing specific signal)
+        if (L_f > 0) {
+          for (l_shared in seq_len(L_f)) {
+            w_sh <- sum(mu_q_recip_sigsq_eps[s, ] * term_a[, l_shared])
+            for (i in 1:n_s[s]) {
+              f_sh <- as.vector(C[[s]][[i]] %*% mu_q_nu_phi[[l_shared]] %*% mu_q_zeta[[s]][[l_shared]][i, ])
+              f_ct <- crossprod(C[[s]][[i]], f_sh)
+              list_sum_psi_slm <- list_sum_psi_slm + lambda_orth * w_sh * tcrossprod(f_ct)
+            }
+          }
+        }
+
         # --- Posterior precision ---
         prec <- c_val * (sum_vec_b_sl * list_sum_psi_slm + inv_prior)
-        Sigma_q_nu_psi_new[[s]][[l]][[m]] <- solve(prec)
+        Sigma_q_nu_psi_new[[s]][[l]][[m]] <- solve(prec + 1e-8 * diag(K_total))
         inv_Sigma_q_nu_psi_new[[s]][[l]][[m]] <- inv_prior
 
         # --- Linear term: within-study s only ---

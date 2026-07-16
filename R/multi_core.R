@@ -57,7 +57,8 @@ bayesSYNC_multi <- function(
     tol_abs = 1e-3, tol_rel = 1e-5,
     maxit = 1000, n_cpus = 1,
     verbose = TRUE, seed = NULL,
-    bool_scale = TRUE, bool_var_spec_prob = FALSE
+    bool_scale = TRUE, bool_var_spec_prob = FALSE,
+    d_0 = NULL
 ) {
 
   if (!is.null(seed)) {
@@ -114,7 +115,8 @@ bayesSYNC_multi <- function(
 
   # ---- Hyperparameters ----
   if (is.null(list_hyper)) {
-    list_hyper <- set_hyper(d_0 = p)
+    d0 <- if (is.null(d_0)) p else d_0
+    list_hyper <- set_hyper(d_0 = d0)
   }
 
   # ---- Flat observation grid ----
@@ -178,6 +180,13 @@ bayesSYNC_multi <- function(
     }
   }
 
+  # ---- Identifiability check ----
+  K_total <- K + 2
+  n_components_total <- sum(M_f) + sum(sapply(M_s, sum))
+  if (K_total <= n_components_total && verbose) {
+    warning(sprintf("K+2=%d <= %d eigenfunction components. Identifiability may be compromised. Consider increasing K.", K_total, n_components_total))
+  }
+
   # ---- Call core ----
   res <- bayesSYNC_multi_core(
     S = S, n_s = n_s, p = p, d = d,
@@ -221,12 +230,10 @@ bayesSYNC_multi_core <- function(
   if (is.null(anneal)) {
     annealing <- FALSE
     c_val <- 1
-    i_iter_init <- 1
   } else {
     annealing <- TRUE
     ladder <- get_annealing_ladder_(anneal, verbose)
     c_val <- ladder[1]
-    i_iter_init <- anneal[3]
   }
 
   K_total <- K + 2
@@ -263,10 +270,16 @@ bayesSYNC_multi_core <- function(
     sum_list_cp_C[[s]] <- Reduce("+", list_cp_C[[s]])
   }
 
-  # ---- Total observation count per study ----
+  # ---- Observation counts (per study, per variable for irregular grids) ----
   sum_obs_s <- sapply(1:S, function(s) {
     sum(sapply(time_obs[[s]], length))
   })
+  total_obs_sj <- matrix(NA, S, p)
+  for (s in 1:S) {
+    for (j in 1:p) {
+      total_obs_sj[s, j] <- sum(sapply(1:n_s[s], function(i) length(Y[[s]][[i]][[j]])))
+    }
+  }
 
   # ===================================================================
   #  INITIALIZATION OF VARIATIONAL PARAMETERS
@@ -311,8 +324,8 @@ bayesSYNC_multi_core <- function(
   }
 
   # --- 3. Shared eigenfunction coefficients: nu_{phi,ml} ---
-  # Storage is IRREGULAR: mu_q_nu_phi[[l]] is K_total x M_f[l]
-  mu_q_recip_sigsq_phi <- if (L_f > 0) lapply(1:L_f, function(l) rep(1, M_f[l])) else list()
+  # Hierarchical initialization: decreasing variance per component (1/m)
+  mu_q_recip_sigsq_phi <- if (L_f > 0) lapply(1:L_f, function(l) seq(1, M_f[l], by = 1)) else list()
   mu_q_recip_a_phi <- if (L_f > 0) lapply(1:L_f, function(l) rep(1, M_f[l])) else list()
 
   mu_q_nu_phi <- vector("list", L_f)
@@ -321,8 +334,10 @@ bayesSYNC_multi_core <- function(
 
   for (l in seq_len(L_f)) {
     M_l <- M_f[l]
-    mu_q_nu_phi[[l]] <- matrix(rnorm(K_total * M_l, mean = 0, sd = 1),
-                                nrow = K_total, ncol = M_l)
+    mu_q_nu_phi[[l]] <- matrix(0, nrow = K_total, ncol = M_l)
+    for (m in 1:M_l) {
+      mu_q_nu_phi[[l]][, m] <- rnorm(K_total, mean = 0, sd = 1 / sqrt(m))
+    }
     inv_Sigma_q_nu_phi[[l]] <- lapply(1:M_l, function(m) {
       blkdiag(inv_Sigma_beta, mu_q_recip_sigsq_phi[[l]][m] * diag(K))
     })
@@ -340,7 +355,7 @@ bayesSYNC_multi_core <- function(
 
   if (L_s > 0) {
     mu_q_recip_sigsq_psi <- lapply(1:S, function(s) {
-      lapply(1:L_s, function(l) rep(1, M_s[[s]][l]))
+      lapply(1:L_s, function(l) seq(1, M_s[[s]][l], by = 1))
     })
     mu_q_recip_a_psi <- lapply(1:S, function(s) {
       lapply(1:L_s, function(l) rep(1, M_s[[s]][l]))
@@ -357,8 +372,10 @@ bayesSYNC_multi_core <- function(
 
       for (l in seq_len(L_s)) {
         M_sl <- M_s[[s]][l]
-        mu_q_nu_psi[[s]][[l]] <- matrix(rnorm(K_total * M_sl, mean = 0, sd = 1),
-                                         nrow = K_total, ncol = M_sl)
+        mu_q_nu_psi[[s]][[l]] <- matrix(0, nrow = K_total, ncol = M_sl)
+        for (m in 1:M_sl) {
+          mu_q_nu_psi[[s]][[l]][, m] <- rnorm(K_total, mean = 0, sd = 1 / sqrt(m))
+        }
         inv_Sigma_q_nu_psi[[s]][[l]] <- lapply(1:M_sl, function(m) {
           blkdiag(inv_Sigma_beta,
                   mu_q_recip_sigsq_psi[[s]][[l]][m] * diag(K))
@@ -545,6 +562,7 @@ bayesSYNC_multi_core <- function(
       mu_q_xi = mu_q_xi, mu_q_nu_psi = mu_q_nu_psi,
       mu_q_a = mu_q_a, term_a = term_a,
       mu_q_b_specific = mu_q_b_specific,
+      term_b_specific = term_b_specific,
       mu_q_recip_sigsq_eps = mu_q_recip_sigsq_eps,
       mu_q_recip_sigsq_phi = mu_q_recip_sigsq_phi,
       inv_Sigma_beta = inv_Sigma_beta,
@@ -566,6 +584,7 @@ bayesSYNC_multi_core <- function(
         mu_q_xi = mu_q_xi, Sigma_q_xi = Sigma_q_xi,
         mu_q_nu_psi = mu_q_nu_psi,
         mu_q_a = mu_q_a,
+        term_a = term_a,
         mu_q_b_specific = mu_q_b_specific,
         term_b_specific = term_b_specific,
         mu_q_recip_sigsq_eps = mu_q_recip_sigsq_eps,
@@ -644,7 +663,7 @@ bayesSYNC_multi_core <- function(
       mu_q_recip_a_psi = mu_q_recip_a_psi,
       S = S, n_s = n_s, p = p, d = d,
       L_f = L_f, L_s = L_s, M_f = M_f, M_s = M_s, K = K,
-      c_val = c_val, n_cpus = n_cpus)
+      total_obs_sj = total_obs_sj, c_val = c_val, n_cpus = n_cpus)
 
     mu_q_recip_sigsq_eps <- res_var$mu_q_recip_sigsq_eps
     mu_q_recip_a_eps <- res_var$mu_q_recip_a_eps
@@ -669,6 +688,13 @@ bayesSYNC_multi_core <- function(
     kappa_q_sigsq_mu <- res_var$kappa_q_sigsq_mu
     kappa_q_sigsq_phi <- res_var$kappa_q_sigsq_phi
     lambda_q_sigsq_phi <- res_var$lambda_q_sigsq_phi
+    mu_q_log_sigsq_phi <- res_var$mu_q_log_sigsq_phi
+    kappa_q_sigsq_beta <- res_var$kappa_q_sigsq_beta
+    lambda_q_sigsq_beta <- res_var$lambda_q_sigsq_beta
+    mu_q_log_sigsq_beta <- res_var$mu_q_log_sigsq_beta
+    kappa_q_sigsq_psi <- res_var$kappa_q_sigsq_psi
+    lambda_q_sigsq_psi <- res_var$lambda_q_sigsq_psi
+    mu_q_log_sigsq_psi <- res_var$mu_q_log_sigsq_psi
 
     # ------ Block 9: Update q(omega) ------
     if (!is.null(mu_q_gamma_b)) {
@@ -749,11 +775,14 @@ bayesSYNC_multi_core <- function(
       term_b_specific <- res_b$term_b_specific
     }
 
-    # ------ ELBO computation ------
-    n_obs_per_indiv <- length(Y[[1]][[1]][[1]])
+    # ------ ELBO computation (skip during annealing) ------
+    if (annealing) {
+      ELBO_iter <- NULL
+    } else {
+    n_obs_per_indiv <- length(Y[[1]][[1]][[1]])  # fallback for backward compat
     ELBO_iter <- compute_elbo_multi(
       Y = Y, C = C, list_cp_C = list_cp_C,
-      n_obs_per_indiv = n_obs_per_indiv,
+      total_obs_sj = total_obs_sj,
       mu_q_nu_mu = mu_q_nu_mu, Sigma_q_nu_mu = Sigma_q_nu_mu,
       mu_q_nu_beta = mu_q_nu_beta, Sigma_q_nu_beta = Sigma_q_nu_beta, Z = Z,
       mu_q_zeta = mu_q_zeta, Sigma_q_zeta = Sigma_q_zeta,
@@ -770,17 +799,34 @@ bayesSYNC_multi_core <- function(
       mu_q_recip_sigsq_mu = mu_q_recip_sigsq_mu,
       mu_q_recip_a_mu = mu_q_recip_a_mu,
       mu_q_recip_sigsq_beta = mu_q_recip_sigsq_beta,
+      mu_q_recip_a_beta = mu_q_recip_a_beta,
       mu_q_recip_sigsq_phi = mu_q_recip_sigsq_phi,
       mu_q_recip_a_phi = mu_q_recip_a_phi,
       mu_q_recip_sigsq_psi = mu_q_recip_sigsq_psi,
+      mu_q_recip_a_psi = mu_q_recip_a_psi,
       mu_q_log_sigsq_eps = mu_q_log_sigsq_eps,
       mu_q_log_sigsq_mu = mu_q_log_sigsq_mu,
+      mu_q_log_sigsq_beta = mu_q_log_sigsq_beta,
+      mu_q_log_sigsq_phi = mu_q_log_sigsq_phi,
+      mu_q_log_sigsq_psi = mu_q_log_sigsq_psi,
       kappa_q_sigsq_eps = kappa_q_sigsq_eps,
       kappa_q_sigsq_mu = kappa_q_sigsq_mu,
+      kappa_q_sigsq_beta = kappa_q_sigsq_beta,
+      kappa_q_sigsq_phi = kappa_q_sigsq_phi,
+      kappa_q_sigsq_psi = kappa_q_sigsq_psi,
       lambda_q_sigsq_eps = lambda_q_sigsq_eps,
       lambda_q_sigsq_mu = lambda_q_sigsq_mu,
+      lambda_q_sigsq_beta = lambda_q_sigsq_beta,
+      lambda_q_sigsq_phi = lambda_q_sigsq_phi,
+      lambda_q_sigsq_psi = lambda_q_sigsq_psi,
+      kappa_q_a = kappa_q_a,
       mu_q_log_omega_a = mu_q_log_omega_a,
       mu_q_log_1_omega_a = mu_q_log_1_omega_a,
+      mu_q_log_omega_b = mu_q_log_omega_b,
+      mu_q_log_1_omega_b = mu_q_log_1_omega_b,
+      c_1_omega_a = c_1_omega_a, d_1_omega_a = d_1_omega_a,
+      c_1_omega_b = c_1_omega_b, d_1_omega_b = d_1_omega_b,
+      c_0 = c_0, d_0 = d_0,
       inv_Sigma_beta = inv_Sigma_beta,
       S = S, n_s = n_s, p = p, d = d,
       L_f = L_f, L_s = L_s, M_f = M_f, M_s = M_s, K = K,
@@ -793,7 +839,7 @@ bayesSYNC_multi_core <- function(
     }
 
     # Convergence check
-    if (i_iter > i_iter_init) {
+    if (i_iter > 2 && length(ELBO) >= 2) {
       l_ELBO <- length(ELBO)
       ELBO_diff <- ELBO[l_ELBO] - ELBO[l_ELBO - 1]
 
@@ -801,8 +847,7 @@ bayesSYNC_multi_core <- function(
         warning(paste0("ELBO not increasing monotonically. Diff: ", ELBO_diff))
       }
 
-      rel_converged <- (abs(max(ELBO[l_ELBO - 1], ELBO[l_ELBO]) /
-                          min(ELBO[l_ELBO - 1], ELBO[l_ELBO]) - 1) < tol_rel)
+      rel_converged <- (abs(ELBO_diff / ELBO[l_ELBO - 1]) < tol_rel)
       abs_converged <- (abs(ELBO_diff) < tol_abs)
 
       if (rel_converged | abs_converged) {
@@ -814,7 +859,31 @@ bayesSYNC_multi_core <- function(
         warning(paste0("Max iterations reached before convergence."))
       }
     }
+    } # end if(!annealing)
+    
+    # ---- Temperature annealing step ----
+    if (annealing) {
+      if (verbose) cat(paste0("Temperature = ", format(1 / c_val, digits = 4), "\n\n"))
+      c_val <- ifelse(i_iter < length(ladder), ladder[i_iter + 1], 1)
+      if (isTRUE(all.equal(c_val, 1))) {
+        annealing <- FALSE
+        if (verbose) cat("** Exiting annealing mode. **\n\n")
+      }
+    }
   } # end main loop
+
+  # ===================================================================
+  #  POST-PROCESSING: Orthonormalisation
+  # ===================================================================
+  
+  res_orth <- orthonormalise_multi(C_g = C_g, time_g = time_g,
+    mu_q_nu_mu = mu_q_nu_mu,
+    mu_q_nu_phi = mu_q_nu_phi, mu_q_nu_psi = mu_q_nu_psi,
+    mu_q_zeta = mu_q_zeta, Sigma_q_zeta = Sigma_q_zeta,
+    mu_q_xi = mu_q_xi, Sigma_q_xi = Sigma_q_xi,
+    mu_q_a = mu_q_a, mu_q_b_specific = mu_q_b_specific,
+    mu_q_gamma_a = mu_q_gamma_a, mu_q_gamma_b = mu_q_gamma_b,
+    S = S, n_s = n_s, p = p, L_f = L_f, L_s = L_s, M_f = M_f, M_s = M_s)
 
   # ===================================================================
   #  RESULTS ASSEMBLY
@@ -843,7 +912,19 @@ bayesSYNC_multi_core <- function(
     mean_mean_across_subjects, sd_mean_across_subjects,
     time_g, C_g, n_g,
     list_cp_C, list_cp_C_Y, list_cp_Y, sum_list_cp_C,
-    inv_Sigma_q_nu_mu, inv_Sigma_q_nu_phi, inv_Sigma_q_nu_psi
+    inv_Sigma_q_nu_mu, inv_Sigma_q_nu_phi, inv_Sigma_q_nu_psi,
+    
+    # Orthonormalised outputs
+    list_Phi_hat = res_orth$list_Phi_hat,
+    list_Zeta_hat = res_orth$list_Zeta_hat,
+    list_eigenvalues = res_orth$list_eigenvalues,
+    list_cumulated_pve = res_orth$list_cumulated_pve,
+    list_Phi_hat_spec = res_orth$list_Phi_hat_spec,
+    list_Zeta_hat_spec = res_orth$list_Zeta_hat_spec,
+    list_pve_spec = res_orth$list_pve_spec,
+    list_mu_hat = res_orth$list_mu_hat,
+    factor_ppi_shared = res_orth$factor_ppi_shared,
+    factor_ppi_specific = res_orth$factor_ppi_specific
   )
 
   res
@@ -854,7 +935,7 @@ bayesSYNC_multi_core <- function(
 #'
 #' @keywords internal
 compute_elbo_multi <- function(Y, C, list_cp_C,
-                                n_obs_per_indiv,
+                                total_obs_sj = NULL,
                                 mu_q_nu_mu, Sigma_q_nu_mu,
                                 mu_q_nu_beta, Sigma_q_nu_beta, Z,
                                 mu_q_zeta, Sigma_q_zeta,
@@ -868,26 +949,35 @@ compute_elbo_multi <- function(Y, C, list_cp_C,
                                 mu_q_gamma_b,
                                 mu_q_recip_sigsq_eps, mu_q_recip_a_eps,
                                 mu_q_recip_sigsq_mu, mu_q_recip_a_mu,
-                                mu_q_recip_sigsq_beta,
+                                mu_q_recip_sigsq_beta, mu_q_recip_a_beta,
                                 mu_q_recip_sigsq_phi, mu_q_recip_a_phi,
-                                mu_q_recip_sigsq_psi,
+                                mu_q_recip_sigsq_psi, mu_q_recip_a_psi,
                                 mu_q_log_sigsq_eps, mu_q_log_sigsq_mu,
+                                mu_q_log_sigsq_beta, mu_q_log_sigsq_phi,
+                                mu_q_log_sigsq_psi,
                                 kappa_q_sigsq_eps, kappa_q_sigsq_mu,
+                                kappa_q_sigsq_beta, kappa_q_sigsq_phi,
+                                kappa_q_sigsq_psi,
                                 lambda_q_sigsq_eps, lambda_q_sigsq_mu,
-                                mu_q_log_omega_a, mu_q_log_1_omega_a,
+                                lambda_q_sigsq_beta, lambda_q_sigsq_phi,
+                                lambda_q_sigsq_psi,
+                                kappa_q_a,
+                                 mu_q_log_omega_a, mu_q_log_1_omega_a,
+                                 mu_q_log_omega_b, mu_q_log_1_omega_b,
+                                 c_1_omega_a, d_1_omega_a, c_1_omega_b, d_1_omega_b,
+                                 c_0, d_0,
                                 inv_Sigma_beta,
                                 S, n_s, p, d,
                                 L_f, L_s, M_f, M_s, K,
                                 c_val = 1) {
 
   eps_elbo <- 1e-11
-  nobs <- n_obs_per_indiv
 
   # ---- Data fitting ----
   elbo_y <- 0
   for (s in 1:S) {
     for (j in 1:p) {
-      n_obs_sj <- n_s[s] * nobs
+      n_obs_sj <- if (!is.null(total_obs_sj)) total_obs_sj[s, j] else n_s[s] * length(Y[[1]][[1]][[1]])
       elbo_y <- elbo_y - 0.5 * n_obs_sj * (log(2 * pi) + mu_q_log_sigsq_eps[s, j]) -
         mu_q_recip_sigsq_eps[s, j] * (lambda_q_sigsq_eps[s, j] - mu_q_recip_a_eps[s, j])
     }
@@ -910,7 +1000,7 @@ compute_elbo_multi <- function(Y, C, list_cp_C,
     }
   }
 
-  # ---- Sigma^2 entropy ---
+  # ---- Sigma^2 entropy ----
   elbo_sigma <- 0
   for (s in 1:S) {
     for (j in 1:p) {
@@ -931,6 +1021,47 @@ compute_elbo_multi <- function(Y, C, list_cp_C,
     }
   }
 
+  # sigma^2_beta IG entropy
+  if (d > 0 && !is.null(kappa_q_sigsq_beta) && !is.null(lambda_q_sigsq_beta)) {
+    kb <- kappa_q_sigsq_beta
+    for (j in 1:p) {
+      for (r in 1:d) {
+        lb <- lambda_q_sigsq_beta[j, r]
+        mlb <- mu_q_log_sigsq_beta[j, r]
+        elbo_sigma <- elbo_sigma +
+          (kb - 0.5) * mlb - kb * log(lb) - lgamma(0.5) + lgamma(kb)
+      }
+    }
+  }
+
+  # sigma^2_phi IG entropy
+  if (L_f > 0 && !is.null(kappa_q_sigsq_phi) && !is.null(lambda_q_sigsq_phi)) {
+    kphi <- kappa_q_sigsq_phi
+    for (l in seq_len(L_f)) {
+      for (m in 1:M_f[l]) {
+        lphi <- lambda_q_sigsq_phi[[l]][m]
+        mlphi <- mu_q_log_sigsq_phi[[l]][m]
+        elbo_sigma <- elbo_sigma +
+          (kphi - 0.5) * mlphi - kphi * log(lphi) - lgamma(0.5) + lgamma(kphi)
+      }
+    }
+  }
+
+  # sigma^2_psi IG entropy
+  if (L_s > 0 && !is.null(kappa_q_sigsq_psi) && !is.null(lambda_q_sigsq_psi)) {
+    kpsi <- kappa_q_sigsq_psi
+    for (s in 1:S) {
+      for (l in seq_len(L_s)) {
+        for (m in 1:M_s[[s]][l]) {
+          lpsi <- lambda_q_sigsq_psi[[s]][[l]][m]
+          mlpsi <- mu_q_log_sigsq_psi[[s]][[l]][m]
+          elbo_sigma <- elbo_sigma +
+            (kpsi - 0.5) * mlpsi - kpsi * log(lpsi) - lgamma(0.5) + lgamma(kpsi)
+        }
+      }
+    }
+  }
+
   # ---- Loadings + PPI ----
   elbo_loadings <- 0
   for (l in seq_len(L_f)) {
@@ -947,7 +1078,7 @@ compute_elbo_multi <- function(Y, C, list_cp_C,
         (1 - ppi) * log(max(1 - ppi, eps_elbo))
     }
   }
-  if (L_s > 0 && !is.null(mu_q_gamma_b)) {
+  if (L_s > 0 && !is.null(mu_q_gamma_b) && !is.null(mu_q_log_omega_b)) {
     for (s in 1:S) {
       for (l in seq_len(L_s)) {
         for (j in 1:p) {
@@ -956,7 +1087,11 @@ compute_elbo_multi <- function(Y, C, list_cp_C,
           mu_val <- mu_q_normal_b[[s]][j, l]
           elbo_loadings <- elbo_loadings +
             0.5 * ppi * (log(sigma2) + 1) -
-            0.5 * ppi * (mu_val^2 + sigma2)
+            0.5 * ppi * (mu_val^2 + sigma2) +
+            ppi * mu_q_log_omega_b[[s]][l] +
+            (1 - ppi) * mu_q_log_1_omega_b[[s]][l] -
+            ppi * log(max(ppi, eps_elbo)) -
+            (1 - ppi) * log(max(1 - ppi, eps_elbo))
         }
       }
     }
@@ -1047,8 +1182,30 @@ compute_elbo_multi <- function(Y, C, list_cp_C,
     }
   }
 
+  # ---- Omega cross-entropy ----
+  elbo_omega <- 0
+  if (L_f > 0 && !is.null(c_1_omega_a) && !all(is.na(c_1_omega_a))) {
+    for (l in seq_len(L_f)) {
+      elbo_omega <- elbo_omega +
+        (c_0 - c_1_omega_a[l]) * mu_q_log_omega_a[l] +
+        (d_0 - d_1_omega_a[l]) * mu_q_log_1_omega_a[l] +
+        lbeta(c_1_omega_a[l], d_1_omega_a[l]) - lbeta(c_0, d_0)
+    }
+  }
+  if (L_s > 0 && !is.null(c_1_omega_b)) {
+    for (s in 1:S) for (l in seq_len(L_s)) {
+      c1 <- c_1_omega_b[[s]][l]; d1 <- d_1_omega_b[[s]][l]
+      if (!is.na(c1) && !is.na(d1)) {
+        elbo_omega <- elbo_omega +
+          (c_0 - c1) * mu_q_log_omega_b[[s]][l] +
+          (d_0 - d1) * mu_q_log_1_omega_b[[s]][l] +
+          lbeta(c1, d1) - lbeta(c_0, d_0)
+      }
+    }
+  }
+
   ELBO <- elbo_y + elbo_mu + elbo_sigma + elbo_loadings +
-          elbo_zeta + elbo_phi + elbo_psi + elbo_xi + elbo_beta
+          elbo_zeta + elbo_phi + elbo_psi + elbo_xi + elbo_beta + elbo_omega
 
   return(ELBO)
 }

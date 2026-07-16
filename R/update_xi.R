@@ -75,7 +75,7 @@ update_xi <- function(Y, C, list_cp_C, list_cp_C_Y,
 
         # ---- Posterior covariance ----
         prec_xi <- c_val * (sum_sigma_b_sl * H_psi + inv_Sigma_xi)
-        Sigma_q_xi_new[[s]][[l]][[i]] <- solve(prec_xi)
+        Sigma_q_xi_new[[s]][[l]][[i]] <- solve(prec_xi + 1e-8 * diag(M_sl))
 
         # ---- Linear term ----
         sum_mu <- rep(0, ncol(C_si))

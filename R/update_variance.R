@@ -108,7 +108,7 @@ update_a_psi <- function(mu_q_recip_sigsq_psi, A = 1e5, c_val = 1) {
 #' @keywords internal
 compute_rss_single <- function(s, i, j, Y, C, list_cp_C,
                                 mu_q_nu_mu, Sigma_q_nu_mu,
-                                mu_q_nu_beta, Z,
+                                mu_q_nu_beta, Sigma_q_nu_beta, Z,
                                 mu_q_zeta, Sigma_q_zeta, mu_q_nu_phi,
                                 mu_q_xi, Sigma_q_xi, mu_q_nu_psi,
                                 mu_q_a, term_a,
@@ -152,20 +152,30 @@ compute_rss_single <- function(s, i, j, Y, C, list_cp_C,
   # Variance contributions from shared factors
   for (l in seq_len(L_f)) {
     phi_zeta <- as.vector(mu_q_nu_phi[[l]] %*% mu_q_zeta[[s]][[l]][i, ])
-    f_norm2_expect <- as.numeric(crossprod(C_si %*% phi_zeta)) +
+    mean_norm2 <- as.numeric(crossprod(C_si %*% phi_zeta))
+    f_norm2_expect <- mean_norm2 +
       tr(list_cp_C[[s]][[i]] %*%
          (mu_q_nu_phi[[l]] %*% Sigma_q_zeta[[s]][[l]][[i]] %*% t(mu_q_nu_phi[[l]])))
-    rss <- rss + term_a[j, l] * f_norm2_expect
+    rss <- rss + term_a[j, l] * f_norm2_expect - mu_q_a[j, l]^2 * mean_norm2
   }
 
   # Variance contributions from specific factors
   if (L_s > 0) {
     for (l in seq_len(L_s)) {
       psi_xi <- as.vector(mu_q_nu_psi[[s]][[l]] %*% mu_q_xi[[s]][[l]][i, ])
-      g_norm2_expect <- as.numeric(crossprod(C_si %*% psi_xi)) +
+      mean_norm2_spec <- as.numeric(crossprod(C_si %*% psi_xi))
+      g_norm2_expect <- mean_norm2_spec +
         tr(list_cp_C[[s]][[i]] %*%
            (mu_q_nu_psi[[s]][[l]] %*% Sigma_q_xi[[s]][[l]][[i]] %*% t(mu_q_nu_psi[[s]][[l]])))
-      rss <- rss + term_b_specific[[s]][j, l] * g_norm2_expect
+      rss <- rss + term_b_specific[[s]][j, l] * g_norm2_expect -
+             mu_q_b_specific[[s]][j, l]^2 * mean_norm2_spec
+    }
+  }
+
+  # Variance contributions from beta coefficients
+  if (!is.null(mu_q_nu_beta) && !is.null(Sigma_q_nu_beta) && !is.null(Z)) {
+    for (r in 1:ncol(Z[[s]])) {
+      rss <- rss + Z[[s]][i, r]^2 * tr(list_cp_C[[s]][[i]] %*% Sigma_q_nu_beta[[j]][[r]])
     }
   }
 
@@ -210,19 +220,20 @@ update_sigsq_eps <- function(Y, C, list_cp_C,
                               mu_q_a, term_a,
                               mu_q_b_specific, term_b_specific,
                               mu_q_recip_a_eps,
-                              S, n_s, p, L_f, L_s,
-                              c_val = 1, n_cpus = 1) {
+                               S, n_s, p, L_f, L_s,
+                               total_obs_sj = NULL,
+                               c_val = 1, n_cpus = 1) {
 
   # Dimensions
   stopifnot(nrow(mu_q_recip_a_eps) == S, ncol(mu_q_recip_a_eps) == p)
 
-  # n_obs per individual (using first individual of first study as reference)
-  n_obs <- length(Y[[1]][[1]][[1]])
-
-  # kappa: c * (n * n_s[s] + 1)/2 + c - 1
+  # kappa: c * (total_obs_sj[s,j] + 1)/2 + c - 1
   kappa_q_sigsq_eps <- matrix(NA, nrow = S, ncol = p)
   for (s in 1:S) {
-    kappa_q_sigsq_eps[s, ] <- c_val * (n_obs * n_s[s] + 1) / 2 + c_val - 1
+    for (j in 1:p) {
+      nobs_sj <- if (!is.null(total_obs_sj)) total_obs_sj[s, j] else length(Y[[1]][[1]][[1]]) * n_s[s]
+      kappa_q_sigsq_eps[s, j] <- c_val * (nobs_sj + 1) / 2 + c_val - 1
+    }
   }
 
   # lambda: c * (E[a^{-1}_eps] + 0.5 * Σ_i RSS_{sij})
@@ -233,7 +244,7 @@ update_sigsq_eps <- function(Y, C, list_cp_C,
       rss_sum <- sum(sapply(1:n_s[s], function(i) {
         compute_rss_single(s, i, j, Y, C, list_cp_C,
                            mu_q_nu_mu, Sigma_q_nu_mu,
-                           mu_q_nu_beta, Z,
+                           mu_q_nu_beta, Sigma_q_nu_beta, Z,
                            mu_q_zeta, Sigma_q_zeta, mu_q_nu_phi,
                            mu_q_xi, Sigma_q_xi, mu_q_nu_psi,
                            mu_q_a, term_a,
@@ -441,8 +452,9 @@ update_all_variances <- function(Y, C, list_cp_C,
                                   mu_q_recip_sigsq_beta, mu_q_recip_a_beta,
                                   mu_q_recip_sigsq_phi, mu_q_recip_a_phi,
                                   mu_q_recip_sigsq_psi, mu_q_recip_a_psi,
-                                  S, n_s, p, d, L_f, L_s, M_f, M_s, K,
-                                  A = 1e5, c_val = 1, n_cpus = 1) {
+                                   S, n_s, p, d, L_f, L_s, M_f, M_s, K,
+                                   total_obs_sj = NULL,
+                                   A = 1e5, c_val = 1, n_cpus = 1) {
 
   # 1. Update sigma^2_eps (measurement error)
   res_eps <- update_sigsq_eps(Y, C, list_cp_C,
@@ -454,7 +466,7 @@ update_all_variances <- function(Y, C, list_cp_C,
                                mu_q_b_specific, term_b_specific,
                                mu_q_recip_a_eps,
                                S, n_s, p, L_f, L_s,
-                               c_val, n_cpus)
+                               total_obs_sj, c_val, n_cpus)
 
   # 2. Update sigma^2_mu (mean function variance)
   res_mu <- update_sigsq_mu(mu_q_nu_mu, Sigma_q_nu_mu,
@@ -508,6 +520,9 @@ update_all_variances <- function(Y, C, list_cp_C,
     mu_q_recip_a_mu = res_a_mu$mu_q_recip_a_mu,
 
     # sigma^2_beta
+    kappa_q_sigsq_beta = if (!is.null(res_beta)) res_beta$kappa_q_sigsq_beta else NULL,
+    lambda_q_sigsq_beta = if (!is.null(res_beta)) res_beta$lambda_q_sigsq_beta else NULL,
+    mu_q_log_sigsq_beta = if (!is.null(res_beta)) res_beta$mu_q_log_sigsq_beta else NULL,
     mu_q_recip_sigsq_beta = if (!is.null(res_beta)) res_beta$mu_q_recip_sigsq_beta else NULL,
     mu_q_recip_a_beta = if (!is.null(res_a_beta)) res_a_beta$mu_q_recip_a_beta else NULL,
 
@@ -519,6 +534,9 @@ update_all_variances <- function(Y, C, list_cp_C,
     mu_q_recip_a_phi = res_a_phi$mu_q_recip_a_phi,
 
     # sigma^2_psi
+    kappa_q_sigsq_psi = if (!is.null(res_psi)) res_psi$kappa_q_sigsq_psi else NULL,
+    lambda_q_sigsq_psi = if (!is.null(res_psi)) res_psi$lambda_q_sigsq_psi else NULL,
+    mu_q_log_sigsq_psi = if (!is.null(res_psi)) res_psi$mu_q_log_sigsq_psi else NULL,
     mu_q_recip_sigsq_psi = if (!is.null(res_psi)) res_psi$mu_q_recip_sigsq_psi else NULL,
     mu_q_recip_a_psi = if (!is.null(res_a_psi)) res_a_psi$mu_q_recip_a_psi else NULL,
 

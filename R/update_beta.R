@@ -70,7 +70,7 @@ update_nu_beta <- function(Y, C, list_cp_C, list_cp_C_Y,
                            mu_q_recip_sigsq_beta[j, r] * diag(K))
 
       # Posterior covariance
-      Sigma_q_nu_beta_new[[j]][[r]] <- solve(c_val * (prec_data + inv_prior))
+      Sigma_q_nu_beta_new[[j]][[r]] <- solve(c_val * (prec_data + inv_prior) + 1e-8 * diag(K_total))
 
       # ---- Linear term: cross-study sum ----
       sum_mu <- rep(0, K_total)
