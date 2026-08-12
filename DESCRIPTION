@@ -1,8 +1,11 @@
 Package: multiFSYNC
 Type: Package
 Title: Multi-Study Functional Factor Model via Bayesian Variational Inference
-Version: 0.1.0
+Version: 0.3.0.9000
 Authors@R: c(
+    person("业聪", "李",
+            email = "1508591453@qq.com",
+            role = c("aut", "cre")),
     person("Helene", "Ruffieux",
             email = "helene.ruffieux@mrc-bsu.cam.ac.uk",
             role = "aut"),
@@ -20,17 +23,12 @@ Depends:
 License: GPL (>= 3)
 Encoding: UTF-8
 Imports:
-    ellipse,
-    gtools,
-    magic,
-    MASS,
-    matrixcalc,
-    matrixStats,
-    pracma,
     stats,
     splines,
     parallel
 Suggests:
     bayesSYNC,
+    devtools,
     testthat (>= 3.0.0)
-RoxygenNote: 7.3.2
+Config/testthat/edition: 3
+RoxygenNote: 7.3.3

@@ -27,7 +27,7 @@
 #' @param bool_var_spec_prob Use variable-specific probabilities
 #' @return List with c_1_omega_a, d_1_omega_a, mu_q_log_omega_a, mu_q_log_1_omega_a
 #'
-#' @export
+#' @noRd
 update_omega_shared <- function(mu_q_gamma_a, p, c_0 = 1, d_0 = NULL,
                                  c_val = 1, bool_var_spec_prob = FALSE) {
 
@@ -70,14 +70,12 @@ update_omega_shared <- function(mu_q_gamma_a, p, c_0 = 1, d_0 = NULL,
 #' @param bool_var_spec_prob Use variable-specific probabilities
 #' @return List with c_1_omega_b, d_1_omega_b, mu_q_log_omega_b, mu_q_log_1_omega_b
 #'
-#' @export
+#' @noRd
 update_omega_specific <- function(mu_q_gamma_b, p, S, c_0 = 1, d_0 = NULL,
                                     c_val = 1, bool_var_spec_prob = FALSE) {
 
   if (is.null(mu_q_gamma_b)) return(NULL)
   if (is.null(d_0)) d_0 <- p
-
-  L_s <- ncol(mu_q_gamma_b[[1]])
 
   c_1_omega_b <- vector("list", S)
   d_1_omega_b <- vector("list", S)
@@ -121,7 +119,6 @@ update_omega_specific <- function(mu_q_gamma_b, p, S, c_0 = 1, d_0 = NULL,
 #' @param bool_var_spec_prob Variable-specific probabilities flag
 #' @return List with all updated omega parameters
 #'
-#' @export
 update_omega <- function(mu_q_gamma_a, mu_q_gamma_b = NULL,
                           p, S, c_0 = 1, d_0 = NULL,
                           c_val = 1, bool_var_spec_prob = FALSE) {

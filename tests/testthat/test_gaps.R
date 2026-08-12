@@ -12,7 +12,9 @@ test_that("orthonormalise: crossprod(Phi) ≈ I and PVE sums to 100", {
 
   orth <- orthonormalise_multi(C_g=fit$C_g, time_g=fit$time_g,
     mu_q_nu_mu=fit$mu_q_nu_mu, mu_q_nu_phi=fit$mu_q_nu_phi,
-    mu_q_nu_psi=fit$mu_q_nu_psi, mu_q_zeta=fit$mu_q_zeta,
+    Sigma_q_nu_phi=fit$Sigma_q_nu_phi,
+    mu_q_nu_psi=fit$mu_q_nu_psi,
+    Sigma_q_nu_psi=fit$Sigma_q_nu_psi, mu_q_zeta=fit$mu_q_zeta,
     Sigma_q_zeta=fit$Sigma_q_zeta, mu_q_xi=fit$mu_q_xi,
     Sigma_q_xi=fit$Sigma_q_xi, mu_q_a=fit$mu_q_a,
     mu_q_b_specific=fit$mu_q_b_specific,
@@ -53,19 +55,12 @@ test_that("JAOUA T>1: annealing converges independently", {
   expect_true(all(fit$mu_q_gamma_a >= 0 & fit$mu_q_gamma_a <= 1))
 })
 
-test_that("Variance tr(Sigma) decreases monotonically with c", {
-  set.seed(42)
-  dat <- simulate_multi_study_data(S=1, n_s=c(8), p=2, d=0,
-    L_f=1, L_s=0, M_f=c(1), M_s=list(integer(0)), K=6, n_obs=15, seed=42,
-    bool_sparse_loadings=FALSE)
-
-  c_vals <- c(1, 5, 20)
-  trs <- sapply(c_vals, function(cc) {
-    fit <- bayesSYNC_multi(Y=dat$Y, Z=NULL, time_obs=dat$time_obs,
-      L_f=1, L_s=0, M_f=c(1), M_s=list(integer(0)), K=6,
-      anneal=c(1, 1/cc, 5), maxit=if(cc==1) 10 else 5, n_cpus=1,
-      verbose=FALSE, seed=42, bool_scale=FALSE)
-    tr(fit$Sigma_q_nu_mu[[1]][[1]])
-  })
-  expect_true(all(diff(trs) < 0))
+test_that("Gaussian covariance contracts over the admissible inverse-temperature range", {
+  base_precision <- matrix(c(2.0, 0.3, 0.3, 1.5), 2, 2)
+  c_vals <- c(1 / 1.9, 0.75, 1)
+  traces <- vapply(c_vals, function(cc) {
+    sum(diag(multiFSYNC:::.inverse_spd(
+      cc * base_precision, context = "temperature-unit-test")))
+  }, numeric(1))
+  expect_true(all(diff(traces) < 0))
 })

@@ -1,0 +1,25 @@
+# Keep source and protocol hashes stable across Windows and Linux clones.
+* text=auto
+.gitattributes text eol=lf
+.gitignore text eol=lf
+DESCRIPTION text eol=lf
+NAMESPACE text eol=lf
+*.R text eol=lf
+*.Rd text eol=lf
+*.Rmd text eol=lf
+*.md text eol=lf
+*.csv text eol=lf
+*.json text eol=lf
+*.lock text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.txt text eol=lf
+
+# Binary artefacts must never be normalised by Git.
+*.rds binary
+*.RDS binary
+*.pdf binary
+*.docx binary
+*.png binary
+*.jpg binary
+*.jpeg binary

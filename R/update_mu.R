@@ -54,7 +54,7 @@
 #'
 #' @return List with updated mu_q_nu_mu, Sigma_q_nu_mu, inv_Sigma_q_nu_mu
 #'
-#' @export
+#' @noRd
 update_nu_mu <- function(Y, C, list_cp_C, list_cp_C_Y,
                           mu_q_nu_mu, Sigma_q_nu_mu,
                           sum_list_cp_C,
@@ -80,6 +80,7 @@ update_nu_mu <- function(Y, C, list_cp_C, list_cp_C_Y,
   inv_Sigma_q_nu_mu <- vector("list", S)
 
   for (s in 1:S) {
+    L_ss <- .L_s_at(L_s, s)
 
     mu_q_nu_mu[[s]] <- vector("list", p)
     Sigma_q_nu_mu[[s]] <- vector("list", p)
@@ -94,7 +95,8 @@ update_nu_mu <- function(Y, C, list_cp_C, list_cp_C_Y,
       prec <- c_val * (inv_prior + mu_q_recip_sigsq_eps[s, j] * sum_list_cp_C[[s]])
 
       # ---- Posterior covariance ----
-      Sigma_q_nu_mu[[s]][[j]] <- solve(prec + 1e-8 * diag(K_total))
+      Sigma_q_nu_mu[[s]][[j]] <- .inverse_spd(
+        prec, context = sprintf("nu_mu[s=%d,j=%d]", s, j))
       inv_Sigma_q_nu_mu[[s]][[j]] <- inv_prior
 
       # ---- Residual assembly: r^mu_{sij} (excludes mu's own contribution) ----
@@ -126,8 +128,8 @@ update_nu_mu <- function(Y, C, list_cp_C, list_cp_C_Y,
         }
 
         # --- Specific factor contribution: sum_l b_{sjl} * g^{(l)}_{si} ---
-        if (L_s > 0 && !is.null(mu_q_nu_psi) && !is.null(mu_q_b_specific)) {
-          for (l in 1:L_s) {
+        if (L_ss > 0L && !is.null(mu_q_nu_psi) && !is.null(mu_q_b_specific)) {
+          for (l in seq_len(L_ss)) {
             g_sil <- as.vector(
               C[[s]][[i]] %*% mu_q_nu_psi[[s]][[l]] %*% mu_q_xi[[s]][[l]][i, ]
             )

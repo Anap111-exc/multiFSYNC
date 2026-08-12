@@ -35,7 +35,9 @@ update_a_eps <- function(mu_q_recip_sigsq_eps, A = 1e5, c_val = 1) {
   kappa_q_a <- 2 * c_val - 1
   lambda_q_a_eps <- c_val * (mu_q_recip_sigsq_eps + 1 / A^2)
   mu_q_recip_a_eps <- kappa_q_a / lambda_q_a_eps
-  create_named_list(mu_q_recip_a_eps, kappa_q_a, lambda_q_a_eps)
+  mu_q_log_a_eps <- log(lambda_q_a_eps) - digamma(kappa_q_a)
+  create_named_list(mu_q_recip_a_eps, mu_q_log_a_eps,
+                    kappa_q_a, lambda_q_a_eps)
 }
 
 # ---- 4.12: Half-Cauchy auxiliary variable a_{mu,sj} ----
@@ -50,7 +52,9 @@ update_a_mu <- function(mu_q_recip_sigsq_mu, A = 1e5, c_val = 1) {
   kappa_q_a <- 2 * c_val - 1
   lambda_q_a_mu <- c_val * (mu_q_recip_sigsq_mu + 1 / A^2)
   mu_q_recip_a_mu <- kappa_q_a / lambda_q_a_mu
-  create_named_list(mu_q_recip_a_mu, kappa_q_a, lambda_q_a_mu)
+  mu_q_log_a_mu <- log(lambda_q_a_mu) - digamma(kappa_q_a)
+  create_named_list(mu_q_recip_a_mu, mu_q_log_a_mu,
+                    kappa_q_a, lambda_q_a_mu)
 }
 
 # ---- 4.12: Half-Cauchy auxiliary variable a_{beta,jr} (NEW) ----
@@ -65,7 +69,9 @@ update_a_beta <- function(mu_q_recip_sigsq_beta, A = 1e5, c_val = 1) {
   kappa_q_a <- 2 * c_val - 1
   lambda_q_a_beta <- c_val * (mu_q_recip_sigsq_beta + 1 / A^2)
   mu_q_recip_a_beta <- kappa_q_a / lambda_q_a_beta
-  create_named_list(mu_q_recip_a_beta, kappa_q_a, lambda_q_a_beta)
+  mu_q_log_a_beta <- log(lambda_q_a_beta) - digamma(kappa_q_a)
+  create_named_list(mu_q_recip_a_beta, mu_q_log_a_beta,
+                    kappa_q_a, lambda_q_a_beta)
 }
 
 # ---- 4.12: Half-Cauchy auxiliary variable a_{phi,ml} ----
@@ -80,7 +86,11 @@ update_a_phi <- function(mu_q_recip_sigsq_phi, A = 1e5, c_val = 1) {
   kappa_q_a <- 2 * c_val - 1
   lambda_q_a_phi <- lapply(mu_q_recip_sigsq_phi, function(v) c_val * (v + 1 / A^2))
   mu_q_recip_a_phi <- lapply(lambda_q_a_phi, function(x) kappa_q_a / x)
-  create_named_list(mu_q_recip_a_phi, kappa_q_a, lambda_q_a_phi)
+  mu_q_log_a_phi <- lapply(lambda_q_a_phi, function(x) {
+    log(x) - digamma(kappa_q_a)
+  })
+  create_named_list(mu_q_recip_a_phi, mu_q_log_a_phi,
+                    kappa_q_a, lambda_q_a_phi)
 }
 
 # ---- 4.12: Half-Cauchy auxiliary variable a_{psi,slm} (NEW) ----
@@ -95,10 +105,43 @@ update_a_psi <- function(mu_q_recip_sigsq_psi, A = 1e5, c_val = 1) {
   kappa_q_a <- 2 * c_val - 1
   lambda_q_a_psi <- lapply(mu_q_recip_sigsq_psi, function(s_list) lapply(s_list, function(v) c_val * (v + 1 / A^2)))
   mu_q_recip_a_psi <- lapply(lambda_q_a_psi, function(s_list) lapply(s_list, function(x) kappa_q_a / x))
-  create_named_list(mu_q_recip_a_psi, kappa_q_a, lambda_q_a_psi)
+  mu_q_log_a_psi <- lapply(lambda_q_a_psi, function(s_list) {
+    lapply(s_list, function(x) log(x) - digamma(kappa_q_a))
+  })
+  create_named_list(mu_q_recip_a_psi, mu_q_log_a_psi,
+                    kappa_q_a, lambda_q_a_psi)
 }
 
 # ---- 4.9: Measurement error variance sigma^2_{eps,sj} ----
+
+# Expected squared norm of one latent factor curve under the mean-field
+# posterior.  If H is the coefficient matrix and u the score vector, then
+#
+#   E[H u u^T H^T]
+#     = E[H] R E[H]^T + sum_m R_mm Var(H[, m]),
+#
+# where R = Var(u) + E[u]E[u]^T.  The second term is the time-function
+# coefficient uncertainty that was previously omitted from the RSS.
+expected_factor_norm2 <- function(C_si, cp_C, score_mean, score_cov,
+                                  coef_mean, coef_cov) {
+  score_mean <- as.numeric(score_mean)
+  R_score <- score_cov + tcrossprod(score_mean)
+  second_coef <- coef_mean %*% R_score %*% t(coef_mean)
+
+  if (!is.null(coef_cov)) {
+    stopifnot(length(coef_cov) == length(score_mean))
+    for (m in seq_along(score_mean)) {
+      second_coef <- second_coef + R_score[m, m] * coef_cov[[m]]
+    }
+  }
+
+  mean_curve <- as.vector(C_si %*% coef_mean %*% score_mean)
+  mean_norm2 <- as.numeric(crossprod(mean_curve))
+  expected_norm2 <- sum(diag(cp_C %*% second_coef))
+
+  list(mean_norm2 = mean_norm2,
+       expected_norm2 = max(as.numeric(expected_norm2), 0))
+}
 
 #' Compute expected residual sum of squares for variable j, study s, individual i
 #'
@@ -107,13 +150,16 @@ update_a_psi <- function(mu_q_recip_sigsq_psi, A = 1e5, c_val = 1) {
 #' @param j Variable index
 #' @keywords internal
 compute_rss_single <- function(s, i, j, Y, C, list_cp_C,
-                                mu_q_nu_mu, Sigma_q_nu_mu,
-                                mu_q_nu_beta, Sigma_q_nu_beta, Z,
-                                mu_q_zeta, Sigma_q_zeta, mu_q_nu_phi,
-                                mu_q_xi, Sigma_q_xi, mu_q_nu_psi,
-                                mu_q_a, term_a,
-                                mu_q_b_specific, term_b_specific,
-                                L_f, L_s) {
+                                 mu_q_nu_mu, Sigma_q_nu_mu,
+                                 mu_q_nu_beta, Sigma_q_nu_beta, Z,
+                                 mu_q_zeta, Sigma_q_zeta,
+                                 mu_q_nu_phi, Sigma_q_nu_phi,
+                                 mu_q_xi, Sigma_q_xi,
+                                 mu_q_nu_psi, Sigma_q_nu_psi,
+                                 mu_q_a, term_a,
+                                 mu_q_b_specific, term_b_specific,
+                                 L_f, L_s,
+                                 return_fitted = FALSE) {
 
   C_si <- C[[s]][[i]]
   y_sij <- Y[[s]][[i]][[j]]
@@ -136,8 +182,9 @@ compute_rss_single <- function(s, i, j, Y, C, list_cp_C,
   }
 
   # Specific factor contribution
-  if (L_s > 0) {
-    for (l in seq_len(L_s)) {
+  L_ss <- .L_s_at(L_s, s)
+  if (L_ss > 0L) {
+    for (l in seq_len(L_ss)) {
       psi_xi <- as.vector(mu_q_nu_psi[[s]][[l]] %*% mu_q_xi[[s]][[l]][i, ])
       y_hat <- y_hat + mu_q_b_specific[[s]][j, l] * as.vector(C_si %*% psi_xi)
     }
@@ -151,24 +198,27 @@ compute_rss_single <- function(s, i, j, Y, C, list_cp_C,
 
   # Variance contributions from shared factors
   for (l in seq_len(L_f)) {
-    phi_zeta <- as.vector(mu_q_nu_phi[[l]] %*% mu_q_zeta[[s]][[l]][i, ])
-    mean_norm2 <- as.numeric(crossprod(C_si %*% phi_zeta))
-    f_norm2_expect <- mean_norm2 +
-      tr(list_cp_C[[s]][[i]] %*%
-         (mu_q_nu_phi[[l]] %*% Sigma_q_zeta[[s]][[l]][[i]] %*% t(mu_q_nu_phi[[l]])))
-    rss <- rss + term_a[j, l] * f_norm2_expect - mu_q_a[j, l]^2 * mean_norm2
+    f_mom <- expected_factor_norm2(
+      C_si = C_si, cp_C = list_cp_C[[s]][[i]],
+      score_mean = mu_q_zeta[[s]][[l]][i, ],
+      score_cov = Sigma_q_zeta[[s]][[l]][[i]],
+      coef_mean = mu_q_nu_phi[[l]],
+      coef_cov = if (!is.null(Sigma_q_nu_phi)) Sigma_q_nu_phi[[l]] else NULL)
+    rss <- rss + term_a[j, l] * f_mom$expected_norm2 -
+      mu_q_a[j, l]^2 * f_mom$mean_norm2
   }
 
   # Variance contributions from specific factors
-  if (L_s > 0) {
-    for (l in seq_len(L_s)) {
-      psi_xi <- as.vector(mu_q_nu_psi[[s]][[l]] %*% mu_q_xi[[s]][[l]][i, ])
-      mean_norm2_spec <- as.numeric(crossprod(C_si %*% psi_xi))
-      g_norm2_expect <- mean_norm2_spec +
-        tr(list_cp_C[[s]][[i]] %*%
-           (mu_q_nu_psi[[s]][[l]] %*% Sigma_q_xi[[s]][[l]][[i]] %*% t(mu_q_nu_psi[[s]][[l]])))
-      rss <- rss + term_b_specific[[s]][j, l] * g_norm2_expect -
-             mu_q_b_specific[[s]][j, l]^2 * mean_norm2_spec
+  if (L_ss > 0L) {
+    for (l in seq_len(L_ss)) {
+      g_mom <- expected_factor_norm2(
+        C_si = C_si, cp_C = list_cp_C[[s]][[i]],
+        score_mean = mu_q_xi[[s]][[l]][i, ],
+        score_cov = Sigma_q_xi[[s]][[l]][[i]],
+        coef_mean = mu_q_nu_psi[[s]][[l]],
+        coef_cov = if (!is.null(Sigma_q_nu_psi)) Sigma_q_nu_psi[[s]][[l]] else NULL)
+      rss <- rss + term_b_specific[[s]][j, l] * g_mom$expected_norm2 -
+        mu_q_b_specific[[s]][j, l]^2 * g_mom$mean_norm2
     }
   }
 
@@ -179,7 +229,86 @@ compute_rss_single <- function(s, i, j, Y, C, list_cp_C,
     }
   }
 
+  rss_scale <- 1 + as.numeric(crossprod(y_sij))
+  if (!is.finite(rss)) {
+    stop(sprintf("Expected RSS is non-finite at s=%d, i=%d, j=%d.", s, i, j))
+  }
+  if (rss < -1e-8 * rss_scale) {
+    stop(sprintf(
+      "Expected RSS is materially negative at s=%d, i=%d, j=%d: %.6g.",
+      s, i, j, rss))
+  }
+  rss <- max(rss, 0)
+  if (isTRUE(return_fitted)) {
+    return(list(expected_rss = rss, fitted = y_hat))
+  }
   rss
+}
+
+#' Compute and cache all current expected residual sums of squares
+#'
+#' @keywords internal
+compute_rss_cache <- function(Y, C, list_cp_C,
+                               mu_q_nu_mu, Sigma_q_nu_mu,
+                               mu_q_nu_beta, Sigma_q_nu_beta, Z,
+                               mu_q_zeta, Sigma_q_zeta,
+                               mu_q_nu_phi, Sigma_q_nu_phi,
+                               mu_q_xi, Sigma_q_xi,
+                               mu_q_nu_psi, Sigma_q_nu_psi,
+                               mu_q_a, term_a,
+                               mu_q_b_specific, term_b_specific,
+                               S, n_s, p, L_f, L_s,
+                               return_fitted = FALSE) {
+  expected_rss <- lapply(seq_len(S), function(s) {
+    matrix(NA_real_, nrow = n_s[s], ncol = p)
+  })
+  expected_rss_sum <- matrix(0, nrow = S, ncol = p)
+  fitted_values <- if (isTRUE(return_fitted)) {
+    numeric(sum(vapply(
+      seq_len(S),
+      function(s) {
+        sum(vapply(
+          seq_len(n_s[s]),
+          function(i) nrow(C[[s]][[i]]) * p,
+          integer(1)
+        ))
+      },
+      integer(1)
+    )))
+  } else {
+    NULL
+  }
+  fitted_index <- 0L
+
+  for (s in seq_len(S)) {
+    for (i in seq_len(n_s[s])) {
+      for (j in seq_len(p)) {
+        rss_one <- compute_rss_single(
+          s, i, j, Y, C, list_cp_C,
+          mu_q_nu_mu, Sigma_q_nu_mu,
+          mu_q_nu_beta, Sigma_q_nu_beta, Z,
+          mu_q_zeta, Sigma_q_zeta,
+          mu_q_nu_phi, Sigma_q_nu_phi,
+          mu_q_xi, Sigma_q_xi,
+          mu_q_nu_psi, Sigma_q_nu_psi,
+          mu_q_a, term_a,
+          mu_q_b_specific, term_b_specific,
+          L_f, L_s,
+          return_fitted = return_fitted)
+        if (isTRUE(return_fitted)) {
+          expected_rss[[s]][i, j] <- rss_one$expected_rss
+          value_index <- fitted_index + seq_along(rss_one$fitted)
+          fitted_values[value_index] <- rss_one$fitted
+          fitted_index <- fitted_index + length(rss_one$fitted)
+        } else {
+          expected_rss[[s]][i, j] <- rss_one
+        }
+      }
+    }
+    expected_rss_sum[s, ] <- colSums(expected_rss[[s]])
+  }
+
+  create_named_list(expected_rss, expected_rss_sum, fitted_values)
 }
 
 #' Update measurement error variance sigma^2_{eps,sj}
@@ -190,6 +319,7 @@ compute_rss_single <- function(s, i, j, Y, C, list_cp_C,
 #' @param mu_q_nu_mu Variational mean of nu_mu
 #' @param Sigma_q_nu_mu Variational covariance of nu_mu
 #' @param mu_q_nu_beta Variational mean of nu_beta (or NULL)
+#' @param Sigma_q_nu_beta Variational covariance of nu_beta (or NULL)
 #' @param Z Covariate matrices per study (or NULL)
 #' @param mu_q_zeta Variational mean of zeta
 #' @param Sigma_q_zeta Variational covariance of zeta
@@ -211,18 +341,21 @@ compute_rss_single <- function(s, i, j, Y, C, list_cp_C,
 #' @param n_cpus Number of CPU cores
 #' @return List with updated kappa, lambda, mu_q_recip_sigsq_eps
 #'
-#' @export
+#' @noRd
 update_sigsq_eps <- function(Y, C, list_cp_C,
                               mu_q_nu_mu, Sigma_q_nu_mu,
-                              mu_q_nu_beta, Z,
-                              mu_q_zeta, Sigma_q_zeta, mu_q_nu_phi,
-                              mu_q_xi, Sigma_q_xi, mu_q_nu_psi,
+                              mu_q_nu_beta, Sigma_q_nu_beta, Z,
+                              mu_q_zeta, Sigma_q_zeta,
+                              mu_q_nu_phi, Sigma_q_nu_phi,
+                              mu_q_xi, Sigma_q_xi,
+                              mu_q_nu_psi, Sigma_q_nu_psi,
                               mu_q_a, term_a,
                               mu_q_b_specific, term_b_specific,
                               mu_q_recip_a_eps,
                                S, n_s, p, L_f, L_s,
                                total_obs_sj = NULL,
-                               c_val = 1, n_cpus = 1) {
+                               c_val = 1, n_cpus = 1,
+                               return_fitted = FALSE) {
 
   # Dimensions
   stopifnot(nrow(mu_q_recip_a_eps) == S, ncol(mu_q_recip_a_eps) == p)
@@ -231,29 +364,38 @@ update_sigsq_eps <- function(Y, C, list_cp_C,
   kappa_q_sigsq_eps <- matrix(NA, nrow = S, ncol = p)
   for (s in 1:S) {
     for (j in 1:p) {
-      nobs_sj <- if (!is.null(total_obs_sj)) total_obs_sj[s, j] else length(Y[[1]][[1]][[1]]) * n_s[s]
+      nobs_sj <- if (!is.null(total_obs_sj)) {
+        total_obs_sj[s, j]
+      } else {
+        sum(vapply(
+          seq_len(n_s[s]),
+          function(i) length(Y[[s]][[i]][[j]]),
+          integer(1)
+        ))
+      }
       kappa_q_sigsq_eps[s, j] <- c_val * (nobs_sj + 1) / 2 + c_val - 1
     }
   }
 
-  # lambda: c * (E[a^{-1}_eps] + 0.5 * Σ_i RSS_{sij})
-  lambda_q_sigsq_eps <- matrix(NA, nrow = S, ncol = p)
+  # Cache the direct current E[RSS]. The same object is consumed by the ELBO,
+  # avoiding duplicate work and a state-mismatched back-calculation from the
+  # variance update.
+  rss_res <- compute_rss_cache(
+    Y, C, list_cp_C,
+    mu_q_nu_mu, Sigma_q_nu_mu,
+    mu_q_nu_beta, Sigma_q_nu_beta, Z,
+    mu_q_zeta, Sigma_q_zeta,
+    mu_q_nu_phi, Sigma_q_nu_phi,
+    mu_q_xi, Sigma_q_xi,
+    mu_q_nu_psi, Sigma_q_nu_psi,
+    mu_q_a, term_a,
+    mu_q_b_specific, term_b_specific,
+    S, n_s, p, L_f, L_s,
+    return_fitted = return_fitted)
 
-  for (s in 1:S) {
-    for (j in 1:p) {
-      rss_sum <- sum(sapply(1:n_s[s], function(i) {
-        compute_rss_single(s, i, j, Y, C, list_cp_C,
-                           mu_q_nu_mu, Sigma_q_nu_mu,
-                           mu_q_nu_beta, Sigma_q_nu_beta, Z,
-                           mu_q_zeta, Sigma_q_zeta, mu_q_nu_phi,
-                           mu_q_xi, Sigma_q_xi, mu_q_nu_psi,
-                           mu_q_a, term_a,
-                           mu_q_b_specific, term_b_specific,
-                           L_f, L_s)
-      }))
-      lambda_q_sigsq_eps[s, j] <- c_val * (mu_q_recip_a_eps[s, j] + 0.5 * rss_sum)
-    }
-  }
+  # lambda: c * (E[a^{-1}_eps] + 0.5 * sum_i RSS_{sij})
+  lambda_q_sigsq_eps <- c_val *
+    (mu_q_recip_a_eps + 0.5 * rss_res$expected_rss_sum)
 
   mu_q_recip_sigsq_eps <- kappa_q_sigsq_eps / lambda_q_sigsq_eps
 
@@ -261,7 +403,10 @@ update_sigsq_eps <- function(Y, C, list_cp_C,
   mu_q_log_sigsq_eps <- log(lambda_q_sigsq_eps) - digamma(kappa_q_sigsq_eps)
 
   create_named_list(kappa_q_sigsq_eps, lambda_q_sigsq_eps,
-                    mu_q_recip_sigsq_eps, mu_q_log_sigsq_eps)
+                    mu_q_recip_sigsq_eps, mu_q_log_sigsq_eps,
+                    expected_rss = rss_res$expected_rss,
+                    expected_rss_sum = rss_res$expected_rss_sum,
+                    fitted_values = rss_res$fitted_values)
 }
 
 # ---- 4.10: Mean function variance sigma^2_{mu,sj} ----
@@ -278,7 +423,7 @@ update_sigsq_eps <- function(Y, C, list_cp_C,
 #' @param n_cpus Number of CPU cores
 #' @return List with updated parameters
 #'
-#' @export
+#' @noRd
 update_sigsq_mu <- function(mu_q_nu_mu, Sigma_q_nu_mu,
                              mu_q_recip_a_mu,
                              S, p, K, c_val = 1, n_cpus = 1) {
@@ -318,7 +463,7 @@ update_sigsq_mu <- function(mu_q_nu_mu, Sigma_q_nu_mu,
 #' @param n_cpus Number of CPU cores
 #' @return List with updated parameters
 #'
-#' @export
+#' @noRd
 update_sigsq_beta <- function(mu_q_nu_beta, Sigma_q_nu_beta,
                                mu_q_recip_a_beta,
                                p, d, K, c_val = 1, n_cpus = 1) {
@@ -359,7 +504,7 @@ update_sigsq_beta <- function(mu_q_nu_beta, Sigma_q_nu_beta,
 #' @param c_val Temperature constant
 #' @return List with updated parameters (mu_q_recip_sigsq_phi, mu_q_log_sigsq_phi as lists)
 #'
-#' @export
+#' @noRd
 update_sigsq_phi <- function(mu_q_nu_phi, Sigma_q_nu_phi,
                               mu_q_recip_a_phi,
                               L_f, M_f, K, c_val = 1) {
@@ -399,20 +544,23 @@ update_sigsq_phi <- function(mu_q_nu_phi, Sigma_q_nu_phi,
 #' @param c_val Temperature constant
 #' @return List with updated parameters (mu_q_recip_sigsq_psi, mu_q_log_sigsq_psi as list of lists)
 #'
-#' @export
+#' @noRd
 update_sigsq_psi <- function(mu_q_nu_psi, Sigma_q_nu_psi,
                               mu_q_recip_a_psi,
                               S, L_s, M_s, K, c_val = 1) {
 
-  if (is.null(mu_q_nu_psi) || L_s == 0) return(NULL)
+  if (is.null(mu_q_nu_psi) || !.has_specific(L_s)) return(NULL)
 
   kappa_q_sigsq_psi <- c_val * (K + 1) / 2 + c_val - 1
 
-  lambda_q_sigsq_psi <- lapply(1:S, function(s) lapply(1:L_s, function(l) rep(NA, M_s[[s]][l])))
+  lambda_q_sigsq_psi <- lapply(seq_len(S), function(s) {
+    lapply(seq_len(.L_s_at(L_s, s)), function(l) rep(NA, M_s[[s]][l]))
+  })
 
-  for (s in 1:S) {
-    for (l in 1:L_s) {
-      for (m in 1:M_s[[s]][l]) {
+  for (s in seq_len(S)) {
+    L_ss <- .L_s_at(L_s, s)
+    for (l in seq_len(L_ss)) {
+      for (m in seq_len(M_s[[s]][l])) {
         nu_pen <- mu_q_nu_psi[[s]][[l]][-c(1:2), m]
         Sigma_pen <- Sigma_q_nu_psi[[s]][[l]][[m]][-c(1:2), -c(1:2)]
         lambda_q_sigsq_psi[[s]][[l]][m] <- c_val * (
@@ -439,7 +587,7 @@ update_sigsq_psi <- function(mu_q_nu_psi, Sigma_q_nu_psi,
 #' @param n_cpus Number of CPU cores
 #' @return List with all updated variance-related parameters
 #'
-#' @export
+#' @noRd
 update_all_variances <- function(Y, C, list_cp_C,
                                   mu_q_nu_mu, Sigma_q_nu_mu,
                                   mu_q_nu_beta, Sigma_q_nu_beta, Z,
@@ -454,19 +602,23 @@ update_all_variances <- function(Y, C, list_cp_C,
                                   mu_q_recip_sigsq_psi, mu_q_recip_a_psi,
                                    S, n_s, p, d, L_f, L_s, M_f, M_s, K,
                                    total_obs_sj = NULL,
-                                   A = 1e5, c_val = 1, n_cpus = 1) {
+                                   A = 1e5, c_val = 1, n_cpus = 1,
+                                   return_fitted = FALSE) {
 
   # 1. Update sigma^2_eps (measurement error)
   res_eps <- update_sigsq_eps(Y, C, list_cp_C,
                                mu_q_nu_mu, Sigma_q_nu_mu,
-                               mu_q_nu_beta, Z,
-                               mu_q_zeta, Sigma_q_zeta, mu_q_nu_phi,
-                               mu_q_xi, Sigma_q_xi, mu_q_nu_psi,
+                               mu_q_nu_beta, Sigma_q_nu_beta, Z,
+                               mu_q_zeta, Sigma_q_zeta,
+                               mu_q_nu_phi, Sigma_q_nu_phi,
+                               mu_q_xi, Sigma_q_xi,
+                               mu_q_nu_psi, Sigma_q_nu_psi,
                                mu_q_a, term_a,
                                mu_q_b_specific, term_b_specific,
                                mu_q_recip_a_eps,
                                S, n_s, p, L_f, L_s,
-                               total_obs_sj, c_val, n_cpus)
+                               total_obs_sj, c_val, n_cpus,
+                               return_fitted = return_fitted)
 
   # 2. Update sigma^2_mu (mean function variance)
   res_mu <- update_sigsq_mu(mu_q_nu_mu, Sigma_q_nu_mu,
@@ -500,7 +652,7 @@ update_all_variances <- function(Y, C, list_cp_C,
   res_a_phi  <- update_a_phi(res_phi$mu_q_recip_sigsq_phi, A, c_val)
 
   res_a_psi <- NULL
-  if (!is.null(res_psi) && L_s > 0) {
+  if (!is.null(res_psi) && .has_specific(L_s)) {
     res_a_psi <- update_a_psi(res_psi$mu_q_recip_sigsq_psi, A, c_val)
   }
 
@@ -511,6 +663,11 @@ update_all_variances <- function(Y, C, list_cp_C,
     mu_q_recip_sigsq_eps = res_eps$mu_q_recip_sigsq_eps,
     mu_q_log_sigsq_eps = res_eps$mu_q_log_sigsq_eps,
     mu_q_recip_a_eps = res_a_eps$mu_q_recip_a_eps,
+    mu_q_log_a_eps = res_a_eps$mu_q_log_a_eps,
+    lambda_q_a_eps = res_a_eps$lambda_q_a_eps,
+    expected_rss = res_eps$expected_rss,
+    expected_rss_sum = res_eps$expected_rss_sum,
+    fitted_values = res_eps$fitted_values,
 
     # sigma^2_mu
     kappa_q_sigsq_mu = res_mu$kappa_q_sigsq_mu,
@@ -518,6 +675,8 @@ update_all_variances <- function(Y, C, list_cp_C,
     mu_q_recip_sigsq_mu = res_mu$mu_q_recip_sigsq_mu,
     mu_q_log_sigsq_mu = res_mu$mu_q_log_sigsq_mu,
     mu_q_recip_a_mu = res_a_mu$mu_q_recip_a_mu,
+    mu_q_log_a_mu = res_a_mu$mu_q_log_a_mu,
+    lambda_q_a_mu = res_a_mu$lambda_q_a_mu,
 
     # sigma^2_beta
     kappa_q_sigsq_beta = if (!is.null(res_beta)) res_beta$kappa_q_sigsq_beta else NULL,
@@ -525,6 +684,8 @@ update_all_variances <- function(Y, C, list_cp_C,
     mu_q_log_sigsq_beta = if (!is.null(res_beta)) res_beta$mu_q_log_sigsq_beta else NULL,
     mu_q_recip_sigsq_beta = if (!is.null(res_beta)) res_beta$mu_q_recip_sigsq_beta else NULL,
     mu_q_recip_a_beta = if (!is.null(res_a_beta)) res_a_beta$mu_q_recip_a_beta else NULL,
+    mu_q_log_a_beta = if (!is.null(res_a_beta)) res_a_beta$mu_q_log_a_beta else NULL,
+    lambda_q_a_beta = if (!is.null(res_a_beta)) res_a_beta$lambda_q_a_beta else NULL,
 
     # sigma^2_phi
     kappa_q_sigsq_phi = res_phi$kappa_q_sigsq_phi,
@@ -532,6 +693,8 @@ update_all_variances <- function(Y, C, list_cp_C,
     mu_q_recip_sigsq_phi = res_phi$mu_q_recip_sigsq_phi,
     mu_q_log_sigsq_phi = res_phi$mu_q_log_sigsq_phi,
     mu_q_recip_a_phi = res_a_phi$mu_q_recip_a_phi,
+    mu_q_log_a_phi = res_a_phi$mu_q_log_a_phi,
+    lambda_q_a_phi = res_a_phi$lambda_q_a_phi,
 
     # sigma^2_psi
     kappa_q_sigsq_psi = if (!is.null(res_psi)) res_psi$kappa_q_sigsq_psi else NULL,
@@ -539,6 +702,8 @@ update_all_variances <- function(Y, C, list_cp_C,
     mu_q_log_sigsq_psi = if (!is.null(res_psi)) res_psi$mu_q_log_sigsq_psi else NULL,
     mu_q_recip_sigsq_psi = if (!is.null(res_psi)) res_psi$mu_q_recip_sigsq_psi else NULL,
     mu_q_recip_a_psi = if (!is.null(res_a_psi)) res_a_psi$mu_q_recip_a_psi else NULL,
+    mu_q_log_a_psi = if (!is.null(res_a_psi)) res_a_psi$mu_q_log_a_psi else NULL,
+    lambda_q_a_psi = if (!is.null(res_a_psi)) res_a_psi$lambda_q_a_psi else NULL,
 
     # shared kappa_q_a
     kappa_q_a = res_a_eps$kappa_q_a

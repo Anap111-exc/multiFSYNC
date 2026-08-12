@@ -23,7 +23,7 @@
 #'
 #' Cross-study aggregation: beta is shared, uses ALL studies' data.
 #'
-#' @export
+#' @noRd
 update_nu_beta <- function(Y, C, list_cp_C, list_cp_C_Y,
                             mu_q_nu_mu,
                             mu_q_nu_beta, Sigma_q_nu_beta, Z,
@@ -37,13 +37,12 @@ update_nu_beta <- function(Y, C, list_cp_C, list_cp_C_Y,
 
   if (d == 0 || is.null(Z) || is.null(mu_q_nu_beta)) return(NULL)
 
-  mu_q_nu_beta_new <- vector("list", p)
-  Sigma_q_nu_beta_new <- vector("list", p)
+  # Working copies are updated immediately so later covariate coordinates use
+  # the current sweep's values (Gauss--Seidel rather than Jacobi updates).
+  mu_q_nu_beta_new <- mu_q_nu_beta
+  Sigma_q_nu_beta_new <- Sigma_q_nu_beta
 
   for (j in 1:p) {
-
-    mu_q_nu_beta_new[[j]] <- vector("list", d)
-    Sigma_q_nu_beta_new[[j]] <- vector("list", d)
 
     # Precompute list_cp_C_nu_mu for all (s,i) — needed for mu subtraction
     list_cp_C_nu_mu <- vector("list", S)
@@ -70,12 +69,15 @@ update_nu_beta <- function(Y, C, list_cp_C, list_cp_C_Y,
                            mu_q_recip_sigsq_beta[j, r] * diag(K))
 
       # Posterior covariance
-      Sigma_q_nu_beta_new[[j]][[r]] <- solve(c_val * (prec_data + inv_prior) + 1e-8 * diag(K_total))
+      Sigma_q_nu_beta_new[[j]][[r]] <- .inverse_spd(
+        c_val * (prec_data + inv_prior),
+        context = sprintf("nu_beta[j=%d,r=%d]", j, r))
 
       # ---- Linear term: cross-study sum ----
       sum_mu <- rep(0, K_total)
 
       for (s in 1:S) {
+        L_ss <- .L_s_at(L_s, s)
         eps_prec <- mu_q_recip_sigsq_eps[s, j]
         for (i in 1:n_s[s]) {
 
@@ -90,7 +92,7 @@ update_nu_beta <- function(Y, C, list_cp_C, list_cp_C_Y,
 
           # Subtract OTHER covariates r' != r
           for (r_other in setdiff(1:d, r)) {
-            ct_beta_other <- cp_C_si %*% mu_q_nu_beta[[j]][[r_other]]
+            ct_beta_other <- cp_C_si %*% mu_q_nu_beta_new[[j]][[r_other]]
             ct_res <- ct_res - Z[[s]][i, r_other] * as.vector(ct_beta_other)
           }
 
@@ -105,8 +107,8 @@ update_nu_beta <- function(Y, C, list_cp_C, list_cp_C_Y,
           }
 
           # Subtract specific factor contributions
-          if (L_s > 0 && !is.null(mu_q_nu_psi) && !is.null(mu_q_b_specific)) {
-            for (l in 1:L_s) {
+          if (L_ss > 0L && !is.null(mu_q_nu_psi) && !is.null(mu_q_b_specific)) {
+            for (l in seq_len(L_ss)) {
               g_sil <- as.vector(
                 C_si %*% mu_q_nu_psi[[s]][[l]] %*% mu_q_xi[[s]][[l]][i, ]
               )

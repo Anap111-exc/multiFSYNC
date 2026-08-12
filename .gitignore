@@ -2,3 +2,19 @@
 .RData
 .Rproj.user/
 *.Rproj
+
+# Local R environments and package-check output
+renv/library/
+renv/staging/
+*.Rcheck/
+
+# Generated experiment artefacts (protocol/configuration files remain tracked)
+results/
+artifacts/
+*.rds
+*.RDS
+*.log
+
+# OS/editor noise
+.DS_Store
+Thumbs.db

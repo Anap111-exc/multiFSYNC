@@ -7,7 +7,6 @@ test_that("JAOUA degeneration: S=1, L_s=0, T=1 matches bayesSYNC", {
   skip_if_not_installed("bayesSYNC")
 
   library(splines)
-  library(pracma)
 
   set.seed(42)
   N <- 10; p <- 3; Q <- 1; L <- 2; K <- 6

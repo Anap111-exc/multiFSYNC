@@ -9,7 +9,7 @@
 #
 # Symbol convention (aligned with 创新点.pdf):
 #   L_f = number of shared factors (scalar)
-#   L_s = number of study-specific factors (scalar)
+#   L_s = number of study-specific factors (scalar or one count per study)
 #   M_f = vector length L_f: M_f[l] = FPCA truncation for shared factor l
 #   M_s = list of S vectors: M_s[[s]][l] = FPCA truncation for specific factor l in study s
 #
@@ -25,12 +25,12 @@
 #' @param p Number of functional variables.
 #' @param d Number of scalar covariates (0 for no covariates).
 #' @param L_f Number of shared latent factors (scalar).
-#' @param L_s Number of study-specific latent factors (scalar, 0 for none).
+#' @param L_s Number of study-specific latent factors. A scalar is recycled to
+#'   all studies; a length-S vector allows different counts by study.
 #' @param M_f Vector of length L_f, number of FPCA components per shared factor.
 #'   If NULL, defaults to rep(2, L_f).
-#' @param M_s List of S vectors, each of length L_s. M_s[[s]][l] is the number
-#'   of FPCA components for specific factor l in study s. If NULL and L_s > 0,
-#'   defaults to replicate(S, rep(2, L_s), simplify = FALSE).
+#' @param M_s List of S vectors, with length M_s[[s]] = L_s[s].
+#'   M_s[[s]][l] is the FPCA truncation for factor l in study s.
 #' @param K Number of O'Sullivan spline basis functions (determines design matrix
 #'   size K+2). If NULL, defaults to max(7, floor(min(n_obs/4, 40))).
 #' @param n_obs Number of observation grid points per curve.
@@ -40,6 +40,9 @@
 #'   pattern for loadings with p_as_spike proportion at exactly zero.
 #' @param prop_sparse Proportion of loadings set to zero when
 #'   bool_sparse_loadings = TRUE.
+#' @param identified_loadings If TRUE, construct loadings satisfying the
+#'   population Gram diagonalisation, strict norm ordering and full-rank
+#'   conditions used in the thesis simulations.
 #' @param seed Optional seed for reproducibility.
 #'
 #' @return A list with elements:
@@ -49,6 +52,7 @@
 #'   \item{C}{List S of lists n_s[s] of design matrices (n_obs x (K+2)).}
 #'   \item{true_params}{List of true parameter values.}
 #'
+#' @noRd
 #' @export
 simulate_multi_study_data <- function(
     S = 2,
@@ -65,6 +69,7 @@ simulate_multi_study_data <- function(
     sigma_eps = 0.1,
     bool_sparse_loadings = TRUE,
     prop_sparse = 0.7,
+    identified_loadings = FALSE,
     seed = NULL
 ) {
 
@@ -73,7 +78,8 @@ simulate_multi_study_data <- function(
   # ---- Dimension validation ----
   stopifnot(length(n_s) == S)
   stopifnot(L_f >= 0)
-  stopifnot(L_s >= 0)
+  L_s <- .normalize_L_s(L_s, S)
+  has_specific <- .has_specific(L_s)
   if (d == 0) d <- 0
   d_use <- max(d, 0)
 
@@ -84,15 +90,15 @@ simulate_multi_study_data <- function(
   stopifnot(all(M_f >= 0))
 
   if (is.null(M_s)) {
-    if (L_s > 0) {
-      M_s <- replicate(S, rep(2, L_s), simplify = FALSE)
+    if (has_specific) {
+      M_s <- lapply(seq_len(S), function(s) rep(2L, L_s[[s]]))
     } else {
       M_s <- replicate(S, integer(0), simplify = FALSE)
     }
   }
   stopifnot(is.list(M_s), length(M_s) == S)
   for (s in 1:S) {
-    stopifnot(length(M_s[[s]]) == L_s)
+    stopifnot(length(M_s[[s]]) == L_s[[s]])
   }
 
   if (is.null(K)) {
@@ -117,14 +123,17 @@ simulate_multi_study_data <- function(
 
   # ---- Step 2: Construct spline design matrix C ----
   C <- vector("list", S)
+  pooled_time <- sort(unique(unlist(time_obs, recursive = TRUE,
+                                    use.names = FALSE)))
+  int_knots <- unname(quantile(
+    pooled_time, seq(0, 1, length = K)[-c(1, K)]))
 
   for (s in 1:S) {
     C[[s]] <- vector("list", n_s[s])
     for (i in 1:n_s[s]) {
       X <- cbind(1, time_obs[[s]][[i]])
       Z <- ZOSull(time_obs[[s]][[i]], range.x = c(0, 1),
-                  intKnots = quantile(time_obs[[s]][[i]],
-                                      seq(0, 1, length = K)[-c(1, K)]))
+                  intKnots = int_knots)
       C[[s]][[i]] <- cbind(X, Z)
     }
   }
@@ -161,11 +170,12 @@ simulate_multi_study_data <- function(
 
   # Study-specific eigenfunction coefficients nu_{psi,slm}: (K+2) x 1
   nu_psi_true <- NULL
-  if (L_s > 0) {
+  if (has_specific) {
     nu_psi_true <- vector("list", S)
     for (s in 1:S) {
-      nu_psi_true[[s]] <- vector("list", L_s)
-      for (l in seq_len(L_s)) {
+      L_ss <- L_s[[s]]
+      nu_psi_true[[s]] <- vector("list", L_ss)
+      for (l in seq_len(L_ss)) {
         M_sl <- M_s[[s]][l]
         nu_psi_true[[s]][[l]] <- matrix(rnorm(K_total * M_sl, mean = 0, sd = 0.5),
                                           nrow = K_total, ncol = M_sl)
@@ -188,11 +198,12 @@ simulate_multi_study_data <- function(
 
   # Specific factor scores xi^{(sl)}_{sim} ~ N(0, 1)
   xi_true <- NULL
-  if (L_s > 0) {
+  if (has_specific) {
     xi_true <- vector("list", S)
     for (s in 1:S) {
-      xi_true[[s]] <- vector("list", L_s)
-      for (l in seq_len(L_s)) {
+      L_ss <- L_s[[s]]
+      xi_true[[s]] <- vector("list", L_ss)
+      for (l in seq_len(L_ss)) {
         M_sl <- M_s[[s]][l]
         xi_true[[s]][[l]] <- matrix(rnorm(n_s[s] * M_sl, mean = 0, sd = 1),
                                      nrow = n_s[s], ncol = M_sl)
@@ -202,10 +213,14 @@ simulate_multi_study_data <- function(
 
   # --- 3d: Loadings with optional sparsity ---
 
-  a_true <- matrix(0, nrow = p, ncol = L_f)
-  gamma_a_true <- matrix(0, nrow = p, ncol = L_f)
+  loading_draw <- if (identified_loadings) {
+    generate_identified_loadings(p, L_f, L_s, S,
+      sparse = bool_sparse_loadings, prop_sparse = prop_sparse)
+  } else NULL
+  a_true <- if (identified_loadings) loading_draw$a else matrix(0, p, L_f)
+  gamma_a_true <- if (identified_loadings) loading_draw$gamma_a else matrix(0, p, L_f)
 
-  for (l in seq_len(L_f)) {
+  for (l in if (identified_loadings) integer(0) else seq_len(L_f)) {
     if (bool_sparse_loadings) {
       n_active <- max(1, round(p * (1 - prop_sparse)))
       active_idx <- sample(1:p, n_active)
@@ -218,15 +233,16 @@ simulate_multi_study_data <- function(
     }
   }
 
-  b_true <- NULL
-  gamma_b_true <- NULL
-  if (L_s > 0) {
+  b_true <- if (identified_loadings) loading_draw$b else NULL
+  gamma_b_true <- if (identified_loadings) loading_draw$gamma_b else NULL
+  if (has_specific && !identified_loadings) {
     b_true <- vector("list", S)
     gamma_b_true <- vector("list", S)
     for (s in 1:S) {
-      b_true[[s]] <- matrix(0, nrow = p, ncol = L_s)
-      gamma_b_true[[s]] <- matrix(0, nrow = p, ncol = L_s)
-      for (l in seq_len(L_s)) {
+      L_ss <- L_s[[s]]
+      b_true[[s]] <- matrix(0, nrow = p, ncol = L_ss)
+      gamma_b_true[[s]] <- matrix(0, nrow = p, ncol = L_ss)
+      for (l in seq_len(L_ss)) {
         if (bool_sparse_loadings) {
           n_active <- max(1, round(p * (1 - prop_sparse)))
           active_idx <- sample(1:p, n_active)
@@ -259,6 +275,7 @@ simulate_multi_study_data <- function(
   Y <- vector("list", S)
 
   for (s in 1:S) {
+    L_ss <- L_s[[s]]
     Y[[s]] <- vector("list", n_s[s])
     for (i in 1:n_s[s]) {
       Y[[s]][[i]] <- vector("list", p)
@@ -273,9 +290,9 @@ simulate_multi_study_data <- function(
 
       # Precompute specific factor process for this (s,i) if L_s > 0
       g_si_list <- NULL
-      if (L_s > 0) {
-        g_si_list <- vector("list", L_s)
-        for (l in seq_len(L_s)) {
+      if (L_ss > 0L) {
+        g_si_list <- vector("list", L_ss)
+        for (l in seq_len(L_ss)) {
           g_si_list[[l]] <- as.vector(
             C[[s]][[i]] %*% nu_psi_true[[s]][[l]] %*% xi_true[[s]][[l]][i, ]
           )
@@ -317,8 +334,8 @@ simulate_multi_study_data <- function(
         }
 
         # sum_{l} b_{sjl} * g^{(l)}_{si}
-        if (L_s > 0) {
-          for (l in seq_len(L_s)) {
+        if (L_ss > 0L) {
+          for (l in seq_len(L_ss)) {
             y_sij <- y_sij + b_true[[s]][j, l] * g_si_list[[l]]
           }
         }
@@ -345,8 +362,10 @@ simulate_multi_study_data <- function(
     gamma_b_true,
     sigma2_eps_true,
     K, L_f, L_s, M_f, M_s,
-    S, n_s, p, d_use, n_obs
+    S, n_s, p, d_use, n_obs, int_knots, identified_loadings
   )
+  true_params$L_s_by_study <- L_s
+  true_params$L_s <- .compact_L_s(L_s)
 
   # ---- Return ----
   create_named_list(Y, Z, time_obs, C, true_params)

@@ -3,8 +3,10 @@
 ## 项目信息
 - **目标**：多研究函数型因子模型 R 包，支持共享因子、研究特异因子、协变量效应
 - **基于**：bayesSYNC (https://github.com/hruffieux/bayesSYNC)，GPL-3
-- **工作目录**：`D:\文档\Factor model\多研究函数型因子模型实践\Rcode\`
+- **工作目录**：`D:\文档\Factor model\multiFSYNC\Rcode\multiFSYNC\`
 - **索引约定**：研究维度永远最外层 `[[s]]`，个体 `[[i]]`，因子 `[[l]]`，FPCA 分量 `[[m]]`
+
+> **2026-07-24 当前说明**：下列早期阶段记录保留为开发历史，其中旧 ELBO 公式与“实验性诊断”结论已被 Phase 11 取代。当前实现只在完整 `T=1` sweep 后计算普通 ELBO；仅当 `lambda_orth=0` 且该阶段未触发自适应 jitter 时允许 ELBO 停止。`T>1` 的 PPI 路径仍采用论文附录公式，并以最终 `T=1` 结果为准。
 
 ## 当前状态
 
@@ -19,7 +21,19 @@
 | Phase 5: 后处理 | 完成 | 2026-05-15 |
 | Phase 6: 测试套件 | 完成 | 2026-05-15 |
 | Phase 7: 端到端验证 | 完成 | 2026-05-15 |
-| Phase 10: ELBO补全与对比 | 完成 | 2026-05-15 |
+| Phase 10: 旧 ELBO 诊断实现 | 已由 Phase 11 取代 | 2026-07-23复核 |
+| Phase 11: 完整普通 ELBO 修复 | 完成并通过小样本/回归测试 | 2026-07-24 |
+
+## Phase 11：完整普通 ELBO 修复
+
+- 数据项使用最后一次载荷更新后的直接完整后验期望 RSS，并由误差方差更新缓存供 ELBO 复用。
+- O'Sullivan 线性/非线性两块、标准正态计算得分、共享/特异 spike-and-slab、两种 omega 层级及全部 Half-Cauchy IG--IG 层级均纳入命名分量。
+- `update_beta`、`update_eigenfunctions`、`update_zeta`、`update_xi` 与 `update_loadings` 的耦合坐标改为工作副本上的 Gauss--Seidel 顺序更新。
+- 高斯精度首先对未扰动矩阵作 Cholesky；失败时才逐级增加 jitter，并输出位置与次数。`T=1` 触发 jitter 或 `lambda_orth>0` 时自动改用参数停止。
+- 新增 `test_elbo_components.R` 与 `test_elbo_monotonicity.R`。标准
+  `testthat` 全套回归通过；高耦合场景覆盖
+  `d=2, L_f=L_s=2, M=2`，8 个 ELBO 点无下降，并逐元素核对最终
+  RSS 缓存、两种 omega 的 ELBO 装配以及 T=1 jitter 自动降级。
 
 ## 已创建文件
 
@@ -42,12 +56,14 @@
 - `R/update_xi.R` — 特异得分 xi
 - `R/update_loadings.R` — a+b载荷+PPI (熵项不乘c)
 
-### 测试文件 (7个)
+### 测试文件 (9个)
 - `tests/testthat/test_degenerate_jaoua.R`
 - `tests/testthat/test_degenerate_T.R`
 - `tests/testthat/test_dimensions.R`
 - `tests/testthat/test_ppi_temperature.R`
 - `tests/testthat/test_gaps.R`
+- `tests/testthat/test_elbo_components.R`
+- `tests/testthat/test_elbo_monotonicity.R`
 
 ---
 
@@ -103,7 +119,7 @@ c=1:   logit = 1*(0-0) + 2 = 2  -> PPI = 0.8808
 c=0.5: logit = 0.5*(0-0) + 2 = 2 -> PPI = 0.8808 (不变!)
        若错误乘c: logit = 0.5*(0+2) = 1 -> PPI = 0.731
 ```
-结果：通过。c=1和c=0.5均得logit=2，bayesSYNC型错误被捕获。
+结果：通过。该测试验证本文采用的参考论文附录公式；本地 bayesSYNC 代码在高温阶段使用不同实现，不能仅凭此测试将其称为错误。两种写法在最终 `T=1` 阶段一致，正式实验仍需报告敏感性分析。
 
 **子测试 2 — 集成测试**：S=1, K_f=1, maxit=10, PPI in [0,1] → 通过
 
@@ -123,6 +139,10 @@ c=0.5: logit = 0.5*(0-0) + 2 = 2 -> PPI = 0.8808 (不变!)
 
 ## Phase 4 关键修复：ELBO 从递减到递增
 
+> **已作废的历史诊断**：本节所称 ELBO 仍缺少 Phase 11 后补齐的
+> 数据、O'Sullivan、IG--IG、spike-and-slab 等项；这里的升降现象只
+> 记录旧调试过程，不能作为当前普通 ELBO 正确性或单调性的证据。
+
 **问题**：ELBO 从 -870 单调递减至 -911。
 
 **根因**（3项）：
@@ -137,6 +157,11 @@ c=0.5: logit = 0.5*(0-0) + 2 = 2 -> PPI = 0.8808 (不变!)
 ---
 
 ## Phase 10：ELBO 公式补全与模型对比
+
+> **已作废的历史记录**：本节使用的是 Phase 11 审计前的不完整
+> ELBO，只保留用于说明开发过程。以下旧公式、数值差异归因和模型间
+> ELBO 结论均不得作为当前实现或论文结论引用；当前依据见 Phase 11
+> 与 `理论推导/derivations.md` 第七节。
 
 ### ELBO 公式修复
 
@@ -158,13 +183,14 @@ c=0.5: logit = 0.5*(0-0) + 2 = 2 -> PPI = 0.8808 (不变!)
 
 **极小数据诊断** (N=5, p=2, 3次迭代):
 - ELBO delta = 121 (bayesSYNC=-245 vs multiFSYNC=-124)
-- 差距大幅缩小，证明差异主要来自数据规模的 kappa_q 量级
+- 差距在该旧实验中缩小；这不能证明差异来自数据规模或
+  `kappa_q` 量级。
 
-**结论**：
+**历史观察（相关结论已撤销）**：
 - T=1时PPI公式等价，因子结构有部分一致性(corr=0.997匹配)
-- ELBO绝对值差异主要来自 sigma^2 IG 熵项和辅助变量抵消项的实现细节
-- 差异随数据量 (n_obs * n_s) 放大，因 kappa ∝ 数据量
-- 两模型 ELBO 公式本质正确，应在充分收敛后比 PPI 结构而非 ELBO 数值
+- 旧 ELBO 的绝对值差异来源当时未被逐项识别。
+- 旧实验中的样本量趋势不构成对差异来源的证明。
+- “两模型 ELBO 公式本质正确”的旧判断已由 Phase 11 审计撤销。
 
 ---
 
@@ -180,7 +206,10 @@ c=0.5: logit = 0.5*(0-0) + 2 = 2 -> PPI = 0.8808 (不变!)
 
 ## 已知限制
 
-1. **ELBO 与 bayesSYNC 的逐项差异未完全定位**：sigma^2 IG 熵项和辅助变量抵消项虽已实现，但尚未与 bayesSYNC 源码做逐项对比。T=1 时 ELBO 差异随数据量缩放。
+1. **历史 ELBO 对比不再有效**：Phase 10 的对比基于不完整
+   ELBO，不能用于验证当前公式。当前完整普通 ELBO 由分项解析测试、
+   当前 RSS 一致性测试和 $T=1$ 单调性测试验证；与 bayesSYNC 的数值
+   ELBO 不作跨模型等值主张。
 
 2. **计算效率**：纯R for循环实现，未做 C++/Rcpp 加速。大规模数据建议并行化。
 

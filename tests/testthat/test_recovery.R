@@ -8,7 +8,6 @@
 #   - mean function recovery (identifiable)
 
 library(splines)
-library(pracma)
 
 # ---- Helper: sign-adjusted column matching ----
 safe_cor <- function(x, y) {
@@ -173,7 +172,9 @@ test_that("S7: Orthonormal eigenfunctions & PVE", {
 
   orth <- orthonormalise_multi(C_g=fit$C_g, time_g=fit$time_g,
     mu_q_nu_mu=fit$mu_q_nu_mu, mu_q_nu_phi=fit$mu_q_nu_phi,
+    Sigma_q_nu_phi=fit$Sigma_q_nu_phi,
     mu_q_nu_psi=fit$mu_q_nu_psi,
+    Sigma_q_nu_psi=fit$Sigma_q_nu_psi,
     mu_q_zeta=fit$mu_q_zeta, Sigma_q_zeta=fit$Sigma_q_zeta,
     mu_q_xi=fit$mu_q_xi, Sigma_q_xi=fit$Sigma_q_xi,
     mu_q_a=fit$mu_q_a, mu_q_b_specific=fit$mu_q_b_specific,

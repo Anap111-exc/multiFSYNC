@@ -60,7 +60,7 @@ test_that("T value within valid range (T < 2)", {
     bayesSYNC_multi(
       Y = dat$Y, Z = NULL, time_obs = dat$time_obs,
       L_f = 1, L_s = 0, M_f = c(1), M_s = list(integer(0)),
-      K = 6, anneal = c(1, 1.9, 10), maxit = 10, n_cpus = 1,
+      K = 6, anneal = c(1, 1.9, 10), maxit = 13, n_cpus = 1,
       verbose = FALSE, seed = 1, bool_scale = FALSE
     ),
     NA  # no error expected
@@ -71,7 +71,7 @@ test_that("T value within valid range (T < 2)", {
     bayesSYNC_multi(
       Y = dat$Y, Z = NULL, time_obs = dat$time_obs,
       L_f = 1, L_s = 0, M_f = c(1), M_s = list(integer(0)),
-      K = 6, anneal = c(1, 2.0, 10), maxit = 10, n_cpus = 1,
+      K = 6, anneal = c(1, 2.0, 10), maxit = 13, n_cpus = 1,
       verbose = FALSE, seed = 1, bool_scale = FALSE
     )
   )
