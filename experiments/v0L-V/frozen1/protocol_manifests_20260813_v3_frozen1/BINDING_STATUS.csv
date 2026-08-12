@@ -1,0 +1,2 @@
+"manifest_schema_id","status","formal_execution_authorized","frozen_bundle_created","formal_data_generated","formal_fits_started","formal_continuations_started","requires_separate_user_freeze_authorization","requires_separate_user_start_authorization"
+"V0LV_MANIFEST_SCHEMA_V3_FROZEN1_20260813","frozen",FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE

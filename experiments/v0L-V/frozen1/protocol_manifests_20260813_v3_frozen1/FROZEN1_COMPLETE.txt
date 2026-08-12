@@ -1,0 +1,16 @@
+V0LV_PROTOCOL_MANIFEST_V3_FROZEN1_COMPLETE
+manifest_schema_id=V0LV_MANIFEST_SCHEMA_V3_FROZEN1_20260813
+parent_candidate=protocol_manifests_20260812_v3_candidate2
+runtime_source_commit=b49448f851e5401cbaf681577ecee2b4bdc72514
+frozen_tag=v0.3.0-v0L-V-frozen1
+status=frozen
+formal_execution_authorized=FALSE
+formal_data_generated=FALSE
+formal_fits_started=FALSE
+formal_continuations_started=FALSE
+frozen_bundle_created=TRUE
+formal_data_rows=10
+formal_fit_rows=210
+formal_audit_rows=72
+linux_smoke=12/12_PASS
+artifact_index_sha256=bd5c91fe80857b3c1df45acc0f414f076cd0dc35fd0c14ec81ee4427aef3da59

@@ -1,5 +1,5 @@
 # Install only missing CRAN dependencies for the v0L-V rc1 snapshot.
-# The target Linux versions are reported here and frozen only after acceptance.
+# Target Linux versions were recorded after native server acceptance.
 
 script_path <- function() {
   argument <- grep("^--file=", commandArgs(FALSE), value = TRUE)

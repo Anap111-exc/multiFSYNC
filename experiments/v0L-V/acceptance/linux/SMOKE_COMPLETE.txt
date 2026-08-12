@@ -1,0 +1,35 @@
+V0LV_CANDIDATE2_END_TO_END_SMOKE_COMPLETE
+status=PASS
+formal_experiment=FALSE
+formal_data_generated=FALSE
+formal_fits_started=FALSE
+formal_continuations_started=FALSE
+frozen_bundle_created=FALSE
+status_sha256=1a67c4c30f1d231d17cab9e64b276bf5fcd2b51139af8b3c96da1217b7458f75
+R version 4.5.3 (2026-03-11)
+Platform: x86_64-redhat-linux-gnu
+Running under: Alibaba Cloud Linux 3.2104 U13.3 (OpenAnolis Edition)
+
+Matrix products: default
+BLAS/LAPACK: /usr/lib64/libopenblaso-r0.3.15.so;  LAPACK version 3.9.0
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+time zone: Asia/Shanghai
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+loaded via a namespace (and not attached):
+ [1] MASS_7.3-65           compiler_4.5.3        parallel_4.5.3       
+ [4] abind_1.4-8           ellipse_0.5.0         splines_4.5.3        
+ [7] grid_4.5.3            matrixcalc_1.0-6      digest_0.6.39        
+[10] multiFSYNC_0.3.0.9000 matrixStats_1.5.0     gtools_3.9.5         
+[13] pracma_2.4.6          lattice_0.22-9        magic_1.6-1          

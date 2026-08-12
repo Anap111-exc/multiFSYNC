@@ -1,0 +1,15 @@
+V0LV_RC1_LINUX_GIT_CHECKOUT_ACCEPTED
+remote=https://github.com/Anap111-exc/multiFSYNC
+branch=release/v0L-V-rc1
+runtime_source_commit=b49448f851e5401cbaf681577ecee2b4bdc72514
+checkout_type=git_smart_http_shallow_clone
+checkout_path=/root/multiFSYNC-git-rc1
+head_matches_remote_branch=TRUE
+git_fsck_full=PASS
+source_sha256_matches=50/50
+source_byte_size_matches=50/50
+candidate_status=candidate
+formal_execution_authorized=FALSE
+formal_data_generated=FALSE
+formal_fits_started=FALSE
+formal_continuations_started=FALSE

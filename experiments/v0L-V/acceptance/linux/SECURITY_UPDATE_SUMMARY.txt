@@ -1,0 +1,17 @@
+V0LV_RC1_LINUX_SECURITY_UPDATE_ACCEPTED
+operation=dnf upgrade-minimal --security -y
+security_advisories_before=8
+important_before=5
+moderate_before=2
+low_before=1
+security_advisories_after=0
+openssh_version=8.0p1-30.0.1.1.al8
+platform_python_version=3.6.8-77.0.1.1.al8
+glib2_version=2.68.4-19.0.1.al8.2
+coreutils_version=8.30-20.0.1.al8
+acl_version=2.4.0-1.0.1.al8
+reboot_required=FALSE
+post_update_smoke_rerun=TRUE
+post_update_smoke_passed=12/12
+post_update_smoke_exit_status=0
+formal_experiment=FALSE

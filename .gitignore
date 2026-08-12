@@ -15,6 +15,9 @@ artifacts/
 *.RDS
 *.log
 
+# Local package library used by the v0L-V acceptance smoke
+experiments/v0L-V/rc1_snapshot/_r_test_lib/
+
 # OS/editor noise
 .DS_Store
 Thumbs.db

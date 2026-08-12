@@ -1,0 +1,2 @@
+"screen_T1","minimum_keep","elbo_margin","input_trace","early_strict_endpoints","diagnostics_after_actual_terminal_fabricated","winner_retention_reported","false_elimination_reported","estimated_sweeps_saved_reported","changes_fit_eligibility_winner_or_success_gate"
+100,4,500,"real_trace_only_through_actual_terminal","completed_candidates_preserved_with_real_endpoint_ELBO",FALSE,TRUE,TRUE,TRUE,FALSE

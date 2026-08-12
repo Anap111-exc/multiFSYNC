@@ -1,0 +1,3 @@
+"method_family","objective_field","eligibility_or_validity","strict_practical_convergence_is_separate","terminal_error_is_ineligible","within_model_selection","cross_model_elbo_comparison"
+"multiFSYNC","ordinary_T1_ELBO","annealing_complete;ordinary_T1_entered;finite_ELBO;finite_components;objective_valid;no_T1_decrease;no_T1_jitter;hash_valid",TRUE,TRUE,"maximum eligible endpoint ELBO",FALSE
+"bayesSYNC_reference","ELBO_iter","no_error;ordinary_T1_entered;finite_ELBO_iter;finite_primary_outputs;terminal_and_hash_complete",TRUE,TRUE,"single preregistered endpoint",FALSE

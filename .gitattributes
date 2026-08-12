@@ -30,3 +30,10 @@ experiments/v0L-V/rc1_snapshot/** -diff
 
 # Keep the four copied Windows acceptance records byte-identical as evidence.
 experiments/v0L-V/acceptance/windows/** -text -diff
+
+# Preserve frozen binding bytes and the exact server-produced acceptance files.
+experiments/v0L-V/frozen1/protocol_manifests_20260813_v3_frozen1/** -text -diff
+experiments/v0L-V/acceptance/linux/SERVER_DEPENDENCIES_ACTUAL.csv -text -diff
+experiments/v0L-V/acceptance/linux/SMOKE_STATUS.csv -text -diff
+experiments/v0L-V/acceptance/linux/SMOKE_COMPLETE.txt -text -diff
+experiments/v0L-V/acceptance/linux/SMOKE_RESOURCE_USAGE.txt -text -diff
