@@ -1,0 +1,9 @@
+"criterion_id","level","criterion","operational_rule","invented_noninferiority_margin","worsening_count_independent_gate","selection_uses_criterion","truth_reveal_required"
+"C1","hard_gate","All data have 12 R terminal rows and at least one eligible R endpoint","12 terminal rows/data;>=1 eligible/data;10 truth-free winners",FALSE,FALSE,FALSE,FALSE
+"C2","scientific","At least 8 of 10 R winners recover complete correct 1/1/1 structure",">=8/10 after authorized unseal",FALSE,FALSE,FALSE,TRUE
+"C3","scientific","Core-paired R missing plus misplaced is median-no-worse than A and B0","median data-level paired-median difference<=0; worsening count descriptive",FALSE,FALSE,FALSE,TRUE
+"C4","scientific","Core-paired reconstruction and feature excess ISE are median-no-worse than A and B0","each registered metric and contrast median difference<=0; bootstrap and sign test reported",FALSE,FALSE,FALSE,TRUE
+"C5","budget","03 and 08 fixed-horizon audits are complete without replacing main endpoints","72 audit terminal rows; fixed 200/400/800 or explicit main-error unavailability",FALSE,FALSE,FALSE,TRUE
+"C6","diagnostic","Independent best-basin and endpoint-alignment support are fully reported","counts and identities reported; no unsupported production claim",FALSE,FALSE,FALSE,FALSE
+"C7","production","Production-ready label requires zero unfinished selected R endpoints","0 selected_endpoint_unfinished for production-ready label",FALSE,FALSE,FALSE,FALSE
+"C8","baseline_integrity","All ten pooled terminal records exist; errors and warnings are not imputed","10 terminal records; validity rate and every warning/error reported",FALSE,FALSE,FALSE,FALSE

@@ -1,0 +1,2 @@
+"manifest_schema_id","status","formal_execution_authorized","frozen_bundle_created","formal_data_generated","formal_fits_started","formal_continuations_started","requires_separate_user_freeze_authorization","requires_separate_user_start_authorization"
+"V0LV_MANIFEST_SCHEMA_V3_CANDIDATE2_20260812","candidate",FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE

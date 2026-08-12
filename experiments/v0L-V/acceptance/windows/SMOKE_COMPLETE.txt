@@ -1,0 +1,34 @@
+V0LV_CANDIDATE2_END_TO_END_SMOKE_COMPLETE
+status=PASS
+formal_experiment=FALSE
+formal_data_generated=FALSE
+formal_fits_started=FALSE
+formal_continuations_started=FALSE
+frozen_bundle_created=FALSE
+status_sha256=513acd49afc639fad4bd69f340d1908f9c368b8823954920fb1db27563c350dd
+R version 4.5.1 (2025-06-13 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 11 x64 (build 26200)
+
+Matrix products: default
+  LAPACK version 3.12.1
+
+locale:
+[1] LC_COLLATE=Chinese (Simplified)_China.utf8 
+[2] LC_CTYPE=Chinese (Simplified)_China.utf8   
+[3] LC_MONETARY=Chinese (Simplified)_China.utf8
+[4] LC_NUMERIC=C                               
+[5] LC_TIME=Chinese (Simplified)_China.utf8    
+
+time zone: Asia/Shanghai
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+loaded via a namespace (and not attached):
+ [1] MASS_7.3-65           compiler_4.5.1        parallel_4.5.1       
+ [4] abind_1.4-8           ellipse_0.5.0         splines_4.5.1        
+ [7] grid_4.5.1            matrixcalc_1.0-6      multiFSYNC_0.3.0.9000
+[10] matrixStats_1.5.0     gtools_3.9.5          pracma_2.4.6         
+[13] lattice_0.22-7        magic_1.6-1          

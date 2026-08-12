@@ -1,0 +1,34 @@
+Package: multiFSYNC
+Type: Package
+Title: Multi-Study Functional Factor Model via Bayesian Variational Inference
+Version: 0.3.0.9000
+Authors@R: c(
+    person("业聪", "李",
+            email = "1508591453@qq.com",
+            role = c("aut", "cre")),
+    person("Helene", "Ruffieux",
+            email = "helene.ruffieux@mrc-bsu.cam.ac.uk",
+            role = "aut"),
+    person("Salima", "Jaoua",
+            email = "jaoua@ifi.uzh.ch",
+            role = "aut"),
+    person("Daniel", "Temko",
+            email = "daniel.temko@mrc-bsu.cam.ac.uk",
+            role = "aut"))
+Description: Multi-study extension of the bayesSYNC functional factor model,
+    supporting shared factors, study-specific factors, and covariate effects
+    across multiple studies with spike-and-slab sparsity.
+Depends:
+    R (>= 4.0.0)
+License: GPL (>= 3)
+Encoding: UTF-8
+Imports:
+    stats,
+    splines,
+    parallel
+Suggests:
+    bayesSYNC,
+    devtools,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+RoxygenNote: 7.3.3

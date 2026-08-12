@@ -1,0 +1,8 @@
+"analysis_id","unit","primary_summary","bootstrap_cluster","bootstrap_B","bootstrap_seed","truth_used_before_selection"
+"A_minus_B0","data_id_then_core_seed_pair","within_data_median_of_four_paired_differences","data_id",9999,82640001,FALSE
+"R_minus_A","data_id_then_core_seed_pair","within_data_median_of_four_paired_differences","data_id",9999,82640001,FALSE
+"R_minus_B0","data_id_then_core_seed_pair","within_data_median_of_four_paired_differences","data_id",9999,82640001,FALSE
+"protocol_level_winners","data_id","one_preregistered_winner_per_method_data","data_id",9999,82640001,FALSE
+"R_basin_support","data_id","independent_start_support_counts","data_id",9999,82640001,FALSE
+"R_budget_audit","audit_data_id_and_R_start","fixed_horizon_incumbent_and_counterfactual_trajectories","data_id",9999,82640001,FALSE
+"pooled_reference","data_id","single_preregistered_pooled_endpoint","data_id",9999,82640001,FALSE

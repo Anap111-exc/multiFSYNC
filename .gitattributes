@@ -23,3 +23,10 @@ NAMESPACE text eol=lf
 *.png binary
 *.jpg binary
 *.jpeg binary
+
+# Preserve the release-candidate snapshot byte for byte across clones.
+experiments/v0L-V/rc1_snapshot/** -text
+experiments/v0L-V/rc1_snapshot/** -diff
+
+# Keep the four copied Windows acceptance records byte-identical as evidence.
+experiments/v0L-V/acceptance/windows/** -text -diff
