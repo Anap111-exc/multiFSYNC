@@ -62,10 +62,14 @@
   calibration <- control$random_scale_calibration
   if (length(calibration) != 1L || !is.character(calibration) ||
       is.na(calibration) ||
-      !calibration %in% c("none", "function", "all")) {
+      !calibration %in% c(
+        "none", "function", "all", "coefficient_iid",
+        "function_m_decay"
+      )) {
     stop(
       "control$random_scale_calibration must be one of ",
-      "'none', 'function', or 'all'."
+      "'none', 'function', 'all', 'coefficient_iid', or ",
+      "'function_m_decay'."
     )
   }
 
@@ -250,8 +254,13 @@
     mu_q_nu_phi, mu_q_zeta, mu_q_normal_a, Sigma_q_normal_a, mu_q_gamma_a,
     mu_q_nu_psi, mu_q_xi, mu_q_normal_b, Sigma_q_normal_b, mu_q_gamma_b,
     S, L_f, L_s, M_f, M_s, mode) {
-  if (!mode %in% c("function", "all")) {
-    stop("Private random-state calibration mode must be 'function' or 'all'.")
+  if (!mode %in% c(
+      "function", "all", "coefficient_iid", "function_m_decay"
+  )) {
+    stop(
+      "Private random-state calibration mode must be 'function', 'all', ",
+      "'coefficient_iid', or 'function_m_decay'."
+    )
   }
   weights <- .trap_weights(time_g)
   diagnostics <- list()
@@ -272,18 +281,48 @@
     )
   }
 
+  calibrate_function <- function(coefficients, component) {
+    dense_before <- as.vector(C_g %*% coefficients)
+    norm_before <- sqrt(sum(weights * dense_before^2))
+    if (identical(mode, "coefficient_iid")) {
+      # The ordinary initializer draws component m with coefficient covariance
+      # I/m.  Dividing by 1/sqrt(m) gives the Jaoua reference distribution
+      # N(0, I) without consuming another random number or changing direction.
+      divisor <- 1 / sqrt(component)
+      success <- all(is.finite(coefficients)) && is.finite(norm_before)
+    } else {
+      target <- if (identical(mode, "function_m_decay")) {
+        1 / sqrt(component)
+      } else {
+        1
+      }
+      success <- is.finite(norm_before) &&
+        norm_before > sqrt(.Machine$double.eps)
+      divisor <- if (success) norm_before / target else NA_real_
+    }
+    coefficients_after <- if (success) {
+      coefficients / divisor
+    } else {
+      coefficients
+    }
+    dense_after <- as.vector(C_g %*% coefficients_after)
+    list(
+      coefficients = coefficients_after,
+      before = norm_before,
+      after = sqrt(sum(weights * dense_after^2)),
+      scale = divisor,
+      success = success
+    )
+  }
+
   for (l in seq_len(L_f)) {
     for (m in seq_len(M_f[l])) {
-      dense <- as.vector(C_g %*% mu_q_nu_phi[[l]][, m])
-      scale <- sqrt(sum(weights * dense^2))
-      success <- is.finite(scale) &&
-        scale > sqrt(.Machine$double.eps)
-      if (success) mu_q_nu_phi[[l]][, m] <- mu_q_nu_phi[[l]][, m] / scale
-      dense_after <- as.vector(C_g %*% mu_q_nu_phi[[l]][, m])
+      calibrated <- calibrate_function(mu_q_nu_phi[[l]][, m], m)
+      mu_q_nu_phi[[l]][, m] <- calibrated$coefficients
       add_diagnostic(
         "shared_function_l2", NA_integer_, l, m,
-        sqrt(sum(weights * dense^2)),
-        sqrt(sum(weights * dense_after^2)), scale, success
+        calibrated$before, calibrated$after, calibrated$scale,
+        calibrated$success
       )
     }
     if (identical(mode, "all")) {
@@ -324,21 +363,14 @@
     for (s in seq_len(S)) {
       for (l in seq_len(.L_s_at(L_s, s))) {
         for (m in seq_len(M_s[[s]][l])) {
-          dense <- as.vector(C_g %*% mu_q_nu_psi[[s]][[l]][, m])
-          scale <- sqrt(sum(weights * dense^2))
-          success <- is.finite(scale) &&
-            scale > sqrt(.Machine$double.eps)
-          if (success) {
-            mu_q_nu_psi[[s]][[l]][, m] <-
-              mu_q_nu_psi[[s]][[l]][, m] / scale
-          }
-          dense_after <- as.vector(
-            C_g %*% mu_q_nu_psi[[s]][[l]][, m]
+          calibrated <- calibrate_function(
+            mu_q_nu_psi[[s]][[l]][, m], m
           )
+          mu_q_nu_psi[[s]][[l]][, m] <- calibrated$coefficients
           add_diagnostic(
             "specific_function_l2", s, l, m,
-            sqrt(sum(weights * dense^2)),
-            sqrt(sum(weights * dense_after^2)), scale, success
+            calibrated$before, calibrated$after, calibrated$scale,
+            calibrated$success
           )
         }
         if (identical(mode, "all")) {

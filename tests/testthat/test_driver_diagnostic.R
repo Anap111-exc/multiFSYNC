@@ -179,6 +179,58 @@ testthat::test_that("data-free calibration fixes moments and preserves direction
   )
 })
 
+testthat::test_that("development-only function initializers have registered scales", {
+  time_g <- seq(0, 1, length.out = 31L)
+  C_g <- cbind(1, time_g, sin(2 * pi * time_g), cos(2 * pi * time_g))
+  phi_before <- cbind(
+    c(2, -1, 0.5, 3),
+    c(-0.25, 1.5, -2, 0.75)
+  )
+  psi_before <- cbind(
+    c(-1, 2, 1.5, 0.25),
+    c(0.5, -0.75, 2.5, -1)
+  )
+  call_calibration <- function(mode) {
+    multiFSYNC:::.calibrate_random_factor_state(
+      C_g = C_g, time_g = time_g,
+      mu_q_nu_phi = list(phi_before),
+      mu_q_zeta = list(list(matrix(1, 4L, 2L))),
+      mu_q_normal_a = matrix(c(-2, 1, 4), ncol = 1L),
+      Sigma_q_normal_a = matrix(1, 3L, 1L),
+      mu_q_gamma_a = matrix(0.5, 3L, 1L),
+      mu_q_nu_psi = list(list(psi_before)),
+      mu_q_xi = list(list(matrix(1, 4L, 2L))),
+      mu_q_normal_b = list(matrix(c(3, -1, 0.5), ncol = 1L)),
+      Sigma_q_normal_b = list(matrix(1, 3L, 1L)),
+      mu_q_gamma_b = list(matrix(0.5, 3L, 1L)),
+      S = 1L, L_f = 1L, L_s = 1L,
+      M_f = 2L, M_s = list(2L), mode = mode
+    )
+  }
+
+  jaoua <- call_calibration("coefficient_iid")
+  testthat::expect_equal(jaoua$mu_q_nu_phi[[1L]][, 1L],
+                         phi_before[, 1L], tolerance = 0)
+  testthat::expect_equal(jaoua$mu_q_nu_phi[[1L]][, 2L],
+                         phi_before[, 2L] * sqrt(2), tolerance = 1e-14)
+  testthat::expect_equal(jaoua$mu_q_nu_psi[[1L]][[1L]][, 2L],
+                         psi_before[, 2L] * sqrt(2), tolerance = 1e-14)
+
+  gram_decay <- call_calibration("function_m_decay")
+  weights <- multiFSYNC:::.trap_weights(time_g)
+  shared_energy <- vapply(1:2, function(component) {
+    dense <- C_g %*% gram_decay$mu_q_nu_phi[[1L]][, component]
+    sum(weights * dense^2)
+  }, numeric(1L))
+  specific_energy <- vapply(1:2, function(component) {
+    dense <- C_g %*% gram_decay$mu_q_nu_psi[[1L]][[1L]][, component]
+    sum(weights * dense^2)
+  }, numeric(1L))
+  testthat::expect_equal(shared_energy, c(1, 1 / 2), tolerance = 1e-13)
+  testthat::expect_equal(specific_energy, c(1, 1 / 2), tolerance = 1e-13)
+  testthat::expect_true(all(gram_decay$diagnostics$success))
+})
+
 testthat::test_that("pre-score path is bounded, traced, and ELBO monotone", {
   dat <- .make_driver_diagnostic_test_data(seed = 9651L)
   arguments <- list(
