@@ -4,7 +4,12 @@
 \alias{bayesSYNC_multi_pre_score}
 \title{Fit multiFSYNC with a bounded pre-score update}
 \usage{
-bayesSYNC_multi_pre_score(..., pre_score_sweeps = 1L, trace_sweeps = 1L)
+bayesSYNC_multi_pre_score(
+  ...,
+  pre_score_sweeps = 1L,
+  trace_sweeps = 1L,
+  function_initialization = c("current_1_over_m", "gram_unit_energy")
+)
 }
 \arguments{
 \item{...}{Arguments passed to \code{\link[=bayesSYNC_multi]{bayesSYNC_multi()}}.
@@ -16,6 +21,11 @@ additional pre-score coordinate update. The R route uses exactly \code{1L}.}
 
 \item{trace_sweeps}{Positive total-sweep indices retained in the compact
 driver trace. This affects diagnostics only, not numerical updates.}
+
+\item{function_initialization}{Random function-mean initialization geometry.
+\code{"current_1_over_m"} preserves the existing coefficient initialization.
+\code{"gram_unit_energy"} rescales each randomly drawn shared and study-specific
+function mean to unit discrete Gram energy without changing its direction.}
 }
 \value{
 A \code{bayesSYNC_multi()} fit with \code{driver_trace},
@@ -30,6 +40,7 @@ unchanged \code{bayesSYNC_multi()} CAVI schedule and ordinary objective.
 }
 \details{
 The interface deliberately does not expose the historical diagnostic dense
-loading gate or random-state scale calibration. Those controls remain private
-diagnostics and are fixed to their inert values here.
+loading gate or the generic random-state calibration control. It supports only
+the reviewed current and Gram-unit-energy function initializations; all other
+diagnostic calibration modes remain private.
 }

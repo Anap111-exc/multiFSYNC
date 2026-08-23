@@ -216,8 +216,37 @@ testthat::test_that("development-only function initializers have registered scal
   testthat::expect_equal(jaoua$mu_q_nu_psi[[1L]][[1L]][, 2L],
                          psi_before[, 2L] * sqrt(2), tolerance = 1e-14)
 
-  gram_decay <- call_calibration("function_m_decay")
+  gram_unit <- call_calibration("function")
   weights <- multiFSYNC:::.trap_weights(time_g)
+  gram_unit_shared_energy <- vapply(1:2, function(component) {
+    dense <- C_g %*% gram_unit$mu_q_nu_phi[[1L]][, component]
+    sum(weights * dense^2)
+  }, numeric(1L))
+  gram_unit_specific_energy <- vapply(1:2, function(component) {
+    dense <- C_g %*% gram_unit$mu_q_nu_psi[[1L]][[1L]][, component]
+    sum(weights * dense^2)
+  }, numeric(1L))
+  testthat::expect_equal(
+    gram_unit_shared_energy, rep(1, 2L), tolerance = 1e-13
+  )
+  testthat::expect_equal(
+    gram_unit_specific_energy, rep(1, 2L), tolerance = 1e-13
+  )
+  testthat::expect_identical(gram_unit$mu_q_zeta[[1L]][[1L]],
+                             matrix(1, 4L, 2L))
+  testthat::expect_identical(gram_unit$mu_q_xi[[1L]][[1L]],
+                             matrix(1, 4L, 2L))
+  testthat::expect_identical(gram_unit$mu_q_normal_a,
+                             matrix(c(-2, 1, 4), ncol = 1L))
+  testthat::expect_identical(gram_unit$mu_q_normal_b[[1L]],
+                             matrix(c(3, -1, 0.5), ncol = 1L))
+  testthat::expect_true(all(gram_unit$diagnostics$success))
+  testthat::expect_true(all(
+    gram_unit$diagnostics$block %in%
+      c("shared_function_l2", "specific_function_l2")
+  ))
+
+  gram_decay <- call_calibration("function_m_decay")
   shared_energy <- vapply(1:2, function(component) {
     dense <- C_g %*% gram_decay$mu_q_nu_phi[[1L]][, component]
     sum(weights * dense^2)

@@ -39,6 +39,12 @@ testthat::test_that("public pre-score interface fixes private controls", {
   testthat::expect_identical(
     fit$pre_score_interface$interface, "bayesSYNC_multi_pre_score"
   )
+  testthat::expect_identical(
+    fit$pre_score_interface$interface_version, "1.1.0"
+  )
+  testthat::expect_identical(
+    fit$pre_score_interface$function_initialization, "current_1_over_m"
+  )
   pre <- fit$driver_trace$phase == "pre_score"
   testthat::expect_true(any(pre))
   testthat::expect_true(all(fit$driver_trace$iteration[pre] == 1L))
@@ -48,6 +54,53 @@ testthat::test_that("public pre-score interface fixes private controls", {
   testthat::expect_false(any(
     fit$driver_trace$phase[fit$driver_trace$iteration > 1L] == "pre_score"
   ))
+})
+
+testthat::test_that("default function initialization remains backward compatible", {
+  data <- .make_pre_score_interface_data(seed = 9763L)
+  arguments <- .pre_score_interface_args(data, seed = 9764L)
+  default <- suppressWarnings(do.call(
+    multiFSYNC::bayesSYNC_multi_pre_score,
+    c(arguments, list(pre_score_sweeps = 1L, trace_sweeps = 1:2))
+  ))
+  explicit <- suppressWarnings(do.call(
+    multiFSYNC::bayesSYNC_multi_pre_score,
+    c(arguments, list(
+      pre_score_sweeps = 1L, trace_sweeps = 1:2,
+      function_initialization = "current_1_over_m"
+    ))
+  ))
+  testthat::expect_identical(explicit, default)
+})
+
+testthat::test_that("public Gram option calibrates only random function means", {
+  data <- .make_pre_score_interface_data(seed = 9765L)
+  fit <- suppressWarnings(do.call(
+    multiFSYNC::bayesSYNC_multi_pre_score,
+    c(.pre_score_interface_args(data, seed = 9766L), list(
+      pre_score_sweeps = 1L, trace_sweeps = 1:2,
+      function_initialization = "gram_unit_energy"
+    ))
+  ))
+
+  testthat::expect_identical(
+    fit$driver_diagnostic_control$random_scale_calibration, "function"
+  )
+  testthat::expect_identical(
+    fit$pre_score_interface$function_initialization, "gram_unit_energy"
+  )
+  testthat::expect_identical(
+    fit$pre_score_interface$random_scale_calibration, "function"
+  )
+  diagnostics <- fit$random_scale_calibration_diagnostics
+  testthat::expect_true(nrow(diagnostics) > 0L)
+  testthat::expect_true(all(diagnostics$success))
+  testthat::expect_true(all(
+    diagnostics$block %in% c("shared_function_l2", "specific_function_l2")
+  ))
+  testthat::expect_equal(
+    diagnostics$after, rep(1, nrow(diagnostics)), tolerance = 1e-12
+  )
 })
 
 testthat::test_that("zero pre-score is numerically identical to the core path", {
@@ -89,7 +142,15 @@ testthat::test_that("public pre-score interface validates its narrow contract", 
     ),
     "does not accept a diagnostic control"
   )
+  testthat::expect_error(
+    do.call(
+      multiFSYNC::bayesSYNC_multi_pre_score,
+      c(arguments, list(function_initialization = "all"))
+    ),
+    "should be one of"
+  )
   public_formals <- names(formals(multiFSYNC::bayesSYNC_multi_pre_score))
+  testthat::expect_true("function_initialization" %in% public_formals)
   testthat::expect_false(any(
     c("dense_gate_sweeps", "random_scale_calibration", "truth", "true_params") %in%
       public_formals
