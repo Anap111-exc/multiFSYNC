@@ -1,0 +1,10 @@
+status=PASS
+audit_id=G12_CONVERGENCE_SEMANTICS_OFFLINE_AUDIT_V1_20260824
+completed_utc=2026-08-24T06:53:22Z
+source_endpoints=240
+source_data_sets=12
+new_data_generated=0
+new_fits_started=0
+continuation_started=FALSE
+package_source_modified=FALSE
+historical_results_modified=FALSE

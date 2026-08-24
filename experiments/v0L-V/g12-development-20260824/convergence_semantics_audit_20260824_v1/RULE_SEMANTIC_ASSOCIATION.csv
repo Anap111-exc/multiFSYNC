@@ -1,0 +1,13 @@
+"method_id","rule","endpoints","correct_total","pass_correct","pass_rate_among_correct","incorrect_total","pass_incorrect","pass_rate_among_incorrect","passed_total","correct_fraction_among_passed"
+"current_1_over_m","strict_practical",120,10,0,0,110,8,0.0727272727272727,8,0
+"current_1_over_m","remove_ppi_max_ever_5",120,10,1,0.1,110,71,0.645454545454546,72,0.0138888888888889
+"current_1_over_m","quantile_factor_ever_5",120,10,1,0.1,110,71,0.645454545454546,72,0.0138888888888889
+"current_1_over_m","output_only_quantile_factor_ever_5",120,10,1,0.1,110,71,0.645454545454546,72,0.0138888888888889
+"gram_unit_energy","strict_practical",120,50,0,0,70,0,0,0,
+"gram_unit_energy","remove_ppi_max_ever_5",120,50,7,0.14,70,25,0.357142857142857,32,0.21875
+"gram_unit_energy","quantile_factor_ever_5",120,50,7,0.14,70,25,0.357142857142857,32,0.21875
+"gram_unit_energy","output_only_quantile_factor_ever_5",120,50,7,0.14,70,25,0.357142857142857,32,0.21875
+"ALL","strict_practical",240,60,0,0,180,8,0.0444444444444444,8,0
+"ALL","remove_ppi_max_ever_5",240,60,8,0.133333333333333,180,96,0.533333333333333,104,0.0769230769230769
+"ALL","quantile_factor_ever_5",240,60,8,0.133333333333333,180,96,0.533333333333333,104,0.0769230769230769
+"ALL","output_only_quantile_factor_ever_5",240,60,8,0.133333333333333,180,96,0.533333333333333,104,0.0769230769230769

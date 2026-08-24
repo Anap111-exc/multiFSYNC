@@ -1,0 +1,13 @@
+"method_id","exact_correct_1_1_1","minimum_removed_gate_groups","Freq"
+"current_1_over_m","FALSE","0",8
+"current_1_over_m","FALSE","1",63
+"gram_unit_energy","FALSE","1",25
+"current_1_over_m","TRUE","1",1
+"gram_unit_energy","TRUE","1",7
+"current_1_over_m","FALSE","2",12
+"gram_unit_energy","FALSE","2",8
+"gram_unit_energy","TRUE","2",8
+"current_1_over_m","FALSE","3",27
+"gram_unit_energy","FALSE","3",37
+"current_1_over_m","TRUE","3",9
+"gram_unit_energy","TRUE","3",35

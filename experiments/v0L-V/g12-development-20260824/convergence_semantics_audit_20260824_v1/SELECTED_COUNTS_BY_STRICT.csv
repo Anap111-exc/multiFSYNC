@@ -1,0 +1,16 @@
+"method_id","strict_practical_converged","selected_counts","exact_correct_1_1_1","Freq"
+"current_1_over_m","TRUE","0,0,0","FALSE",7
+"current_1_over_m","FALSE","0,0,1","FALSE",9
+"current_1_over_m","FALSE","0,1,0","FALSE",5
+"current_1_over_m","FALSE","0,1,1","FALSE",9
+"current_1_over_m","FALSE","1,0,0","FALSE",21
+"gram_unit_energy","FALSE","1,0,0","FALSE",2
+"current_1_over_m","TRUE","1,0,0","FALSE",1
+"current_1_over_m","FALSE","1,0,1","FALSE",19
+"gram_unit_energy","FALSE","1,0,1","FALSE",14
+"current_1_over_m","FALSE","1,1,0","FALSE",26
+"gram_unit_energy","FALSE","1,1,0","FALSE",23
+"current_1_over_m","FALSE","1,1,1","FALSE",13
+"gram_unit_energy","FALSE","1,1,1","FALSE",31
+"current_1_over_m","FALSE","1,1,1","TRUE",10
+"gram_unit_energy","FALSE","1,1,1","TRUE",50
