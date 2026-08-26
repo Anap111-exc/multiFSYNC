@@ -1,0 +1,9 @@
+authorization_status=AUTHORIZED
+authorized_by=user
+authorization_message=可以开始阶段4C
+authorization_date=2026-08-26
+scope=six_new_data_and_twelve_G12_fixed400_development_fits
+truth_unseal_authorized=FALSE
+continuation_authorized=FALSE
+automatic_800_authorized=FALSE
+formal_v0lv_result=FALSE

@@ -1,0 +1,4 @@
+"scenario_id","scenario_label","n_obs_min","n_obs_max","target_shared_specific_abs_cosine","shared_specific_support_overlap","otherwise_frozen_generator_configuration"
+"baseline_strong","strong-identification independent replication",6,9,0,0,TRUE
+"weak_loading_separation","full shared-specific support overlap with loading cosine 0.6",6,9,0.6,1,TRUE
+"sparse_observation","strong-identification with 3-5 irregular observations",3,5,0,0,TRUE
