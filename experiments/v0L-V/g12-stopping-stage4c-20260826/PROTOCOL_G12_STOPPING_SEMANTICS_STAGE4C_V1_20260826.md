@@ -23,7 +23,8 @@ result.
   scenarios use 3-5.
 - Two G12 starts per data set, for 12 fits. Fit seeds are
   `87266011/12, 87266021/22, ..., 87266061/62`.
-- Each fit uses one CPU. Four independent fits may run concurrently.
+- Each fit uses `n_cpus=1`, and OMP/OpenBLAS/MKL/BLIS thread counts are fixed
+  to one. Four independent fits may run concurrently.
 
 Every fit uses random initialization, Gram-unit-energy function calibration,
 one bounded pre-score sweep, Jaoua annealing `c(1,1.9,100)`, and the public G12
