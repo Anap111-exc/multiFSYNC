@@ -1,0 +1,8 @@
+scope=stage4e_post_selection_evaluation_only
+source_truth=stage4c_truth_already_unsealed_under_stage4d_authorization
+fit_truth_access=FALSE
+stopping_truth_access=FALSE
+selection_truth_access=FALSE
+evaluation_truth_access=TRUE_AFTER_TRUTH_FREE_SELECTION_FREEZE
+adaptive_post_truth_design=TRUE
+formal_v0lv_result=FALSE

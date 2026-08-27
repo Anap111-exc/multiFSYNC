@@ -1,0 +1,11 @@
+"check_id","passed"
+"three_target_data",TRUE
+"eighteen_new_fits",TRUE
+"six_new_starts_per_data",TRUE
+"six_inherited_endpoints",TRUE
+"eight_total_starts_per_data",TRUE
+"seeds_unique",TRUE
+"per_fit_single_cpu",TRUE
+"fixed400_without_continuation",TRUE
+"truth_free_fit_stop_selection",TRUE
+"adaptive_development_not_formal",TRUE
