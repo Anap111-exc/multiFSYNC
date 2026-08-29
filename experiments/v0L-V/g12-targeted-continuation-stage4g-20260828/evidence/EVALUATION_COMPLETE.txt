@@ -1,0 +1,8 @@
+status=PASS
+completed_utc=2026-08-28T08:57:21Z
+continuations_evaluated=2
+source_and_800_endpoints=4
+truth_study_role_rows=16
+winner_selection_reopened=FALSE
+automatic_further_extension=FALSE
+formal_v0lv_result=FALSE

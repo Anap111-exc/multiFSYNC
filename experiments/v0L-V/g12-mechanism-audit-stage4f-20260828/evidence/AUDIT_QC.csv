@@ -1,0 +1,14 @@
+"check_id","passed"
+"twenty_four_bound_endpoints",TRUE
+"three_frozen_truth_free_winners",TRUE
+"checkpoint_ppi_complete",TRUE
+"checkpoint_scale_complete",TRUE
+"global_scale_complete",TRUE
+"final_gate_complete",TRUE
+"final_five_complete",TRUE
+"four_truth_roles_per_endpoint",TRUE
+"process_contribution_complete",TRUE
+"winner_outputs_complete",TRUE
+"no_fit_or_continuation",TRUE
+"selection_not_reopened",TRUE
+"development_not_formal",TRUE

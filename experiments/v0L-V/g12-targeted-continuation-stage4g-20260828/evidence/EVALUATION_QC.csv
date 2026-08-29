@@ -1,0 +1,10 @@
+"check_id","passed"
+"two_continuations_evaluated",TRUE
+"source_and_800_rows",TRUE
+"four_truth_roles_each_endpoint",TRUE
+"checkpoint_timeline_complete",TRUE
+"gate_comparison_complete",TRUE
+"truth_not_used_for_continuation",TRUE
+"selection_not_reopened",TRUE
+"no_automatic_further_extension",TRUE
+"development_not_formal",TRUE

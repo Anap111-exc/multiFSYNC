@@ -1,0 +1,13 @@
+"cohort","endpoint_group","endpoints","objective_eligible","maximum_200_sweeps","strict_practical_converged","auxiliary_endpoint_pass","auxiliary_ever_stable_5","auxiliary_endpoint_stable_5"
+"all_cohorts","all",104,104,104,0,29,29,28
+"all_cohorts","exact",45,45,45,0,8,7,7
+"all_cohorts","nonexact",59,59,59,0,21,22,21
+"all_cohorts","frozen_winner",10,10,10,0,3,3,3
+"cross_standard_secondary","all",32,32,32,0,5,5,5
+"cross_standard_secondary","exact",18,18,18,0,2,2,2
+"cross_standard_secondary","nonexact",14,14,14,0,3,3,3
+"cross_standard_secondary","frozen_winner",4,4,4,0,0,0,0
+"independent_primary","all",72,72,72,0,24,24,23
+"independent_primary","exact",27,27,27,0,6,5,5
+"independent_primary","nonexact",45,45,45,0,18,19,18
+"independent_primary","frozen_winner",6,6,6,0,3,3,3

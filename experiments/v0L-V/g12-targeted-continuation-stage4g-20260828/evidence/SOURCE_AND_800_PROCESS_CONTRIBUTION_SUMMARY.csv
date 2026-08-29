@@ -1,0 +1,5 @@
+"continuation_id","source_fit_id","data_id","cumulative_t1_sweeps","study_role_matched","study_role_truth_total","factor_process_nrmse_mean_missing_as_zero","complete_contribution_nrmse_mean_missing_as_zero","mean_loading_norm_ratio_matched"
+"g12s4g_base_control__G12__04__to800","g12ss4c_base_01__G12__04","g12ss4c_base_01",400,4,4,0.254410800963817,0.234772937518931,1.01354026425535
+"g12s4g_sparse02_winner__G12__07__to800","g12ss4c_sparse_02__G12__07","g12ss4c_sparse_02",400,4,4,0.687910436368643,0.310523061362015,4.65478516693268
+"g12s4g_base_control__G12__04__to800","g12ss4c_base_01__G12__04","g12ss4c_base_01",800,4,4,0.26104834658882,0.243162252532546,1.02335713741964
+"g12s4g_sparse02_winner__G12__07__to800","g12ss4c_sparse_02__G12__07","g12ss4c_sparse_02",800,4,4,0.689596569944373,0.331140120678148,4.76629617191596

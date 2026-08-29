@@ -1,0 +1,11 @@
+status=PASS
+completed_utc=2026-08-28T06:57:43Z
+input_endpoints=24
+frozen_truth_free_winners=3
+checkpoint_ppi_rows=1440
+checkpoint_scale_rows=1512
+process_contribution_rows=96
+new_fit_run=FALSE
+continuation_run=FALSE
+selection_reopened=FALSE
+formal_v0lv_result=FALSE

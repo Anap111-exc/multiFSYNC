@@ -1,0 +1,13 @@
+"metric","better","data_sets","finite_correlations","median_spearman","direction_aligned_data_sets"
+"complete_contribution_nrmse_mean_missing_as_zero","lower",6,6,-0.7,4
+"covariance_operator_relative_error_mean","lower",9,9,-0.2,6
+"dense_signal_nrmse_ppi_selected","lower",9,9,-0.25,7
+"factor_process_nrmse_mean_missing_as_zero","lower",6,6,-0.85,4
+"feature_estimate_to_projection_ise_mean","lower",9,9,-0.2,6
+"feature_total_ise_mean","lower",9,9,-0.2,6
+"kernel_relative_ise_mean","lower",9,9,-0.2,6
+"loading_relative_l2_error_mean","lower",9,9,-0.5,6
+"matched_function_recall_mean","higher",9,9,0.3,6
+"matched_score_abs_cor_mean","higher",9,9,0.1,6
+"matched_trajectory_abs_cor_mean","higher",9,9,0.6,7
+"signal_nrmse_ppi_selected","lower",9,9,-0.9,8

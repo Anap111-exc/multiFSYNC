@@ -1,0 +1,11 @@
+"cohort","scenario_id","data_id","endpoints","exact_endpoints","exact_rate","count_correct_identity_wrong","incomplete_or_other","frozen_winner_fit_id","frozen_winner_exact","best_exact_elbo","best_incorrect_elbo","exact_over_incorrect_elbo_gap"
+"cross_standard_secondary","baseline_strong","g12cs_base_01",8,2,0.25,1,5,"g12cs_base_01__G12CS__gram_unit_energy__08",TRUE,-124972.496888764,-132037.46432503,7064.96743626602
+"cross_standard_secondary","baseline_strong","g12cs_base_02",8,5,0.625,2,1,"g12cs_base_02__G12CS__gram_unit_energy__08",TRUE,-121635.975363804,-130650.365996222,9014.390632418
+"cross_standard_secondary","weak_loading_separation","g12cs_weak_01",8,6,0.75,1,1,"g12cs_weak_01__G12CS__gram_unit_energy__04",TRUE,-123634.171790259,-129819.981283306,6185.809493047
+"cross_standard_secondary","weak_loading_separation","g12cs_weak_02",8,5,0.625,1,2,"g12cs_weak_02__G12CS__gram_unit_energy__03",TRUE,-121839.718532132,-126401.603154845,4561.884622713
+"independent_primary","baseline_strong","g12ic_01",12,7,0.583333333333333,1,4,"g12ic_01__G12IC__gram_unit_energy__01",TRUE,-125772.509916312,-132474.799522271,6702.289605959
+"independent_primary","baseline_strong","g12ic_02",12,4,0.333333333333333,5,3,"g12ic_02__G12IC__gram_unit_energy__08",TRUE,-122928.094869553,-130498.851427898,7570.75655834501
+"independent_primary","baseline_strong","g12ic_03",12,3,0.25,4,5,"g12ic_03__G12IC__gram_unit_energy__03",TRUE,-118784.332751685,-126943.452881725,8159.12013004
+"independent_primary","baseline_strong","g12ic_04",12,3,0.25,7,2,"g12ic_04__G12IC__gram_unit_energy__03",TRUE,-121205.289148484,-128076.654150712,6871.36500222801
+"independent_primary","baseline_strong","g12ic_05",12,5,0.416666666666667,3,4,"g12ic_05__G12IC__gram_unit_energy__06",TRUE,-122170.139922545,-127789.84085145,5619.700928905
+"independent_primary","baseline_strong","g12ic_06",12,5,0.416666666666667,5,2,"g12ic_06__G12IC__gram_unit_energy__02",TRUE,-123120.258144162,-129863.998953361,6743.74080919901

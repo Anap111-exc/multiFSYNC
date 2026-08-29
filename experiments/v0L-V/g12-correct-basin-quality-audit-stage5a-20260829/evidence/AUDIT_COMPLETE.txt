@@ -1,0 +1,17 @@
+status=PASS
+completed_utc=2026-08-29T04:48:57Z
+standard_density_data_sets=10
+g12_endpoints=104
+exact_identity_endpoints=45
+frozen_truth_free_winners=10
+primary_process_role_rows=288
+primary_loading_scale_rows=216
+quality_summary_rows=108
+process_summary_rows=10
+convergence_conditional_quality_rows=24
+loading_scale_summary_rows=36
+new_data_generated=FALSE
+new_fit_run=FALSE
+continuation_run=FALSE
+winner_selection_reopened=FALSE
+formal_v0lv_result=FALSE
