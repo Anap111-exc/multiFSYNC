@@ -1,0 +1,3 @@
+"experiment_id","data_id","data_index","data_seed","scenario_id","scenario_replicate","n_obs_min","n_obs_max","target_shared_specific_abs_cosine","new_unseen_at_registration","truth_available_to_fit","truth_available_to_stopping","truth_available_to_selection","truth_unseal_authorized","engineering_pilot","formal_v0lv_result","formal_paper_mc_result"
+"G12_PAPER_PIPELINE_PILOT_V1_20260829","g12pp_base_01",1,82929001,"baseline_strong",1,6,9,0,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE
+"G12_PAPER_PIPELINE_PILOT_V1_20260829","g12pp_weak_01",2,82929002,"weak_loading_separation",1,6,9,0.6,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE

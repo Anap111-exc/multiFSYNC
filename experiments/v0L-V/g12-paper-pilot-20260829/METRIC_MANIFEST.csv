@@ -1,0 +1,9 @@
+"priority","metric_group","required_outputs","selection_input","new_success_threshold"
+1,"reconstruction","observed_signal_nrmse;dense_signal_nrmse;observed_dense_gap",FALSE,FALSE
+2,"loading_first_identity","matched;missing;misplaced;duplicate;extra;R;P;L",FALSE,FALSE
+3,"features","total_ise;projection_floor_ise;excess_ise;matched_total_coverage",FALSE,FALSE
+4,"loadings","direction;support;raw_scale;canonical_scale",FALSE,FALSE
+5,"scores_and_processes","fpca_score_correlation;factor_process_error",FALSE,FALSE
+6,"contribution_and_covariance","complete_contribution_error;factor_kernel;covariance_operator",FALSE,FALSE
+7,"runtime_objective_stability","ordinary_elbo;elapsed;peak_memory;warning;objective;practical;380_to_400",FALSE,FALSE
+8,"auxiliary_dimensions","selected_factor_count;retained_M",FALSE,FALSE
