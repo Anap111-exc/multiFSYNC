@@ -17,11 +17,12 @@ Validation results:
   `(L=3,M=2)` and `(L=1,M=4)`, plus truth-free within-configuration ELBO
   selection;
 - `SOURCE_BINDING.csv` contains 54 unique runtime/protocol files and matched
-  `54/54` before the external validation copy was made;
+  the 54/54 staged Git blobs before commit;
 - because the local R installation cannot reliably open the authoritative
-  Chinese-character path, the unchanged worktree was copied byte-for-byte to an
-  external ASCII-only temporary directory for package installation and smoke;
-- a fresh install of multiFSYNC `0.3.0.9000` succeeded from that copy;
+  Chinese-character path, validation used an external ASCII-only path;
+- after commit, a clean local Git clone at exact commit
+  `6aebf932d413d992b9a5c3504cd8e07121e1b395` passed the 54-file runtime binding,
+  and a fresh install of multiFSYNC `0.3.0.9000` succeeded from that clone;
 - the runner check reported `data=1`, `fits=36`, `workers=3`;
 - the micro smoke generated and sealed one micro data set, fitted all three
   dimension configurations, froze three truth-free selections, authorized truth
