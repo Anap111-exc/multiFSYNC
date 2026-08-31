@@ -1,0 +1,8 @@
+"priority","metric_group","required_outputs","selection_input","new_success_threshold"
+1,"loading_first_factor_identity","matched;missing;misplaced;duplicate;extra;R;P;L",FALSE,FALSE
+2,"extra_factor_activity","factor_ppi;sum_loading_ppi;loading_energy;process_energy;contribution_energy",FALSE,FALSE
+3,"fpca_effective_rank","effective_M;component_eigenvalue_share;true_subspace_recall;kernel_error",FALSE,FALSE
+4,"reconstruction","observed_signal_nrmse;dense_signal_nrmse;observed_dense_gap",FALSE,FALSE
+5,"scientific_quality","feature_ise;loading_error;score_correlation;process_error;contribution_error;covariance_error",FALSE,FALSE
+6,"optimization_support","eligible_ordinary_elbo;within_stratum_winner;cross_start_identity_rate",FALSE,FALSE
+7,"runtime_resource","elapsed;peak_memory;warning;practical_status;380_to_400",FALSE,FALSE

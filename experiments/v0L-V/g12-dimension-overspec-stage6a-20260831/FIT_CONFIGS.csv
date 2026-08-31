@@ -1,0 +1,4 @@
+"fit_config_index","fit_config_id","fit_L_f","fit_L_s_1","fit_L_s_2","fit_M_f","fit_M_s_1","fit_M_s_2","dimension_change"
+1,"truth_L1_M2",1,1,1,"2","2","2","none"
+2,"factor_L3_M2",3,3,3,"2;2;2","2;2;2","2;2;2","factor_count_only"
+3,"fpca_L1_M4",1,1,1,"4","4","4","fpca_rank_cap_only"
