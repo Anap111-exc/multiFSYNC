@@ -14,13 +14,22 @@ else
   echo "CURRENT_STATUS_MISSING"
 fi
 echo "=== counts ==="
-complete=$(find "$stage6b_output/fits" -name FIT_COMPLETE.txt -type f 2>/dev/null | wc -l)
-errors=$(find "$stage6b_output/fits" -name FIT_ERROR.txt -type f 2>/dev/null | wc -l)
+if [ -d "$stage6b_output/fits" ]; then
+  complete=$(find "$stage6b_output/fits" -name FIT_COMPLETE.txt -type f | wc -l)
+  errors=$(find "$stage6b_output/fits" -name FIT_ERROR.txt -type f | wc -l)
+else
+  complete=0
+  errors=0
+fi
 echo "complete_fits=$complete"
 echo "error_fits=$errors"
 echo "=== selections ==="
-find "$stage6b_output/truth_free_selection" -maxdepth 2 -type f \
-  \( -name '*FROZEN.txt' -o -name '*SELECTION.csv' \) -print 2>/dev/null || true
+if [ -d "$stage6b_output/truth_free_selection" ]; then
+  find "$stage6b_output/truth_free_selection" -maxdepth 2 -type f \
+    \( -name '*FROZEN.txt' -o -name '*SELECTION.csv' \) -print
+else
+  echo "NO_SELECTION_YET"
+fi
 echo "=== launch stdout tail ==="
 tail -n 20 "$stage6b_output/STAGE6B_LAUNCH.stdout.log" 2>/dev/null || true
 echo "=== launch stderr tail ==="
