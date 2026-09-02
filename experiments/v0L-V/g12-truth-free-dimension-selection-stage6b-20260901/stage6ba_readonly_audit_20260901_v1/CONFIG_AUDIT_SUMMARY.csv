@@ -1,0 +1,4 @@
+"fit_config_id","fits","candidates_per_fit","ppi_retained_per_fit_median","minimum_reference_direction_recurrence_ge_0_9","median_reference_direction_recurrence_ge_0_9","fit_role_duplicate_rate_ge_0_9","fit_study_cross_role_leakage_rate_ge_0_9","median_maximum_cross_role_abs_cosine","median_effective_M"
+"factor_L3_M2",12,9,6,0,0.166666666666667,0.333333333333333,0.5,0.922962405045645,2
+"fpca_L1_M4",12,3,3,0.666666666666667,0.666666666666667,0,0,2.5269194929644e-05,4
+"truth_L1_M2",12,3,3,0.416666666666667,0.666666666666667,0,0.0416666666666667,4.40878964439577e-05,2

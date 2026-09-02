@@ -1,0 +1,8 @@
+"check_id","passed","detail"
+"fit_count_36",TRUE,"36"
+"winner_count_3",TRUE,"3"
+"candidate_rows_complete",TRUE,"180"
+"input_allowlist_only",TRUE,"fit;terminal;truth_free_winner_table"
+"truth_use_flags_false",TRUE,"all terminal truth-use flags FALSE"
+"match_similarities_bounded",TRUE,"range=0;1;zero_loading_directions=43"
+"contribution_shares_sum_one",TRUE,"per-fit weighted shares"

@@ -1,0 +1,4 @@
+"fit_config_id","candidate_rows","zero_loading_directions","zero_loading_rate","ppi_retained_rows","ppi_retained_share_le_0_01","ppi_retained_zero_loading","median_contribution_share","maximum_contribution_share"
+"factor_L3_M2",108,39,0.361111111111111,69,6,0,0.0333366790800597,0.72002388422696
+"fpca_L1_M4",36,0,0,36,0,0,0.24805045536297,0.692728092323609
+"truth_L1_M2",36,4,0.111111111111111,32,0,0,0.330528614332542,0.777075073589735

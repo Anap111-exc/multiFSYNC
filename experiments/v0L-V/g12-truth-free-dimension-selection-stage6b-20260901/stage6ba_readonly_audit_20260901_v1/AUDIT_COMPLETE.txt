@@ -1,0 +1,5 @@
+status=STAGE6B_A_READONLY_AUDIT_COMPLETE
+input_fit_count=36
+candidate_rows=180
+truth_fields_read=FALSE
+fit_or_continuation_started=FALSE

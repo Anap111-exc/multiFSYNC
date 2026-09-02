@@ -1,0 +1,5 @@
+status=PASS
+tests_passed=9
+tests_total=9
+truth_accessed=FALSE
+fit_started=FALSE

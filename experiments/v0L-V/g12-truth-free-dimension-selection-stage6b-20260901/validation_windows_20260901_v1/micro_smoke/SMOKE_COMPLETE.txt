@@ -1,0 +1,9 @@
+status=STAGE6B_B_HOLDOUT_MICRO_SMOKE_PASS
+formal_experiment=FALSE
+new_full_size_fit_started=FALSE
+truth_accessed=FALSE
+n_cpus=1
+subject_time_vectors=8
+variables_per_vector=20
+warnings_captured=1
+primary_dimension_score_ready=FALSE

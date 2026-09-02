@@ -1,0 +1,3 @@
+status=STAGE6B_A_DESCRIPTIVE_SUMMARY_COMPLETE
+truth_fields_read=FALSE
+fit_or_continuation_started=FALSE
