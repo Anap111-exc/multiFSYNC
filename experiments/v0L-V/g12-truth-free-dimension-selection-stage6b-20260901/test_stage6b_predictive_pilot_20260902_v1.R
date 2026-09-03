@@ -59,6 +59,37 @@ run_test("conditional_manifest_contract", {
             !any(manifest$continuation))
 })
 
+run_test("zero_warning_table_is_safe_and_fit_is_saved_first", {
+  empty_warnings <- data.frame(
+    warning_index = integer(), condition_class = character(),
+    message = character(), phase = character(), stringsAsFactors = FALSE
+  )
+  labelled_empty <- s6bp_set_warning_phase(
+    empty_warnings, "stage6b_predictive_pilot_g12_fixed400"
+  )
+  stopifnot(nrow(labelled_empty) == 0L,
+            identical(labelled_empty$phase, character()))
+
+  one_warning <- data.frame(
+    warning_index = 1L, condition_class = "simpleWarning",
+    message = "test", phase = "old", stringsAsFactors = FALSE
+  )
+  labelled_one <- s6bp_set_warning_phase(
+    one_warning, "stage6b_predictive_pilot_g12_fixed400"
+  )
+  stopifnot(identical(labelled_one$phase,
+                      "stage6b_predictive_pilot_g12_fixed400"))
+
+  runner <- readLines(file.path(
+    script_root, "run_stage6b_predictive_pilot_20260902_v1.R"
+  ), warn = FALSE)
+  save_line <- grep("pp_save_rds\\(result\\$fit", runner)
+  label_line <- grep("result\\$captured\\$warnings <- s6bp_set_warning_phase",
+                     runner)
+  stopifnot(length(save_line) == 1L, length(label_line) == 1L,
+            save_line < label_line)
+})
+
 make_losses <- function(config_id, mse_values) {
   data.frame(
     fit_config_id = config_id,

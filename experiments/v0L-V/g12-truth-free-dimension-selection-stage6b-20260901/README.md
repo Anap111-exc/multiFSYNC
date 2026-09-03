@@ -3,8 +3,10 @@
 Date: 2026-09-01
 
 Status: Stage 6B-A complete; Stage 6B-B holdout interface implemented and
-software-tested; a versioned predictive development pilot was registered and
-authorized on 2026-09-02. Truth access remains unauthorized.
+software-tested. The first full-size predictive-pilot execution stopped after
+all 12 factor-screen fits because eight zero-warning fits failed during result
+persistence. A minimal persistence bugfix was prepared on 2026-09-03 for a
+clean rerun in a new output directory. Truth access remains unauthorized.
 
 ## Contents
 
@@ -12,6 +14,8 @@ authorized on 2026-09-02. Truth access remains unauthorized.
   development protocol and evidence boundary.
 - `PROTOCOL_G12_STAGE6B_PREDICTIVE_PILOT_V1_20260902.md`: registered sequential
   factor-count/FPCA-cap prediction pilot.
+- `STAGE6B_PREDICTIVE_PILOT_V2_BUGFIX_RERUN_20260903.md`: failure diagnosis and
+  unchanged-design clean-rerun boundary.
 - `FIT_CONFIGS_STAGE6B_PILOT_V1.csv` and
   `START_SEEDS_STAGE6B_PILOT_V1.csv`: fixed candidate grid and four paired
   start seeds.

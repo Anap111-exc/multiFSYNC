@@ -205,11 +205,13 @@ run_fit <- function(fit_id) {
   }
   dir.create(fit_dir, recursive = TRUE, showWarnings = FALSE, mode = "0700")
   result <- pp_fit_g12(split$train, row, smoke = FALSE)
-  if (is.data.frame(result$captured$warnings) &&
-      "phase" %in% names(result$captured$warnings)) {
-    result$captured$warnings$phase <-
-      "stage6b_predictive_pilot_g12_fixed400"
+  if (!is.null(result$fit)) {
+    pp_save_rds(result$fit, file.path(fit_dir, "fit.rds"))
   }
+  result$captured$warnings <- s6bp_set_warning_phase(
+    result$captured$warnings,
+    "stage6b_predictive_pilot_g12_fixed400"
+  )
   record <- pp_make_terminal_record(result, row, smoke = FALSE)
   record$terminal_schema <- "G12_STAGE6B_PREDICTIVE_PILOT_TERMINAL_V1"
   record$experiment_id <- PP_EXPERIMENT_ID
@@ -231,7 +233,6 @@ run_fit <- function(fit_id) {
     pp_abort("Stage 6B fit failed and was retained: ", fit_id)
   }
 
-  pp_save_rds(result$fit, file.path(fit_dir, "fit.rds"))
   pp_write_csv(data.frame(
     t1_sweep = seq_along(result$fit$ELBO),
     ordinary_elbo = as.numeric(result$fit$ELBO)

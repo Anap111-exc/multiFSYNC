@@ -3,6 +3,14 @@ s6bp_read_csv <- function(path) {
   utils::read.csv(path, stringsAsFactors = FALSE, check.names = FALSE)
 }
 
+s6bp_set_warning_phase <- function(warnings, phase) {
+  if (!is.data.frame(warnings) || !"phase" %in% names(warnings)) {
+    return(warnings)
+  }
+  warnings$phase <- rep(phase, nrow(warnings))
+  warnings
+}
+
 s6bp_validate_registration <- function(configs, seeds) {
   config_columns <- c(
     "config_index", "phase", "fit_config_id", "fit_L_f", "fit_L_s_1",
