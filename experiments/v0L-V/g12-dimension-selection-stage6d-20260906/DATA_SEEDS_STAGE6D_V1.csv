@@ -1,0 +1,4 @@
+"data_index","data_id","data_seed","scenario_id","S","n_s_1","n_s_2","p","d","true_L_f","true_L_s_1","true_L_s_2","true_M","K","n_obs_min","n_obs_max","sigma_eps","mean_amp","truth_unseal_authorized"
+1,"g12s6d_01",83606001,"baseline_strong_independent",2,30,30,500,0,1,1,1,2,5,6,9,0.3,0.6,FALSE
+2,"g12s6d_02",83606002,"baseline_strong_independent",2,30,30,500,0,1,1,1,2,5,6,9,0.3,0.6,FALSE
+3,"g12s6d_03",83606003,"baseline_strong_independent",2,30,30,500,0,1,1,1,2,5,6,9,0.3,0.6,FALSE
