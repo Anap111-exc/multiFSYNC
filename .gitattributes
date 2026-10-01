@@ -41,3 +41,6 @@ experiments/v0L-V/acceptance/linux/SMOKE_RESOURCE_USAGE.txt -text -diff
 
 # Preserve the compact post-v0L-V G12 protocol and audit evidence byte for byte.
 experiments/v0L-V/g12-development-20260824/** -text -diff
+
+# Backup branch only: preserve literal frozen-file bytes on checkout.
+* -text
