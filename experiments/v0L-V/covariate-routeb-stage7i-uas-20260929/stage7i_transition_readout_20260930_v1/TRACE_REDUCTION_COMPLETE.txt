@@ -1,0 +1,6 @@
+status=COMPLETE
+truth_opened=FALSE
+new_fit_started=FALSE
+scale_rows=360
+driver_b2_rows=150
+script_sha256=8c0e810ade2310faa38bdb05da1627da21f62f04dfa5d42089954c3daf9294db

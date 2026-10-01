@@ -1,0 +1,4 @@
+status=COMPLETE
+fit_id=meanb_02__periodic_phase__start05
+truth_used_for_fit_stopping_or_selection=FALSE
+new_fit_or_continuation_started=FALSE

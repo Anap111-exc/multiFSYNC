@@ -1,0 +1,7 @@
+status=COVARIATE_ROUTEB_STAGE7C_DESCRIPTIVE_SUMMARY_COMPLETE
+fits_summarized=108
+winners_summarized=9
+preregistered_gates_passed=3/5
+truth_free_winners_unchanged=TRUE
+new_fit_or_continuation_started=FALSE
+broad_generalization_claim=FALSE

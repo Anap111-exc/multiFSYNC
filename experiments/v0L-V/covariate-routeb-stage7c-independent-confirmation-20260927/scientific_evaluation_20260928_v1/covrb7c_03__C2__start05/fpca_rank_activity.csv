@@ -1,0 +1,4 @@
+"candidate_id","block","study","candidate_factor","rank_cap","effective_M_99pct","retained_rank_fraction","full_posterior_integrated_variance","omitted_uncertainty_variance"
+"A_1","shared",0,1,2,1,0.5,0.0322653886666641,5.49633824665358e-06
+"B1_1","specific",1,1,2,2,1,0.568716795954093,0.000411660565710736
+"B2_1","specific",2,1,2,2,1,0.0323180260095921,4.75168703935255e-05

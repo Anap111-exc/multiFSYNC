@@ -1,0 +1,26 @@
+# Stage 7I ECS launch record (2026-09-29)
+
+This record describes the truth-blind U/A/S diagnostic launch. It is not an endpoint or structural recovery result.
+
+- ECS instance: `i-bp1egmsairexm9w1rnks`, region `cn-hangzhou`; managed Workbench connection was used after direct SSH public-key authentication failed.
+- Remote execution directory: `/root/stage7i-exec-20260929-v1` (new directory; no prior output was overwritten).
+- Local bundle SHA256: `d3bdb16f7846045ada42d5bb5d3b0c857b325fb1c66514bc1933c9ac45352b5f`; remote bundle hash matched.
+- The original Windows CRLF source manifest was preserved. A separate LF-only manifest, `LOCAL_SOURCE_BINDING_20260929_v1_LF.sha256`, has SHA256 `3c06beeac07d44153a43488bbd8af0ca8df2c9e5f994a3ad291012a3056605ff`. The remote copy matched and all 12 source entries passed `sha256sum -c`.
+- The original Windows CRLF supervisor was preserved. A separate LF-only script, `run_stage7i_ecs_supervisor_20260929_v1_LF.sh`, has SHA256 `74ff4af9fde2d3718743cea8d54919a93ca6b1fee30f3ce7a375eff8d1506fcb`. The remote copy matched and passed `bash -n`.
+- Five frozen remote input hashes (Stage 7C observation bundle, Stage 7G fit and state snapshots, Stage 7G source archive, Stage 7H blind table binding) matched the preregistered values during preflight.
+- Stage 7I U and A/S result paths and the proposed log path were absent before launch. ECS had approximately 11 GB disk available, 14 GiB RAM available, and R 4.5.3.
+- Launched through `systemd-run` as `stage7i-uas-20260929-v1.service` with the five supervisor arguments recorded in `run_stage7i_ecs_supervisor_20260929_v1_LF.sh` invocation. Initial check: `ActiveState=active`, `SubState=running`, `MainPID=2741`; package installation completed and `STAGE7I_U_PREPARE_COMPLETE` appeared in journal at 12:31:07 CST.
+- U two-sweep smoke passed at 12:39:25 CST (`STAGE7I_U_SMOKE_PASS`); the expected T<1 partial-fit warning appeared because this smoke intentionally stops at sweep 52. The main service remained active and advanced to full U continuation.
+- The supervisor order is package install, U prepare, U two-sweep smoke, U 51–499 continuation, U full parity gate, A/S prepare, then A and S fits. A/S cannot start if U parity fails. The service does not read sealed truth.
+- Status command: `systemctl show stage7i-uas-20260929-v1.service -p ActiveState -p SubState -p MainPID -p ExecMainStatus`.
+- Log command: `journalctl -u stage7i-uas-20260929-v1.service --no-pager`.
+- Blind outputs: `/root/multifsync-results/stage7i_u_20260929_v1` and `/root/multifsync-results/stage7i_as_20260929_v1`. Blind freeze and truth-based endpoint evaluation are separate later gates.
+- Blind-freeze source `freeze_stage7i_blind_endpoints_20260929_v1.R` was uploaded separately and remote SHA256 matched `2748eca82ec0f4c10c2e95edd077dcbe2cc01069148ef0483afca38fbd7622b5`. This source was added after the original 12-file execution bundle; it was independently reviewed, locally parsed, and tested on synthetic truth-path and U-parity cases. It does not read sealed truth.
+- Success-only watcher `stage7i-finalize-autostop-20260929-v1.service` started at 12:44:26 CST and was active, waiting for the fit unit. Its LF source `run_stage7i_ecs_finalize_autostop_20260929_v1.sh` matched remote SHA256 `1806dfa77300e08e289b4f938c07b54605f165f00b075b7433719694e3953336` and passed `bash -n`. It requires the fit unit to exit successfully, U parity and A/S completion, then runs blind freeze. Only after `BLIND_ENDPOINTS_FROZEN.txt` and a successful StopInstance DryRun does it request `StopCharging` with `ForceStop=false`. Any failed gate leaves the ECS running and preserves output. API acceptance is not proof of final instance state or billing mode; those require independent verification.
+- Watcher status/log commands use `systemctl show stage7i-finalize-autostop-20260929-v1.service -p ActiveState -p Result` and `journalctl -u stage7i-finalize-autostop-20260929-v1.service --no-pager`. Its records, if reached, will be under `/root/multifsync-results/stage7i_autostop_20260929_v1`.
+
+## Resource scheduling correction (16:09 CST)
+
+The ECS has 8 logical CPUs and 14 GiB RAM. The active A fit used approximately 99.7% of one CPU, while 12 GiB RAM remained available. One fit was deliberately limited to one CPU for fixed numerical behavior. U had to pass exact replay before A/S could start; afterward A and S could have run as separate one-CPU processes. The frozen A/S runner instead enforces `check_branch_complete("A")` before S and runs A then S serially. This is a scheduling inefficiency, not a scientific dependency. The current in-flight process and bound source are left intact. Future paired diagnostics should launch independent branches concurrently after the U gate, with separate output paths and the same per-fit one-CPU settings, subject to measured memory use.
+
+Frozen Stage 7G seed01 499-sweep runtime was 3141.079 seconds. At the same rate, three 449-sweep branches are approximately 2 hours 21 minutes before setup, repeated snapshot loading, parity checks, dense logging, and blind freeze. The actual U smoke and preparation used about nine minutes. A practical estimate is 3–4 hours after the 12:30:53 CST launch (approximately 15:30–16:30 CST); this is not a completion deadline.

@@ -1,0 +1,4 @@
+"logical_data_id","paired_starts","P_core_B_core","P_core_B_not","P_not_B_core","P_not_B_not","net_B_minus_P_core_hits"
+"ALL",24,5,0,2,17,2
+"meanb_01",12,1,0,0,11,0
+"meanb_02",12,4,0,2,6,2

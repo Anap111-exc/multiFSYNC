@@ -1,0 +1,5 @@
+STAGE7F_TRUTH_BLIND_TRACE_ANALYSIS_COMPLETE
+requires_endpoint_parity_pass=TRUE
+truth_read=FALSE
+joint_closure_definition=ppi_mean<1e-4_and_loading_norm<1e-3_persisting_to_terminal
+time_norm_definition=coefficient_Euclidean_norm_not_function_L2

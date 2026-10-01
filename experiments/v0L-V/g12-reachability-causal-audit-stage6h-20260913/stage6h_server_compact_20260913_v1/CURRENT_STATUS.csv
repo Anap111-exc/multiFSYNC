@@ -1,0 +1,2 @@
+"timestamp_utc","state","detail","registered_new_fits","complete_new_fits","error_new_fits","analysis_endpoints","outer_workers","per_fit_n_cpus","truth_read_by_fit_or_elbo_selection","continuation","formal_paper_mc_result"
+"2026-09-13T06:46:01Z","FITS_COMPLETE_ENDPOINTS_FROZEN","28 new fits; 36 endpoints; 3 ELBO winners",28,28,0,36,7,1,FALSE,FALSE,FALSE

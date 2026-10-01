@@ -1,0 +1,3 @@
+"role","path","bytes","sha256","endpoints_frozen_before_truth_read","truth_used_for_fit_stopping_or_selection"
+"unsealed_truth","/root/multifsync-results/stage6g_20260911_v1/data/s6g_minimal_L111_M2/sealed_truth/truth_bundle.rds",6938068,"de4dfa119571a4b02bbd0e9336bd51f902bc1f38dfa06dd1c37bc217bf7ebcf6",TRUE,FALSE
+"stage6j_control_science","/root/multifsync-results/stage6j_20260914_v1/scientific_evaluation_20260914_v1/ALL_STAGE6J_SCIENTIFIC_RESULTS.csv",8225,"f2b71c3f6882dc5961dc3758facfb8d412e861a467301aad0a74a89437bed353",TRUE,FALSE

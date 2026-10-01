@@ -1,0 +1,5 @@
+"study","true_role","true_factor","estimated_block","estimated_factor","matched_by_loading","factor_ppi","factor_scale","raw_loading_norm_ratio","canonical_loading_norm_ratio","raw_loading_abs_cosine","canonical_loading_abs_cosine"
+1,"shared",1,"shared",1,TRUE,1,0.502386920257855,1.98312359007691,0.99629535290944,0.999851466947155,0.999851466947156
+1,"specific",1,"specific",1,TRUE,1,0.848424106065462,1.47747674949218,1.25352689042041,0.999751268762169,0.999751268762169
+2,"shared",1,"shared",1,TRUE,1,0.502386920257855,1.98312359007691,0.99629535290944,0.999851466947155,0.999851466947156
+2,"specific",1,"specific",1,TRUE,1,0.711875526168468,1.68143032937754,1.19696910044126,0.999755772826573,0.999755772826573

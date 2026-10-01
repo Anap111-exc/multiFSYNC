@@ -1,0 +1,15 @@
+status=AUTHORIZED_POST_FREEZE_STAGE6J_TRUTH_UNSEAL
+authorized_by=user_in_conversation
+authorized_date=2026-09-14
+truth_unseal_authorized=TRUE
+scientific_evaluation_authorized=TRUE
+summary_authorized=TRUE
+new_fit_authorized=FALSE
+continuation_authorized=FALSE
+cross_dimension_selection_authorized=FALSE
+model_change_authorized=FALSE
+prior_change_authorized=FALSE
+cavi_change_authorized=FALSE
+elbo_change_authorized=FALSE
+formal_paper_mc=FALSE
+scope=Evaluate the eight already-frozen Stage 6J endpoints and summarize the paired initialization comparison only.

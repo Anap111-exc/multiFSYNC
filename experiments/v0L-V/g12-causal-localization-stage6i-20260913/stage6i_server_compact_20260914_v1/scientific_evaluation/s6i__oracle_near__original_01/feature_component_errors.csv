@@ -1,0 +1,9 @@
+"scope","study","true_id","true_role","true_factor","loading_structure_status","candidate_id","estimated_block","estimated_factor","true_component","estimated_component","factor_matched","component_matched","absolute_inner_product","function_sign","total_sign_aligned_ise","projection_floor_ise","estimate_to_projection_ise"
+"ppi_selected",1,"A0_1","shared",1,"correct","A_1","shared",1,1,1,TRUE,TRUE,0.988827494539216,1,0.0223450109215675,0.0195482328641065,0.00273472515799278
+"ppi_selected",1,"A0_1","shared",1,"correct","A_1","shared",1,2,2,TRUE,TRUE,0.962832771944855,1,0.0743344561102894,0.061455135285148,0.0144564453945529
+"ppi_selected",1,"B10_1","specific",1,"correct","B1_1","specific",1,1,1,TRUE,TRUE,0.98242758894808,1,0.0351448221038402,0.0148861647642676,0.020623300954551
+"ppi_selected",1,"B10_1","specific",1,"correct","B1_1","specific",1,2,2,TRUE,TRUE,0.940774887640894,1,0.118450224718212,0.00757468551782943,0.110774785326004
+"ppi_selected",2,"A0_1","shared",1,"correct","A_1","shared",1,1,1,TRUE,TRUE,0.988827494539216,1,0.0223450109215675,0.0195482328641065,0.00273472515799278
+"ppi_selected",2,"A0_1","shared",1,"correct","A_1","shared",1,2,2,TRUE,TRUE,0.962832771944855,1,0.0743344561102894,0.061455135285148,0.0144564453945529
+"ppi_selected",2,"B20_1","specific",1,"correct","B2_1","specific",1,1,1,TRUE,TRUE,0.954974438238482,1,0.0900511235230365,0.0109423007656562,0.0801701847377985
+"ppi_selected",2,"B20_1","specific",1,"correct","B2_1","specific",1,2,2,TRUE,TRUE,0.826134298116509,1,0.347731403766982,0.136518472816429,0.228867482927404

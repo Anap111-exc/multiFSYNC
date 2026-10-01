@@ -1,0 +1,2 @@
+"timestamp_utc","state","phase","detail","phase_registered_fits","all_complete_fits","all_error_fits","outer_workers","per_fit_n_cpus","truth_read_by_fit_or_selection","formal_paper_mc_result"
+"2026-09-03T19:00:06Z","COMPLETE_TRUTH_REMAINS_SEALED","all","factor and FPCA dimension selections frozen",20,20,0,3,1,FALSE,FALSE

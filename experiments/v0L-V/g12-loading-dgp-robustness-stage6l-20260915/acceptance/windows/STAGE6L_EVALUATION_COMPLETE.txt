@@ -1,0 +1,9 @@
+status=STAGE6L_SCIENTIFIC_EVALUATION_COMPLETE
+fits_evaluated=2
+truth_read_after_both_within_arm_selection_freezes=TRUE
+truth_used_for_fit_stopping_or_selection=FALSE
+cross_arm_elbo_comparison=FALSE
+new_fit_or_continuation_started=FALSE
+broad_generalization_claim=FALSE
+smoke=TRUE
+completed_utc=2026-09-15T06:58:11Z

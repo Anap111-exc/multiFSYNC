@@ -1,0 +1,3 @@
+mode=StopCharging
+force_stop=false
+requested_at=2026-09-30T05:17:13+08:00

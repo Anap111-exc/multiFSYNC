@@ -1,0 +1,19 @@
+status=PASS
+date=2026-09-10
+platform=Windows
+r_files_parsed=3
+targeted_tests_passed=7
+targeted_tests_total=7
+micro_smoke_checks_passed=15
+micro_smoke_checks_total=15
+formal_experiment=FALSE
+new_full_size_fit_started=FALSE
+truth_accessed=FALSE
+n_cpus=1
+warnings_captured=1
+warning_1=Max iterations reached before convergence.
+warning_interpretation=expected because the micro smoke deliberately used maxit=6
+preregistered_rmse_interface_modified=FALSE
+logscore_replaces_rmse=FALSE
+primary_dimension_score_ready=FALSE
+predictive_density_scope=full_mean_field_moments_gaussian_approximation_not_exact

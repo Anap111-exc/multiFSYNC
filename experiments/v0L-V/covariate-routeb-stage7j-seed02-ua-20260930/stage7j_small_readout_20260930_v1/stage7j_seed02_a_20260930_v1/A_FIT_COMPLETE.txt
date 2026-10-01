@@ -1,0 +1,4 @@
+STAGE7J_A_FIT_COMPLETE
+branches=A
+truth_opened=FALSE
+formal_candidate_pool=FALSE

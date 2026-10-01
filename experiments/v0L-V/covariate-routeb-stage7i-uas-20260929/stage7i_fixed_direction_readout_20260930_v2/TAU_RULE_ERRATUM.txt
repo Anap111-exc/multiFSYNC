@@ -1,0 +1,6 @@
+The B2_FIXED_DIRECTION_RESIDUAL_50_55.csv values are unchanged.
+For iteration=50 and stage=injected_end, tau_rule=sweep_previous is a label error:
+the calculation used the injected sweep-50 precision tau_50.
+For iterations=51:55, tau_rule=sweep_previous is correct: each calculation used
+the precision from the end of the preceding sweep, before variance update.
+This erratum does not alter the frozen CSV or its SHA256.

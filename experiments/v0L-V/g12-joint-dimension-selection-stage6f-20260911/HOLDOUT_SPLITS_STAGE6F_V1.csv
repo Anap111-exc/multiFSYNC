@@ -1,0 +1,3 @@
+"split_index","split_id","holdout_rule","reuses_stage6b_split"
+1,"split1_middle","floor((n_time+1)/2)",TRUE
+2,"split2_upper","floor((n_time+1)/2)+1",FALSE

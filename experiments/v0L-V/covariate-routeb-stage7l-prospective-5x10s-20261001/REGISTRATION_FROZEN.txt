@@ -1,0 +1,12 @@
+{
+  "registered_at": "2026-10-01T04:30:48.458018+00:00",
+  "data_manifest_sha256": "29fd2d26a529b2c7df3c56db3e8833b3c48f977ede1adacc6ee65c2c18b6201d",
+  "fit_manifest_sha256": "2304df3c446ac6b625dcd85c0e58b2b310af627d200a453be1c39417695a5140",
+  "protocol_sha256": "f53714ada24841a32fb5835029c684549912ea4ade9975a70cb522c225b97616",
+  "datasets": 5,
+  "U": 50,
+  "S_max": 5,
+  "seed_collision_check": "PASS_exact_integer_boundaries",
+  "generation_started": false,
+  "truth_opened": false
+}

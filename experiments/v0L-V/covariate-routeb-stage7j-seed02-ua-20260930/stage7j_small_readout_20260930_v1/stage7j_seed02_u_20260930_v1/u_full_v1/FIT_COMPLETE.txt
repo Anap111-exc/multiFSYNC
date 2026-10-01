@@ -1,0 +1,9 @@
+STAGE7J_U_FIT_COMPLETE
+source_iteration=50
+resumed_sweeps=449
+ordinary_sweeps=400
+endpoint_parity_not_yet_verified=TRUE
+truth_opened=FALSE
+formal_candidate_pool=FALSE
+final_ordinary_elbo=-173563.4719942346
+elapsed_seconds=6816.654

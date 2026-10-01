@@ -1,0 +1,4 @@
+"data_id","expected_truth_fit_config_id","endpoints","adequate_endpoints","adequate_core_hits","adequate_exact_hits","generating_config_endpoints","generating_config_core_hits","generating_config_exact_hits","generating_config_core_full_feature_hits","generating_config_effective_M_exact","generating_config_split_winner_core_hits","generating_config_split_winner_exact_hits","generating_strata_with_available_core","generating_strata_where_elbo_missed_core","generating_strata_with_available_exact","generating_strata_where_elbo_missed_exact","truth_basin_reachable_in_generating_config","exact_structure_reachable_in_generating_config"
+"s6g_minimal_L111_M2","cand_L111_M2",40,40,0,0,8,0,0,0,8,0,0,0,0,0,0,FALSE,FALSE
+"s6g_nonminimal_rank_L111_M3","cand_L111_M3",40,16,0,0,8,0,0,0,7,0,0,0,0,0,0,FALSE,FALSE
+"s6g_nonminimal_shared_L211_M2","cand_L211_M2",40,8,0,0,8,0,0,0,8,0,0,0,0,0,0,FALSE,FALSE

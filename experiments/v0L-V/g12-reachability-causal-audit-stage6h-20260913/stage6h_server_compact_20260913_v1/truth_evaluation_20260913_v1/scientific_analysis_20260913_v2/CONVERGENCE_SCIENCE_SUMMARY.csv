@@ -1,0 +1,6 @@
+"condition_id","practical_converged","endpoints","core_hits","ppi_factor_count_exact_hits","mean_observed_signal_nrmse","mean_dense_signal_nrmse","mean_global_correct","mean_study_correct"
+"full_data_6_9",TRUE,12,0,0,0.166067252985642,0.189606904585872,1,1.75
+"holdout_split1_middle",TRUE,9,0,2,0.189117815064947,0.273668687843871,0.666666666666667,1.33333333333333
+"holdout_split1_middle",FALSE,3,0,2,0.181841632125342,0.308590551643367,1,2
+"holdout_split2_upper",TRUE,9,0,0,0.188952746684356,0.221198379765523,0.777777777777778,1.55555555555556
+"holdout_split2_upper",FALSE,3,0,1,0.18533793349397,0.236775776206384,1,2

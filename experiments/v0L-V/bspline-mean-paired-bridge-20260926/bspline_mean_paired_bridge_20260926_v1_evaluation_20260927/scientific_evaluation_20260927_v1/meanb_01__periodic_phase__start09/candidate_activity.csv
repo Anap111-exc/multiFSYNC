@@ -1,0 +1,4 @@
+"candidate_id","block","study","candidate_factor","factor_ppi","ppi_retained","expected_active_loading_count","raw_loading_l2","canonical_loading_l2","factor_scale","factor_process_rms","complete_contribution_rms","all_candidate_status","matched_truth_id","maximum_matched_truth_abs_cosine","rank_cap","effective_M_99pct","retained_rank_fraction","full_posterior_integrated_variance","omitted_uncertainty_variance"
+"A_1","shared",0,1,1,TRUE,48.75368063376,13.020607448733,6.01545716089297,0.461995124619036,1.06521569276926,0.286563710559869,"correct","A0_1",0.999800070951844,2,2,1,0.213469953997972,3.04588262134142e-05
+"B1_1","specific",1,1,1,TRUE,40.891266800665,4.34445093263147,1.45844156188154,0.335702159950084,1.00935657740321,0.0658337580993098,"duplicate",,0.990371236630041,2,2,1,0.113261025333092,0.000565085137940305
+"B2_1","specific",2,1,4.06520198614757e-08,FALSE,4.06520225639147e-08,0,0,163328.6234113,0,0,"extra",,0,2,2,1,26723774622.452,47535397.021595

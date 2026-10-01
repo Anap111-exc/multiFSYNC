@@ -1,0 +1,10 @@
+"logical_data_id","data_id","beta_arm","strict_and_core","strict_not_core","nonstrict_but_core","neither"
+"covrb7c_01","covrb7c_01__C0","C0",0,8,0,4
+"covrb7c_01","covrb7c_01__C1","C1",0,7,0,5
+"covrb7c_01","covrb7c_01__C2","C2",0,4,0,8
+"covrb7c_02","covrb7c_02__C0","C0",0,10,0,2
+"covrb7c_02","covrb7c_02__C1","C1",0,9,0,3
+"covrb7c_02","covrb7c_02__C2","C2",0,10,0,2
+"covrb7c_03","covrb7c_03__C0","C0",2,7,2,1
+"covrb7c_03","covrb7c_03__C1","C1",1,9,2,0
+"covrb7c_03","covrb7c_03__C2","C2",0,9,0,3

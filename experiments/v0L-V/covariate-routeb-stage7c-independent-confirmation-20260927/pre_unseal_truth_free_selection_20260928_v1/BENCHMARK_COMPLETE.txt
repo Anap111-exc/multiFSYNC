@@ -1,0 +1,4 @@
+status=FULL_SIZE_SWEEP_BENCHMARK_COMPLETE
+main_fits_started=FALSE
+truth_unseal_authorized=FALSE
+marginal_T1_seconds=5.5516

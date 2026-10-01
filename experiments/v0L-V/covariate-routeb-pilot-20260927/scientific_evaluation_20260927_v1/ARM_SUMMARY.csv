@@ -1,0 +1,4 @@
+"beta_arm","starts","core_hits","exact_structure_hits","full_feature_coverage_hits","strict_convergence_hits","winner_core_hit","winner_exact_structure_hit","winner_full_feature_coverage_hit","winner_strict_convergence","winner_obs_full_signal_nrmse","winner_dense_full_signal_nrmse","winner_beta_relative_ise","winner_mean_dense_nrmse","broad_generalization_claim"
+"C0",12,6,6,6,7,TRUE,TRUE,TRUE,TRUE,0.144996760559157,0.22921472442084,,0.144801940169873,FALSE
+"C1",12,6,6,6,6,TRUE,TRUE,TRUE,TRUE,0.14584233382564,0.223335704363818,0.0533046993181712,0.146775035365579,FALSE
+"C2",12,0,0,0,8,FALSE,FALSE,FALSE,FALSE,0.689539246521357,0.724722355226112,,0.30032623872421,FALSE

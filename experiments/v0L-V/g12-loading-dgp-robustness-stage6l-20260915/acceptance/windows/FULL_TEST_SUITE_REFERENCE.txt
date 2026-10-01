@@ -1,0 +1,9 @@
+date=2026-09-15
+scope=current package including the explicit Jaoua-style loading DGP option
+test_loading_method=ASCII temporary source copy to avoid the known Chinese-path pkgload/desc issue
+full_test_output=TEST_FILES=127 FAILED_FILES=0
+structured_generator_targeted_tests=PASS
+expected_warnings=max-iteration warnings from deliberately tiny fits
+package_source_changed_after_full_test=FALSE
+evidence_type=reference to the full test execution earlier in this logical task
+not_a_new_full_test_run=TRUE

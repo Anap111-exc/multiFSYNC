@@ -1,0 +1,4 @@
+STAGE7F_LOCAL_ANALYSIS_COMPLETE
+parameter_parity_checks=54_all_exact
+original_trace_checks=9_all_exact
+truth_read=FALSE

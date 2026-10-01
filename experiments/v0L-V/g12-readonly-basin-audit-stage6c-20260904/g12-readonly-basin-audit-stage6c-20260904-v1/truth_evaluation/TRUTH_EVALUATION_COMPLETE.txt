@@ -1,0 +1,4 @@
+status=STAGE6C_FROZEN_BASIN_TRUTH_EVALUATION_COMPLETE
+scientific_endpoints=56
+truth_free_hashes_verified=TRUE
+fit_or_continuation_started=FALSE

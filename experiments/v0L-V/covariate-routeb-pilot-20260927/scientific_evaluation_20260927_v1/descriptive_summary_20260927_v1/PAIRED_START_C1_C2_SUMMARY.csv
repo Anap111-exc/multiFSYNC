@@ -1,0 +1,15 @@
+"metric","paired_n","mean_C2_minus_C1","median_C2_minus_C1","min_C2_minus_C1","max_C2_minus_C1","C2_worse_count_for_lower_is_better_metric"
+"obs_full_signal_nrmse_selected",12,0.428943672494215,0.450020700063358,0.321960133221917,0.541916196807096,12
+"dense_full_signal_nrmse_selected",12,-0.0481269412348291,-0.0913960441004655,-0.347848611821682,0.501152252471441,4
+"obs_residual_signal_nrmse_selected",12,0.455289321453955,0.469495458026516,0.332224137418882,0.596036770501596,12
+"dense_residual_signal_nrmse_selected",12,-0.0817591754161035,-0.128796604842665,-0.412303385369576,0.532277849787236,4
+"obs_factor_contribution_nrmse_selected",12,0.661618428814201,0.665597540385719,0.48598223915512,0.893239915057267,12
+"dense_factor_contribution_nrmse_selected",12,-0.130650580362051,-0.19661367664249,-0.60371176720638,0.763306938034536,4
+"feature_total_ise_mean",0,,,,,
+"feature_estimate_to_projection_ise_mean",0,,,,,
+"covariance_operator_relative_error_mean",12,-1.15889431918241,-0.99492787256007,-2.50303311594886,0.521035737489255,2
+"loading_relative_l2_error_mean",0,,,,,
+"matched_score_abs_cor_mean",12,-0.643383617443612,-0.68978247637405,-0.963801066788204,-0.386718783759724,0
+"factor_process_nrmse_mean_matched",0,,,,,
+"complete_contribution_nrmse_mean_matched",0,,,,,
+"mean_dense_nrmse",12,0.120999777227752,0.125415962265859,0.055691756585614,0.154950934537941,12

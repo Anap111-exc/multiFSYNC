@@ -1,0 +1,2 @@
+"timestamp_utc","state","detail","registered_fits","complete_fits","error_fits","outer_workers","per_fit_n_cpus","truth_unsealed","formal_paper_mc_result"
+"2026-09-14T10:33:47Z","TRUTH_FREE_COMPLETE","8 eligible endpoints; no truth read",8,8,0,8,1,FALSE,FALSE

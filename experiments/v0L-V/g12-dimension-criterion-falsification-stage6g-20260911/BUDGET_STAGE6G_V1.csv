@@ -1,0 +1,7 @@
+"fit_config_id","registered_endpoints","planning_median_minutes_per_fit","planning_cpu_hours","estimate_basis"
+"cand_L111_M2",24,34.2,13.68,"Stage6D observed L111M2 median"
+"cand_L111_M3",24,40.2,16.08,"Stage6D observed L111M3 median"
+"cand_L111_M4",24,47.4,18.96,"Stage6D observed L111M4 median"
+"cand_L121_M2",24,55.0,22.00,"interpolation between 3-factor and 6-factor Stage6D fits"
+"cand_L211_M2",24,65.0,26.00,"conservative asymmetric shared-factor planning estimate"
+

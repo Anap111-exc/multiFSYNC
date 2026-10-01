@@ -1,0 +1,15 @@
+"quantity","value"
+"n_draw",500
+"n_block_rows",1500
+"n_pair_rows",1500
+"basis_dim",8
+"continuous_gram_error_max",1.02140518265514e-14
+"grid_gram_error_max",5.8691953608303e-07
+"cross_canonical_median",0.657213296960895
+"cross_canonical_q95",0.887864200101837
+"cross_canonical_gt_0_95_rate",0.0106666666666667
+"cross_canonical_gt_0_99_rate",0.000666666666666667
+"roughness_median",257084.974548302
+"boundary_energy_median",0.00647137478261634
+"projection_floor_median",0.669791803285
+"projection_floor_q95",0.821281379359783

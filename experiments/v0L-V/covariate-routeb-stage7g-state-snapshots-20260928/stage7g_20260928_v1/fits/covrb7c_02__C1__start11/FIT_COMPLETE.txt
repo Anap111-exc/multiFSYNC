@@ -1,0 +1,9 @@
+STAGE7G_FIT_COMPLETE
+fit_id=covrb7c_02__C1__start11
+final_ordinary_elbo=-173563.4719942346
+elapsed_seconds=3106.926
+annealing_sweeps=99
+ordinary_sweeps=400
+raw_state_snapshots=500
+truth_used_for_fit_or_selection=FALSE
+formal_candidate_pool=FALSE

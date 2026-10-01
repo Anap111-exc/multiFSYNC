@@ -1,0 +1,11 @@
+STAGE7J_A_FIT_COMPLETE
+branch=A
+source_sweep=50
+resumed_sweeps=449
+ordinary_sweeps=400
+truth_opened=FALSE
+formal_candidate_pool=FALSE
+saved_snapshots=33
+final_ordinary_elbo=-173564.4677048122
+binding_sha256=c085075e09739b7b610b32eb1edef84d27a7fbe04aafee4f640762eff660ddf6
+elapsed_seconds=6808.632

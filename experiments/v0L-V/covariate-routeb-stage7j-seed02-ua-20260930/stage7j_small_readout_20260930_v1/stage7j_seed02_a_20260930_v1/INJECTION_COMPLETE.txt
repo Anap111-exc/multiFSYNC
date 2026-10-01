@@ -1,0 +1,7 @@
+STAGE7J_A_INJECTION_COMPLETE
+seed02_C1_start11_only=TRUE
+source_sweep=50
+truth_opened=FALSE
+formal_candidate_pool=FALSE
+helper_sha256=03ae170103e2d70e63889b68553d9d13261233edfa1ec775ce185de39f840c99
+u_parity_sha256=b84566db85859b2d5dc0e36adb325862a38461551c746795bf2802fd2fe7e395

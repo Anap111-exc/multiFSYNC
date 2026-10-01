@@ -1,0 +1,7 @@
+"family","association","variable_1","variable_2","spearman_rho"
+"periodic_mean","roughness_vs_projection","normalized_roughness","projection_relative_l2",0.701542604885651
+"periodic_mean","edge_energy_vs_edge_peak","edge_energy_fraction","edge_peak_ratio",0.884621939155485
+"periodic_mean","endpoint_magnitude_vs_edge_energy","f_0","edge_energy_fraction",0.913705207926302
+"nonperiodic_feature","roughness_vs_projection","normalized_roughness","projection_relative_l2",0.793643837071537
+"nonperiodic_feature","edge_energy_vs_edge_peak","edge_energy_fraction","edge_peak_ratio",0.956603229844803
+"nonperiodic_feature","endpoint_magnitude_vs_edge_energy","f_0","edge_energy_fraction",NA

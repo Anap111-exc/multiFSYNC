@@ -1,0 +1,2 @@
+"oracle_original_core_hits","oracle_swapped_core_hits","swapped_position1_truth_hits","swapped_position2_truth_hits","original_B10_hits_after_swap","original_B20_hits_after_swap","oracle_decision","study_swap_decision","continuous_observed_gram_hypothesis_supported","nullspace_hypothesis_supported","new_dimension_criterion_caused_failure"
+3,3,1,0,0,1,"CORRECT_BASIN_EXISTS_BUT_G12_REACHABILITY_FAILS","STUDY_SWAP_INCONCLUSIVE_OR_GENERAL_COMPETITION",FALSE,FALSE,FALSE

@@ -1,0 +1,11 @@
+"check_id","observed","expected","passed"
+"frozen_endpoint_rows",36,"36",TRUE
+"new_endpoint_rows",28,"28",TRUE
+"imported_endpoint_rows",8,"8",TRUE
+"loading_rows",108,"108",TRUE
+"threshold_rows",864,"864",TRUE
+"process_rows",144,"144",TRUE
+"ppi_rows",108,"108",TRUE
+"all_three_truth_directions_per_endpoint",1,"TRUE",TRUE
+"all_threshold_scopes_present",1,"TRUE",TRUE
+"no_endpoint_selection_recomputed",1,"TRUE",TRUE

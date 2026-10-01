@@ -1,0 +1,2 @@
+"mean_observed_rmse","mean_observed_nrmse","mean_dense_rmse","mean_dense_nrmse","mean_dense_ise_mean","mean_dense_relative_ise_mean","mean_projection_floor_ise_mean","mean_projection_relative_ise_mean","mean_excess_ise_mean","mean_estimate_to_projection_ise_mean","mean_projection_decomposition_max_abs_error"
+0.14982217108587,0.315991146795669,0.145170070541372,0.306045378512808,0.0210743493809869,0.093663773559444,2.55331009073844e-05,0.000113480445860062,0.0210488162800795,0.0210488162800795,5.55111512312578e-17

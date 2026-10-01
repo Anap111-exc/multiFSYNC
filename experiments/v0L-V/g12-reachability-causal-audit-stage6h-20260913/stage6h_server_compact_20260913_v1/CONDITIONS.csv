@@ -1,0 +1,4 @@
+"condition_index","condition_id","split_id","input_kind","training_time_count_min","training_time_count_max"
+1,"holdout_split1_middle","split1_middle","holdout_train",5,8
+2,"holdout_split2_upper","split2_upper","holdout_train",5,8
+3,"full_data_6_9","full_data","full_observation",6,9

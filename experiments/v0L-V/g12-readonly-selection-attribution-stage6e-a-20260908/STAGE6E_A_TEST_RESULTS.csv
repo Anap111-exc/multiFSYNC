@@ -1,0 +1,4 @@
+"test","passed","detail"
+"stratified_se_matches_manual",TRUE,"PASS"
+"top_k_unit_median",TRUE,"PASS"
+"paired_rule_uses_difference_se",TRUE,"PASS"

@@ -1,0 +1,7 @@
+status=STAGE7C_READ_ONLY_POSTHOC_ANALYSIS_COMPLETE
+fits_read=108
+winners_read=9
+new_fit_started=FALSE
+continuation_started=FALSE
+selection_changed=FALSE
+truth_free_winners_unchanged=TRUE

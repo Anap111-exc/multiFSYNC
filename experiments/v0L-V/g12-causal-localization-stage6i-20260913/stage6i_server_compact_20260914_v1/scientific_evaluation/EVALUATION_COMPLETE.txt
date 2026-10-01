@@ -1,0 +1,10 @@
+status=COMPLETE
+completed_utc=2026-09-14T06:08:39Z
+new_endpoints_evaluated=10
+read_only_stage6h_endpoints=4
+oracle_decision=CORRECT_BASIN_EXISTS_BUT_G12_REACHABILITY_FAILS
+study_swap_decision=STUDY_SWAP_INCONCLUSIVE_OR_GENERAL_COMPETITION
+new_dimension_criterion_used=FALSE
+new_dimension_criterion_caused_failure=FALSE
+model_prior_cavi_elbo_changed=FALSE
+formal_paper_mc=FALSE

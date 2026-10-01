@@ -1,0 +1,9 @@
+status=COMPLETE
+branches=U,A,S
+sweeps=50:55
+fixed_direction=sweep50_registered_v
+truth_opened=FALSE
+new_fit_started=FALSE
+cavi_update_replayed=FALSE
+script_sha256=65bd94c765de25cfb7a9a60fce0cbbc39115e4807900314cc562d4bd0b356fd8
+table_sha256=98f860c5e2bafc99a73e0df069aa8be6dae258546f41506d1954b5e002b67072

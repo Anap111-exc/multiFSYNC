@@ -1,0 +1,4 @@
+status=SUPERSEDED
+reason=P_A_P_B1_P_B2_are_subspace_purity_metrics_not_factor_PPI
+replacement=../posthoc_read_only_analysis_20260928_v2
+numeric_scientific_evaluation_unchanged=TRUE

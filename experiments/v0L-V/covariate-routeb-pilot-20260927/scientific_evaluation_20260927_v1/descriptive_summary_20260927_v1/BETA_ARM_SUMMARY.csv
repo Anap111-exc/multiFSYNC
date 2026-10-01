@@ -1,0 +1,4 @@
+"beta_arm","starts","estimate_available","median_estimated_beta_energy","median_estimated_energy_over_C1_truth_energy","median_beta_relative_ise","median_beta_l2_cosine","winner_estimated_beta_energy","winner_estimated_energy_over_C1_truth_energy","winner_beta_relative_ise","winner_beta_l2_cosine"
+"C0",12,TRUE,1.05645782198867,0.0234768404886372,,,0.887177702017765,0.0197150600448392,,
+"C1",12,TRUE,46.1103194163118,1.02467376480693,0.0956643206606134,0.966381538284492,44.0283155527159,0.978407012282576,0.0533046993181712,0.976353013699583
+"C2",12,FALSE,,,,,,,,

@@ -1,0 +1,7 @@
+"check_id","passed","detail"
+"continuous_gram_exact",TRUE,"max=1.021e-14"
+"all_metrics_finite",TRUE,"block_rows=1500;pair_rows=1500"
+"no_numerically_identical_subspaces",TRUE,"max=0.990026"
+"cross_block_not_forced_orthogonal",TRUE,"median=0.657213"
+"role_exchangeability",TRUE,"roughness_mean=0.115;boundary_energy_mean=0.031;projection_floor_mean=0.084"
+"projection_floor_usable",FALSE,"median=0.6698;q95=0.8213"

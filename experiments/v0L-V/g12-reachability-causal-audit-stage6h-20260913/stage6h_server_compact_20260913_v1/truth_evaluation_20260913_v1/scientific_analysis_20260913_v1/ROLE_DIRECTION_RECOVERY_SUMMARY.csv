@@ -1,0 +1,10 @@
+"condition_id","true_id","true_block","true_study","endpoints","correct","misplaced","missing","mean_loading_abs_cosine_when_matched"
+"full_data_6_9","A0_1","shared",0,12,9,3,0,0.995213246865551
+"full_data_6_9","B10_1","specific",1,12,0,0,12,
+"full_data_6_9","B20_1","specific",2,12,3,1,8,0.908042921208045
+"holdout_split1_middle","A0_1","shared",0,12,9,3,0,0.994209837189464
+"holdout_split1_middle","B10_1","specific",1,12,0,0,12,
+"holdout_split1_middle","B20_1","specific",2,12,0,0,12,
+"holdout_split2_upper","A0_1","shared",0,12,10,2,0,0.993039588419373
+"holdout_split2_upper","B10_1","specific",1,12,0,0,12,
+"holdout_split2_upper","B20_1","specific",2,12,0,1,11,0.87470007768368

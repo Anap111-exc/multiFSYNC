@@ -1,0 +1,4 @@
+"true_id","true_block","true_study","candidate_id","candidate_block","candidate_study","status","matched","loading_abs_cosine","loading_sign","loading_relative_l2_error","loading_norm_ratio","loading_support_ppi_auc"
+"A0_1","shared",0,"B1_1","specific",1,"misplaced",TRUE,0.999746588628678,1,0.149300048200318,0.852153411729145,0.998088888888889
+"B10_1","specific",1,"A_1","shared",0,"misplaced",TRUE,0.999696905667387,1,0.18700716541056,0.814317340677499,0.989333333333333
+"B20_1","specific",2,,,,"missing",FALSE,0,,,,

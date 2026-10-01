@@ -1,0 +1,5 @@
+"seed_index","fit_seed","original_order_B10_recovery","original_order_B20_recovery","swapped_position1_original_B20_recovery","swapped_position2_original_B10_recovery","original_core","swapped_core","original_elbo","swapped_elbo"
+1,84611101,0,0,0,0,FALSE,FALSE,-114970.106036303,-114968.637736453
+2,84611102,0,0,0,0,FALSE,FALSE,-114962.746080454,-114962.885875154
+3,84611103,0,0,0.830324247865994,0,FALSE,FALSE,-114982.367964588,-114913.225369271
+4,84611104,0,6.233954125916e-08,0,0,FALSE,FALSE,-116425.003848896,-114954.037909009

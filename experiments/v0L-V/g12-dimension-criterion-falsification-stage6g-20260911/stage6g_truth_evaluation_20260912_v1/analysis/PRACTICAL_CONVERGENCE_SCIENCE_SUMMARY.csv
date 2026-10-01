@@ -1,0 +1,7 @@
+"scope","practical_converged","generating_dimension_configuration","endpoints","core_recovery_rate","exact_structure_rate","observed_signal_nrmse_mean","dense_signal_nrmse_mean","feature_ise_mean"
+"all_endpoints",FALSE,,41,0,0,0.194419316249111,0.302224958868689,0.158292972439283
+"all_endpoints",TRUE,,79,0,0,0.194995257498271,0.281715554767821,0.20611786438041
+"all_scenarios",FALSE,FALSE,36,0,0,0.19394111554588,0.301642211065071,0.146673001582097
+"all_scenarios",FALSE,TRUE,5,0,0,0.197862361312368,0.306420743054735,0.241956762611022
+"all_scenarios",TRUE,FALSE,60,0,0,0.19579605267704,0.280997755824397,0.178774661965068
+"all_scenarios",TRUE,TRUE,19,0,0,0.192466430617947,0.283982288273371,0.292464819376227

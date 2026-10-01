@@ -1,0 +1,6 @@
+status=COMPLETE
+branch=U
+stage7j_private_resume=TRUE
+source_sweep=50
+truth_used_for_fit_stopping_or_selection=FALSE
+new_fit_or_continuation_started=FALSE

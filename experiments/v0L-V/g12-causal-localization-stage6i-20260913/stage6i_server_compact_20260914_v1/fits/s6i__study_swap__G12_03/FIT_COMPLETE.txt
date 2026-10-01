@@ -1,0 +1,11 @@
+status=COMPLETE
+fit_id=s6i__study_swap__G12_03
+fit_kind=study_swap_g12
+study_order=swapped
+truth_used_for_fit=FALSE
+truth_used_for_stopping_or_selection=FALSE
+objective_eligible=TRUE
+elapsed_seconds=2052.78849101
+ordinary_T1_sweeps=400
+n_cpus=1
+ended_utc=2026-09-14T05:52:51Z

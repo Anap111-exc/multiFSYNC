@@ -1,0 +1,3 @@
+"role","path","bytes","sha256","mutable_by_stage6j"
+"observation","/root/multifsync-results/stage6g_20260911_v1/data/s6g_minimal_L111_M2/observation_bundle.rds",1758134,"54bfaba5b978a623aa07aeec01445417a4d637fbc4644e32d8be867fd17aab05",FALSE
+"stage6g_complete","/root/multifsync-results/stage6g_20260911_v1/STAGE6G_TRUTH_FREE_COMPLETE.txt",230,"3fae5ab0b7adfd564a344a562c045c03ce6da0ea5a6a6769ee57e5ce157e4ef4",FALSE

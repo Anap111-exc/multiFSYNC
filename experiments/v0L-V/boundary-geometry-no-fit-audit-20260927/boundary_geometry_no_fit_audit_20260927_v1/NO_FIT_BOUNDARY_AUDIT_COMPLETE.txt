@@ -1,0 +1,9 @@
+audit_id=BOUNDARY_GEOMETRY_NO_FIT_AUDIT_V1_20260927
+completed_at=2026-09-27 11:22:21
+periodic_mean_functions=2000
+nonperiodic_feature_functions=3000
+formal_data_generated=FALSE
+model_fit_calls=0
+cavi_calls=0
+elbo_calls=0
+continuation_calls=0

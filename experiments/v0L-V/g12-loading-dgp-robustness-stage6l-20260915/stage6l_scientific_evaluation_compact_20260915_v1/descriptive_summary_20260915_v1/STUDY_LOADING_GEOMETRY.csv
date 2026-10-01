@@ -1,0 +1,5 @@
+"data_id","loading_arm","study","shared_specific_support_jaccard","shared_specific_abs_cosine","loading_gram_min_eigenvalue","loading_gram_condition"
+"s6l_01__controlled","controlled",1,0,0,45,1
+"s6l_01__controlled","controlled",2,0,0,45,1
+"s6l_01__jaoua_beta10","jaoua_beta10",1,0.0891089108910891,0.0208330163064319,44.8843033677168,1.20567085978672
+"s6l_01__jaoua_beta10","jaoua_beta10",2,0.0446428571428571,0.0264824912155531,44.8766134682332,1.34643374047239

@@ -1,0 +1,5 @@
+"relative_path","sha256","bytes","role"
+"R/generate_data_structured.R","226131949adf52a28fc5e8e91b765a8cdb98a4e2c3a2ffbfa7ee40fc7bc932dd",53593,"current_generator_source"
+"experiments/v0L-V/iid-common-splinet-stiefel-generator-20260921/PROTOCOL_ROUTE_B_K8_K9_INDEPENDENT_CONFIRMATION_V1_20260925.md","5c54982c667d7853cb543dd941edf161b2e5b8dc13db638077b381b2265345a6",3097,"route_b_protocol_evidence"
+"experiments/v0L-V/bspline-mean-paired-bridge-20260926/REPORT_BSPLINE_MEAN_PAIRED_BRIDGE_20260927.md","b9ff424f3eaebbceb06f3a38e16a9856c47fff50fe2a96e19f77946c05f97b8c",6748,"mean_bridge_evidence"
+"experiments/v0L-V/boundary-geometry-no-fit-audit-20260927/REPORT_BOUNDARY_GEOMETRY_NO_FIT_AUDIT_20260927.md","0eaba884ae0ba750094e74b2f6733eb3f18a101939d352ccad5fa8323b9635fe",8539,"boundary_audit_evidence"

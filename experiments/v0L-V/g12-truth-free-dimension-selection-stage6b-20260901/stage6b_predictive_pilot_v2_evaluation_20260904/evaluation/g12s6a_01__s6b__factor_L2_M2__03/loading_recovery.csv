@@ -1,0 +1,4 @@
+"true_id","true_block","true_study","candidate_id","candidate_block","candidate_study","status","matched","loading_abs_cosine","loading_sign","loading_relative_l2_error","loading_norm_ratio","loading_support_ppi_auc"
+"A0_1","shared",0,"A_1","shared",0,"correct",TRUE,0.999742484597237,1,1.00583921602049,2.00532568055537,0.998844444444444
+"B10_1","specific",1,"B1_1","specific",1,"correct",TRUE,0.999698127183281,1,0.147863536808466,1.14550612082995,0.989422222222222
+"B20_1","specific",2,"B2_1","specific",2,"correct",TRUE,0.999626318719656,-1,0.152860498446539,1.15002282487035,0.987733333333333

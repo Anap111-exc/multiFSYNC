@@ -1,0 +1,11 @@
+status=STAGE6B_PREDICTIVE_PILOT_COMPLETE
+completed_utc=2026-09-03T19:00:06Z
+executed_fits=20
+selected_factor_count=1
+selected_fpca_cap=2
+selection_used_truth=FALSE
+truth_access_authorized=FALSE
+new_data_generated=FALSE
+continuation_started=FALSE
+final_full_data_refit_started=FALSE
+formal_paper_mc_result=FALSE

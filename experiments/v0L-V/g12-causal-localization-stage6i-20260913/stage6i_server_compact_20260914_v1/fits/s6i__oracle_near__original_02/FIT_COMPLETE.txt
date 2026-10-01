@@ -1,0 +1,11 @@
+status=COMPLETE
+fit_id=s6i__oracle_near__original_02
+fit_kind=truth_neighborhood
+study_order=original
+truth_used_for_fit=TRUE
+truth_used_for_stopping_or_selection=FALSE
+objective_eligible=TRUE
+elapsed_seconds=1666.79093933
+ordinary_T1_sweeps=400
+n_cpus=1
+ended_utc=2026-09-14T05:46:25Z

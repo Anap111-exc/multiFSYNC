@@ -1,0 +1,4 @@
+"beta_arm","starts","objective_eligible","strict_converged","core_hits","exact_structure_hits","full_feature_coverage_hits","strict_and_core","strict_not_core","nonstrict_but_core","neither_strict_nor_core","max_elbo_core","max_elbo_noncore","max_core_minus_max_noncore_elbo","winner_fit_id","winner_start_index","winner_strict","winner_core","winner_exact","winner_full_feature_coverage"
+"C0",12,12,7,6,6,6,2,5,4,1,-159999.131952489,-169021.251880477,9022.11992798801,"covrbp_01__C0__start06",6,TRUE,TRUE,TRUE,TRUE
+"C1",12,12,6,6,6,6,3,3,3,3,-165382.817911878,-174083.545887113,8700.727975235,"covrbp_01__C1__start06",6,TRUE,TRUE,TRUE,TRUE
+"C2",12,12,8,0,0,0,0,8,0,4,,-190294.330192445,,"covrbp_01__C2__start08",8,FALSE,FALSE,FALSE,FALSE

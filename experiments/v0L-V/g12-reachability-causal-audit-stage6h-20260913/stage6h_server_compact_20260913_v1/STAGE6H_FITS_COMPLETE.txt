@@ -1,0 +1,9 @@
+status=FITS_COMPLETE_ENDPOINTS_FROZEN
+completed_utc=2026-09-13T06:46:01Z
+new_fits=28
+analysis_endpoints=36
+condition_elbo_winners=3
+truth_read=FALSE
+scientific_evaluation_not_yet_started=TRUE
+continuation=FALSE
+formal_paper_mc=FALSE

@@ -1,0 +1,5 @@
+status=INVALIDATED_BEFORE_REPORTING
+reason=missing configured-last-component spectral shares were propagated as NA when a fitted effective rank was below its cap
+affected_field=last_component_spectral_share_mean
+selection_results_affected=FALSE
+replacement=stage6e_a_readonly_audit_20260908_v2

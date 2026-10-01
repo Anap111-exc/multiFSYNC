@@ -1,0 +1,6 @@
+STAGE6H_POST_UNSEAL_DESCRIPTIVE_ANALYSIS_COMPLETE
+completed_at=2026-09-13T20:10:15+0800
+fits_or_continuations_started=FALSE
+endpoint_selection_recomputed=FALSE
+truth_used=TRUE
+scope=post_unseal_oracle_diagnostic

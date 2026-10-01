@@ -1,0 +1,10 @@
+status=PREPARED
+prepared_utc=2026-09-14T09:56:31Z
+new_fits=8
+paired_fit_seeds=4
+truth_read_by_prepare=FALSE
+truth_available_to_fit_stopping_selection=FALSE
+scientific_evaluation_authorized=FALSE
+model_prior_cavi_elbo_changed=FALSE
+cross_dimension_selection=FALSE
+formal_paper_mc=FALSE

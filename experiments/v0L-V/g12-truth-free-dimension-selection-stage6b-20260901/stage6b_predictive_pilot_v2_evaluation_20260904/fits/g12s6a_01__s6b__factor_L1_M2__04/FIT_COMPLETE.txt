@@ -1,0 +1,12 @@
+status=COMPLETE
+fit_id=g12s6a_01__s6b__factor_L1_M2__04
+terminal_status=fixed_400_complete
+objective_eligible=TRUE
+holdout_scoring_complete=TRUE
+primary_score=heldout_nrmse
+truth_used_for_fit_stopping_or_selection=FALSE
+truth_used_for_holdout_scoring=FALSE
+n_cpus=1
+continuation_used=FALSE
+final_full_data_refit=FALSE
+ended_utc=2026-09-03T04:44:42Z

@@ -1,0 +1,13 @@
+status=STAGE6K_SCIENTIFIC_EVALUATION_COMPLETE
+completed_utc=2026-09-14T14:25:25Z
+new_fits_evaluated=4
+paired_controls_readonly=4
+evaluation_errors=0
+truth_read_after_endpoint_freeze=TRUE
+truth_used_for_fit_stopping_or_selection=FALSE
+new_fits_started_by_evaluation=FALSE
+continuation_started=FALSE
+additional_gate_lengths_started=FALSE
+gate10_core_hits=0
+truth_free_gate10_winner_core=FALSE
+decision=ZERO_OF_FOUR_CLOSE_DENSE_GATE_ROUTE

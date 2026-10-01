@@ -1,0 +1,6 @@
+status=COMPLETE
+fit_id=s6h_minimal_L111_M2__holdout_split1_middle__G12_09
+all_endpoints_frozen_before_truth_read=TRUE
+fit_stopping_and_elbo_selection_used_truth=FALSE
+continuation=FALSE
+formal_paper_mc=FALSE

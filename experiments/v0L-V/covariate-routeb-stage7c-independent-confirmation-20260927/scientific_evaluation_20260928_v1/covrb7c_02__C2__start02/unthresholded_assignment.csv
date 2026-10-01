@@ -1,0 +1,15 @@
+"scope","unit","study","true_id","true_block","true_study","candidate_id","candidate_block","candidate_study","loading_abs_cosine","correct_parameter_block"
+"ppi_selected","global_direction",0,"A0_1","shared",0,"B1_1","specific",1,0.199341649596101,FALSE
+"ppi_selected","global_direction",0,"B10_1","specific",1,"A_1","shared",0,0.0315425661174173,FALSE
+"ppi_selected","global_direction",0,"B20_1","specific",2,"B2_1","specific",2,0.0577231257883767,TRUE
+"ppi_selected","study_role",1,"A0_1","shared",0,"B1_1","specific",1,0.199341649596101,FALSE
+"ppi_selected","study_role",1,"B10_1","specific",1,"A_1","shared",0,0.0315425661174173,FALSE
+"ppi_selected","study_role",2,"A0_1","shared",0,"B2_1","specific",2,0.124967674020549,FALSE
+"ppi_selected","study_role",2,"B20_1","specific",2,"A_1","shared",0,0.0218640594899026,FALSE
+"all_candidates","global_direction",0,"A0_1","shared",0,"B1_1","specific",1,0.199341649596101,FALSE
+"all_candidates","global_direction",0,"B10_1","specific",1,"A_1","shared",0,0.0315425661174173,FALSE
+"all_candidates","global_direction",0,"B20_1","specific",2,"B2_1","specific",2,0.0577231257883767,TRUE
+"all_candidates","study_role",1,"A0_1","shared",0,"B1_1","specific",1,0.199341649596101,FALSE
+"all_candidates","study_role",1,"B10_1","specific",1,"A_1","shared",0,0.0315425661174173,FALSE
+"all_candidates","study_role",2,"A0_1","shared",0,"B2_1","specific",2,0.124967674020549,FALSE
+"all_candidates","study_role",2,"B20_1","specific",2,"A_1","shared",0,0.0218640594899026,FALSE

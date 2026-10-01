@@ -1,0 +1,5 @@
+"logical_data_id","mean_arm","core_hits","core_hit_rate","winner_core","winner_mean_dense_nrmse","winner_observed_signal_nrmse","winner_dense_signal_nrmse"
+"meanb_01","independent_splinet",1,0.0833333333333333,TRUE,0.133196023588915,0.115926427916811,0.166374657706752
+"meanb_01","periodic_phase",1,0.0833333333333333,TRUE,0.139162373920069,0.116259602910375,0.167277407094584
+"meanb_02","independent_splinet",6,0.5,TRUE,0.136137861167916,0.148930696561656,0.267365550983311
+"meanb_02","periodic_phase",4,0.333333333333333,TRUE,0.139965771252609,0.149058988430523,0.267403439452307

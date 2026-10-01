@@ -1,0 +1,9 @@
+status=BSPLINE_MEAN_BRIDGE_DESCRIPTIVE_SUMMARY_COMPLETE
+fits=48
+winners=4
+paired_starts=24
+fit_warnings=5
+new_fit_or_continuation_started=FALSE
+truth_used_only_after_frozen_selection=TRUE
+cross_mean_arm_ELBO_comparison=FALSE
+broad_generalization_claim=FALSE

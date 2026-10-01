@@ -1,0 +1,8 @@
+status=STAGE6C_TRUTH_FREE_READONLY_AUDIT_COMPLETE
+fit_endpoints=56
+audit_strata=8
+pairwise_rows=228
+truth_or_evaluation_read=FALSE
+fit_or_continuation_started=FALSE
+primary_similarity_threshold=0.90
+thresholds_reported=0.80;0.90;0.95

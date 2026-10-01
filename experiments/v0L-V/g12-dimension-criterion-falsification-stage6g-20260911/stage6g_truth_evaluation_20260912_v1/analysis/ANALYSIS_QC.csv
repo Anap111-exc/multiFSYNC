@@ -1,0 +1,11 @@
+"check","passed"
+"one_hundred_twenty_endpoints_evaluated",TRUE
+"zero_evaluation_errors",TRUE
+"all_metric_contracts_passed",TRUE
+"thirty_split_config_winners",TRUE
+"six_one_se_endpoints",TRUE
+"six_minimum_loss_endpoints",TRUE
+"three_truth_scenarios",TRUE
+"truth_free_selection_frozen_before_unseal",TRUE
+"no_new_fit_after_unseal",TRUE
+"no_continuation_after_unseal",TRUE

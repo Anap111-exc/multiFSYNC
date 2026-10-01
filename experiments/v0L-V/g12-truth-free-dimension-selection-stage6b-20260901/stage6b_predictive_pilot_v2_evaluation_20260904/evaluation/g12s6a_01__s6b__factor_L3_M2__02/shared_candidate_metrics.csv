@@ -1,0 +1,4 @@
+"candidate_factor","factor_ppi","retained","loading_norm","contribution_rms_pooled","contribution_rms_study_1","contribution_rms_study_2","study_min_max_ratio","standardized_min_contribution","cross_study_supported_0_1"
+1,1,TRUE,5.60478486449096,0.246191098543948,0.258484776540951,0.232890639364913,0.900983966953337,0.945975060602524,TRUE
+2,2.66461817055585e-08,FALSE,0,0,0,0,0,0,FALSE
+3,2.66461817055585e-08,FALSE,0,0,0,0,0,0,FALSE

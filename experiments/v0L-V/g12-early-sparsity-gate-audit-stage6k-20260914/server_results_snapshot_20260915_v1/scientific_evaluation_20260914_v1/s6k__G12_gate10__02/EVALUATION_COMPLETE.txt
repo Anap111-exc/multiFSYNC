@@ -1,0 +1,5 @@
+status=COMPLETE
+fit_id=s6k__G12_gate10__02
+truth_used_for_fit_stopping_or_selection=FALSE
+new_fit_started_by_evaluation=FALSE
+continuation=FALSE

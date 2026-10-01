@@ -1,0 +1,9 @@
+"candidate_id","periodic","alpha"
+"NP_U",FALSE,0
+"NP_S10",FALSE,10
+"NP_S30",FALSE,30
+"NP_S100",FALSE,100
+"P_U",TRUE,0
+"P_S1",TRUE,1
+"P_S3",TRUE,3
+"P_S10",TRUE,10

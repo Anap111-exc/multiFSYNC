@@ -1,0 +1,17 @@
+artifact=stage6k_evaluation_small_results_snapshot
+retrieved_date=2026-09-15
+remote_instance_id=i-bp1egmsairexm9w1rnks
+remote_root=/root/multifsync-results/stage6k_20260914_v1
+remote_evaluation_root=/root/multifsync-results/stage6k_20260914_v1/scientific_evaluation_20260914_v1
+download_archive_name=stage6k-eval-20260915.tgz
+download_archive_bytes=127159
+download_archive_sha256=5308ECC28454890007CFF2A799A7034866C8C48A50A25AC4F08B2FFBCDE24FD4
+local_snapshot=server_results_snapshot_20260915_v1
+local_file_count=104
+local_total_bytes=335197
+fit_rds_included=FALSE
+truth_free_endpoints_frozen_utc=2026-09-14T14:25:23Z
+scientific_evaluation_complete_utc=2026-09-14T14:25:25Z
+truth_used_for_fit_stopping_or_selection=FALSE
+new_fit_or_continuation_started_during_retrieval=FALSE
+

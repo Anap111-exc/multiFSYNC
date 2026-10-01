@@ -1,0 +1,12 @@
+time_local=2026-09-29T09:55:55+08:00
+instance_id=i-bp1egmsairexm9w1rnks
+region_id=cn-hangzhou
+ram_role=multifsync-ecs-self-stop
+requested_api=ecs:StopInstance
+requested_stopped_mode=StopCharging
+force_stop=false
+dry_run_result=DryRunOperation_request_validation_passed
+stop_request_id=01A0EADF-EB10-58F7-815E-CFB44ADE7213
+stop_request_accepted=true
+final_instance_state_and_billing_mode=not_independently_verified
+local_and_remote_stage7h_report_sha256=e34dd5e67cf44e4094ab22b9ca04d189d69f6795482f4c48b27832c834f01403

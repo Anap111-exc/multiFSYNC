@@ -1,0 +1,8 @@
+"seed","branch","role","path","sha256"
+"seed01","U","initial","/root/multifsync-results/stage7i_as_20260929_v1/STATE_U_SWEEP50.rds","a35fbc16582158c265fca906aaf40038c9034523e7a038027a844aece3e06208"
+"seed01","A","initial","/root/multifsync-results/stage7i_as_20260929_v1/STATE_A_SWEEP50.rds","584b3ca990d69324b25684e6b08937ca90a93d1d12f686111222463d4e853b9e"
+"seed01","S","initial","/root/multifsync-results/stage7i_as_20260929_v1/STATE_S_SWEEP50.rds","667ebd1456d59a5e596a280f3f73465388c13fe4e473205bffcc3c2bced8d7b3"
+"seed02","U","initial","/root/multifsync-results/stage7j_seed02_a_20260930_v1/STATE_U_SWEEP50.rds","c4f57c85e53637128835df8beb6f78306e7c7c8680c9bac3045e342b1d9774ec"
+"seed02","A","initial","/root/multifsync-results/stage7j_seed02_a_20260930_v1/STATE_A_SWEEP50.rds","5f89949b33b3bb18133454eefe72c02d810ab312b03d5d7243914e78460613c2"
+"seed02","S","initial","/root/multifsync-results/stage7j_seed02_a_20260930_v1/STATE_S_SWEEP50.rds","72a19fd46ed9f096966eca6c5b6f9bd673a6010e51a356ddcaa7e5156ad6d292"
+"seed02","A","selected_snapshots","/root/multifsync-results/stage7j_seed02_a_20260930_v1/A_full_v1/RAW_STATE_SNAPSHOTS_SELECTED.rds","9468cfd5323adb051e6c7004a68b126a64459622912e481967f4af2859a53989"

@@ -1,0 +1,9 @@
+authorization_id=STAGE6I_TRUTH_UNSEAL_20260914
+authorized_by=user
+authorized_at_local_date=2026-09-14
+scope=unseal_existing_stage6i_truth_and_run_scientific_evaluation_and_reporting
+new_fit_authorized=FALSE
+new_continuation_authorized=FALSE
+dimension_criterion_test_authorized=FALSE
+model_prior_cavi_elbo_change_authorized=FALSE
+user_instruction=ECS已启动，现在可以报告实验结果并进行实验数据分析，可以解封真值和进行科学评估

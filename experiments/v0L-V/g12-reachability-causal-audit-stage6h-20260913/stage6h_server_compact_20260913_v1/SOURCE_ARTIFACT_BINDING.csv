@@ -1,0 +1,9 @@
+"artifact_role","path","bytes","sha256","mutable_by_stage6h","available_to_fit"
+"observation","/root/multifsync-results/stage6g_20260911_v1/data/s6g_minimal_L111_M2/observation_bundle.rds",1758134,"54bfaba5b978a623aa07aeec01445417a4d637fbc4644e32d8be867fd17aab05",FALSE,TRUE
+"split1","/root/multifsync-results/stage6g_20260911_v1/data/s6g_minimal_L111_M2/splits/split1_middle/train_observation.rds",1526652,"0e789410528c6f759604c50f5a731eccc5518fe3dfe9f25b9bcd981cbae2b713",FALSE,TRUE
+"split2","/root/multifsync-results/stage6g_20260911_v1/data/s6g_minimal_L111_M2/splits/split2_upper/train_observation.rds",1526656,"8693064b9dc7c535920407a1bdcee82a3836b2c5d8298f16fb23fdeaaf32b596",FALSE,TRUE
+"truth","/root/multifsync-results/stage6g_20260911_v1/data/s6g_minimal_L111_M2/sealed_truth/truth_bundle.rds",6938068,"de4dfa119571a4b02bbd0e9336bd51f902bc1f38dfa06dd1c37bc217bf7ebcf6",FALSE,FALSE
+"manifest","/root/multifsync-results/stage6g_20260911_v1/FIT_MANIFEST.csv",53974,"84c21c74a122f72738d1cb162687dfa18802be73d99208ac86bb01bc74a64d11",FALSE,FALSE
+"complete","/root/multifsync-results/stage6g_20260911_v1/STAGE6G_TRUTH_FREE_COMPLETE.txt",230,"3fae5ab0b7adfd564a344a562c045c03ce6da0ea5a6a6769ee57e5ce157e4ef4",FALSE,FALSE
+"evaluation","/root/multifsync-results/stage6g_20260911_v1/truth_evaluation_20260912_v1/ALL_STAGE6G_SCIENTIFIC_RESULTS.csv",138641,"ae1950eb01d62be1e9e435c25e4b8ac426136d59746a28ca105515387423abc5",FALSE,FALSE
+"evaluation_complete","/root/multifsync-results/stage6g_20260911_v1/truth_evaluation_20260912_v1/EVALUATION_COMPLETE.txt",691,"4ae790da38a16a13dabf63811ed01ba5916005e082f931d03e8c7d49e92b901a",FALSE,FALSE

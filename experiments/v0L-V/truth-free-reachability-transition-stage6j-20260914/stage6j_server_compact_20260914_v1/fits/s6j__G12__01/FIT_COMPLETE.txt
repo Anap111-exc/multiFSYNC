@@ -1,0 +1,10 @@
+status=COMPLETE
+fit_id=s6j__G12__01
+initialization_arm=random_gram_unit_energy
+truth_used_for_fit_stopping_or_selection=FALSE
+objective_eligible=TRUE
+elapsed_seconds=1959.20786285
+annealing_sweeps=99
+ordinary_T1_sweeps=400
+n_cpus=1
+ended_utc=2026-09-14T10:32:22Z

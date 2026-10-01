@@ -1,0 +1,3 @@
+mode=all
+point_count=20
+source_sha256=3218410de3458679fba1c1c2348756df1daa003033516cdff8cdf86fc3712abb

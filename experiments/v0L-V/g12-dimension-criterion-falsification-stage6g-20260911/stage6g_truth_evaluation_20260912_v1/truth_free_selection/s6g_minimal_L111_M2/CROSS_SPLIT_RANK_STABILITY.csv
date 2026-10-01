@@ -1,0 +1,2 @@
+"split_1","split_2","spearman_rank_correlation","minimum_loss_config_split_1","minimum_loss_config_split_2","minimum_loss_winner_agreement","pairwise_comparisons","pairwise_ordering_concordance"
+"split1_middle","split2_upper",0.8,"cand_L121_M2","cand_L111_M4",FALSE,10,0.8

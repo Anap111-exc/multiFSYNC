@@ -1,0 +1,7 @@
+"risk_method","one_se_semantics","factor_axis_correct_posthoc","fpca_axis_correct_posthoc","both_axes_correct_posthoc","data_sets","status"
+"max_elbo_start","independent_one_se",2,2,2,3,"posthoc_exploratory_not_validation"
+"max_elbo_start","paired_difference_one_se",2,3,2,3,"posthoc_exploratory_not_validation"
+"top3_elbo_median","independent_one_se",2,2,2,3,"posthoc_exploratory_not_validation"
+"top3_elbo_median","paired_difference_one_se",2,3,2,3,"posthoc_exploratory_not_validation"
+"top5_elbo_median","independent_one_se",2,2,2,3,"posthoc_exploratory_not_validation"
+"top5_elbo_median","paired_difference_one_se",2,2,2,3,"posthoc_exploratory_not_validation"

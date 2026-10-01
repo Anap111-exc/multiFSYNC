@@ -1,0 +1,10 @@
+"block","study","factor","component","before","after","scale","success"
+"shared_function_l2",,1,1,0.394753089486786,1,0.394753089486786,TRUE
+"shared_function_l2",,1,2,1.40258608385544,1,1.40258608385544,TRUE
+"shared_function_l2",,1,3,0.388547457851235,1,0.388547457851235,TRUE
+"specific_function_l2",1,1,1,0.430630814329572,1,0.430630814329572,TRUE
+"specific_function_l2",1,1,2,1.22733193364489,1,1.22733193364489,TRUE
+"specific_function_l2",1,1,3,0.886896942839123,1,0.886896942839123,TRUE
+"specific_function_l2",2,1,1,0.438042724108806,1,0.438042724108806,TRUE
+"specific_function_l2",2,1,2,1.23431250652902,1,1.23431250652902,TRUE
+"specific_function_l2",2,1,3,0.793506203639003,1,0.793506203639003,TRUE

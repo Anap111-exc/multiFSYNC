@@ -1,0 +1,6 @@
+"fit_kind","study_order","oracle_mode","endpoints","core_hits","exact_hits","full_feature_hits","practical_converged","mean_observed_nrmse","mean_dense_nrmse","mean_covariance_error","mean_loading_error"
+"truth_neighborhood","original","exact",1,1,1,1,1,0.149838830516449,0.176692877378649,0.308370713465122,0.29579903156418
+"truth_neighborhood","swapped","exact",1,1,1,1,1,0.149838890247033,0.176693495186771,0.308393207728981,0.295802365948912
+"truth_neighborhood","original","near",2,2,2,2,2,0.149838800171617,0.176692955073851,0.308333487585496,0.295792749591498
+"truth_neighborhood","swapped","near",2,2,2,2,2,0.149838859851654,0.176693540598608,0.308356425296504,0.295796161562585
+"study_swap_g12","swapped","none",4,0,0,0,4,0.15951339934136,0.184371490509204,0.370747359028265,0.154054723081758

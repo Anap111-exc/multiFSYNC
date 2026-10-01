@@ -1,0 +1,7 @@
+"candidate_id","block","study","candidate_factor","rank_cap","effective_M_99pct","retained_rank_fraction","full_posterior_integrated_variance","omitted_uncertainty_variance"
+"A_1","shared",0,1,2,2,1,0.351095479690035,5.72722930433645e-05
+"A_2","shared",0,2,2,2,1,0.357009653173484,6.49340955966027e-05
+"B1_1","specific",1,1,2,2,1,0.678070684286682,7.00026085639349e-05
+"B1_2","specific",1,2,2,2,1,0.0223762888580773,3.27465481470904e-05
+"B2_1","specific",2,1,2,2,1,0.0204916479504318,1.83956175775733e-05
+"B2_2","specific",2,2,2,2,1,26730877030.8542,46233404.3608818

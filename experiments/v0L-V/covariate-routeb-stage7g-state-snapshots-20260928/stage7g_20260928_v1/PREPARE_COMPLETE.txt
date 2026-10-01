@@ -1,0 +1,8 @@
+STAGE7G_PREPARE_COMPLETE
+registered_fits=3
+full_fit_arguments_identical_to_stage7f=TRUE
+only_change=private_raw_state_snapshot_hook
+truth_used_for_fit_or_selection=FALSE
+formal_candidate_pool=FALSE
+R_version=4.5.3
+package_version=0.3.0.9000

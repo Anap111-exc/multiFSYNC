@@ -1,0 +1,4 @@
+STAGE7L_ADAPTER_MICRO_PASS
+new_prospective_data=FALSE
+historical_449_sweep_refit=FALSE
+resumed_updates=2

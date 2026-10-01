@@ -1,0 +1,9 @@
+"mean_arm","strict_practical_converged","core_truth_recovered","fits"
+"independent_splinet","FALSE","FALSE",2
+"periodic_phase","FALSE","FALSE",3
+"independent_splinet","TRUE","FALSE",15
+"periodic_phase","TRUE","FALSE",16
+"independent_splinet","FALSE","TRUE",0
+"periodic_phase","FALSE","TRUE",0
+"independent_splinet","TRUE","TRUE",7
+"periodic_phase","TRUE","TRUE",5

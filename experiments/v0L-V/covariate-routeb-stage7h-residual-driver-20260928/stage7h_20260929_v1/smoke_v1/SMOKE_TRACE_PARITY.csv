@@ -1,0 +1,15 @@
+"field","abs_difference"
+"data_driver_norm",5.32907051820075e-15
+"data_envelope",5.6843418860808e-13
+"data_coherence",3.46944695195361e-18
+"precision_trace",1.13686837721616e-13
+"precision_frobenius",5.32907051820075e-14
+"prior_precision_trace",0
+"driver_precision_ratio",1.66533453693773e-16
+"posterior_mean_norm",3.33066907387547e-16
+"slab_mean_norm",5.32907051820075e-15
+"slab_variance_mean",2.22044604925031e-16
+"ppi_min",5.55111512312578e-17
+"ppi_mean",3.05311331771918e-16
+"ppi_max",2.22044604925031e-16
+"log_prior_odds_mean",3.10862446895044e-15

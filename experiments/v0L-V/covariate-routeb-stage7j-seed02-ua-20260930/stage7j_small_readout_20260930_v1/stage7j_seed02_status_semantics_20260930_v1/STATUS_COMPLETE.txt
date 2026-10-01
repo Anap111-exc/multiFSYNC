@@ -1,0 +1,6 @@
+STAGE7J_STATUS_SEMANTICS_COMPLETE
+branches=U,A
+u_stage7c_status_parity=PASS
+truth_used_for_status=FALSE
+fit_started=FALSE
+table_sha256=afb76a205fc0bb8e5d2e128027d8199dd61c67283ca5063450514f11d438c7b7

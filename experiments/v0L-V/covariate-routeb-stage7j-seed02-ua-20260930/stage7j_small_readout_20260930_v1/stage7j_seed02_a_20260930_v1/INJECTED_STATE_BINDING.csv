@@ -1,0 +1,8 @@
+"role","path","sha256"
+"U","/root/multifsync-results/stage7j_seed02_a_20260930_v1/STATE_U_SWEEP50.rds","c4f57c85e53637128835df8beb6f78306e7c7c8680c9bac3045e342b1d9774ec"
+"A","/root/multifsync-results/stage7j_seed02_a_20260930_v1/STATE_A_SWEEP50.rds","5f89949b33b3bb18133454eefe72c02d810ab312b03d5d7243914e78460613c2"
+"S","/root/multifsync-results/stage7j_seed02_a_20260930_v1/STATE_S_SWEEP50.rds","72a19fd46ed9f096966eca6c5b6f9bd673a6010e51a356ddcaa7e5156ad6d292"
+"diagnostics","/root/multifsync-results/stage7j_seed02_a_20260930_v1/BLIND_INITIALIZATION_DIAGNOSTICS.rds","4fa27b2e7209495ab1420d0158fba419b307fee0aa92aa400314fe3a524529d1"
+"summary","/root/multifsync-results/stage7j_seed02_a_20260930_v1/BLIND_INITIALIZATION_SUMMARY.csv","0872cde0455fb67f40bebe589f56ca086bde1afba978ca6f49fd1910be114576"
+"driver_coordinates","/root/multifsync-results/stage7j_seed02_a_20260930_v1/BLIND_FIXED_RESIDUAL_DRIVER.csv","a321f57eb73df5b64829f83a80b5ad49f637e145cfac689f56e07a615fc6e8fe"
+"driver_subjects","/root/multifsync-results/stage7j_seed02_a_20260930_v1/BLIND_SUBJECT_DRIVER.csv","e358c9de4ce85cd9d84fe7a74003da19843f2972a3adeb305c3b33157f4dbc36"

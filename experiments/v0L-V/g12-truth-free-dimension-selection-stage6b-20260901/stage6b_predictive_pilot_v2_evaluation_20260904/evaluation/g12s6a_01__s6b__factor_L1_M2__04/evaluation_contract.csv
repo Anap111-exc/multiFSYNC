@@ -1,0 +1,2 @@
+"evaluator_version","evaluator","factor_ppi_rule","oracle_L_M","truth_used_for_fit_or_selection","truth_dimensions_used_for_matching_only","fit_dimensions_bound_before_generation","cross_dimension_elbo_selection","stage6b_truth_free_selection_frozen","heldout_observations_excluded_from_fit"
+"v0lv_candidate2_evaluator_1.0.0-20260812","frozen_v0G_v0H_v0I_v0J",">=0.5",TRUE,FALSE,TRUE,TRUE,FALSE,TRUE,TRUE

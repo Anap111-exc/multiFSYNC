@@ -1,0 +1,8 @@
+"check","pass"
+"fit_seed",TRUE
+"sweeps",TRUE
+"fit_control",TRUE
+"initialization_control",TRUE
+"pre_score_sweeps",TRUE
+"function_initialization",TRUE
+"final_objective_role",TRUE

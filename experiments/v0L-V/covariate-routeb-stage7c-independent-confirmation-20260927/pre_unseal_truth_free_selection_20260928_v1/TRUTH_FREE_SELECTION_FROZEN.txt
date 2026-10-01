@@ -1,0 +1,9 @@
+status=TRUTH_FREE_SELECTION_FROZEN
+rule=maximum_eligible_ordinary_T1_ELBO_within_data_arm
+tie_break=fit_id_lexicographic
+cross_arm_ELBO_comparison=FALSE
+truth_used_for_selection=FALSE
+truth_unseal_authorized=FALSE
+registered_fits=108
+selected_winners=9
+smoke=FALSE

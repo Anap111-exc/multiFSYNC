@@ -1,0 +1,5 @@
+"selection_stratum_id","data_id","logical_data_id","mean_arm","n_registered","n_eligible","winner_status"
+"meanb_01__periodic_phase","meanb_01__periodic_phase","meanb_01","periodic_phase",12,12,"SELECTED"
+"meanb_01__independent_splinet","meanb_01__independent_splinet","meanb_01","independent_splinet",12,12,"SELECTED"
+"meanb_02__periodic_phase","meanb_02__periodic_phase","meanb_02","periodic_phase",12,12,"SELECTED"
+"meanb_02__independent_splinet","meanb_02__independent_splinet","meanb_02","independent_splinet",12,12,"SELECTED"

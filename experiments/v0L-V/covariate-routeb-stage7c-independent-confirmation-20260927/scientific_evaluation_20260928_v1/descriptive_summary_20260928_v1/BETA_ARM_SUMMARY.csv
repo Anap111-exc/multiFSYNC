@@ -1,0 +1,4 @@
+"beta_arm","datasets","starts","winners","median_estimated_beta_energy","median_estimated_energy_over_paired_C1_truth","median_beta_relative_ise","median_beta_l2_cosine","winner_median_estimated_beta_energy","winner_median_estimated_energy_over_paired_C1_truth","winner_median_beta_relative_ise","winner_median_beta_l2_cosine"
+"C0",3,36,3,1.18492372227819,0.0263316382728487,,,0.912538456003843,0.020278632355641,,
+"C1",3,36,3,44.5415588716896,0.989812419370879,0.0598106748919894,0.974992434364396,44.2742822512845,0.983872938917433,0.0542815534582182,0.975784777647787
+"C2",3,36,3,,,,,,,,

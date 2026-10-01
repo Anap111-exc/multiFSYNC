@@ -1,0 +1,7 @@
+"fit_id","study","first_stable_joint_closure","previous_record","closure_during_annealing","terminal_loading_norm","terminal_ppi"
+"covrb7c_01__C1__start06",1,,,,6.54598073701771,0.096238918253609
+"covrb7c_01__C1__start06",2,70,65,TRUE,0,8.00505708777759e-11
+"covrb7c_02__C1__start11",1,,,,11.8185031724087,0.0998881584021482
+"covrb7c_02__C1__start11",2,70,65,TRUE,0,8.78004030877067e-11
+"covrb7c_03__C1__start06",1,,,,8.66881367638471,0.0994066833756063
+"covrb7c_03__C1__start06",2,,,,10.4034884813695,0.0991711309657116

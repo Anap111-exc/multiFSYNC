@@ -1,0 +1,9 @@
+"fit_id","initialization_arm","seed_index","fit_seed","final_ordinary_elbo","objective_eligible","practical_converged","convergence_status","elapsed_seconds","warning_count","initialization_used_method","initialization_complete","initialization_fallback_count","trace_row_count","trace_iteration_count","truth_used_for_fit_stopping_or_selection"
+"s6j__G12__01","random_gram_unit_energy",1,84611101,-114970.106036303,TRUE,TRUE,"converged_practical",1959.207862854,0,"random",TRUE,0,1642,126,FALSE
+"s6j__G12__02","random_gram_unit_energy",2,84611102,-114962.746080454,TRUE,TRUE,"converged_practical",2011.52968430519,0,"random",TRUE,0,1642,126,FALSE
+"s6j__G12__03","random_gram_unit_energy",3,84611103,-114982.367964588,TRUE,TRUE,"converged_practical",1975.63706851006,0,"random",TRUE,0,1642,126,FALSE
+"s6j__G12__04","random_gram_unit_energy",4,84611104,-116425.003848896,TRUE,TRUE,"converged_practical",2043.99341869354,0,"random",TRUE,0,1642,126,FALSE
+"s6j__residualFPCA__01","residual_fpca",1,84611101,-118140.81414656,TRUE,TRUE,"converged_practical",1885.25035881996,0,"residual_fpca",TRUE,0,1642,126,FALSE
+"s6j__residualFPCA__02","residual_fpca",2,84611102,-118140.81414656,TRUE,TRUE,"converged_practical",1890.32428216934,0,"residual_fpca",TRUE,0,1642,126,FALSE
+"s6j__residualFPCA__03","residual_fpca",3,84611103,-118140.81414656,TRUE,TRUE,"converged_practical",1885.15356850624,0,"residual_fpca",TRUE,0,1642,126,FALSE
+"s6j__residualFPCA__04","residual_fpca",4,84611104,-118140.81414656,TRUE,TRUE,"converged_practical",1902.4801735878,0,"residual_fpca",TRUE,0,1642,126,FALSE

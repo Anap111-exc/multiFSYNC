@@ -1,0 +1,2 @@
+"scenario","p","d","K","short_t1_sweeps","long_t1_sweeps","short_elapsed_seconds","long_elapsed_seconds","estimated_marginal_seconds_per_T1_sweep","projected_seconds_per_499_sweep_fit","projected_hours_108_fits_8_workers"
+"covrb7c_01__C1",500,2,9,3,8,17.657,45.415,5.5516,2770.2484,10.3884315

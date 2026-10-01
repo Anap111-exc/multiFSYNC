@@ -1,0 +1,4 @@
+GEOMETRY_PASS_PERIODIC_REQUIRES_SCIENTIFIC_BOUNDARY_DECISION
+selected_candidate=P_S3
+formal_data_generated=FALSE
+model_fits_started=FALSE

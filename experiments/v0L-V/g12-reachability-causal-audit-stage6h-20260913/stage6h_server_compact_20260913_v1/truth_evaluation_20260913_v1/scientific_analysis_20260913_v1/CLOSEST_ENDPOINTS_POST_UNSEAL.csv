@@ -1,0 +1,10 @@
+"condition_id","fit_id","seed_index","final_elbo","practical_converged","selected_counts","global_correct","global_misplaced","global_missing","study_correct","study_misplaced","study_missing","core_truth_recovered","signal_nrmse_ppi_selected","dense_signal_nrmse_ppi_selected","feature_components_matched","feature_components_total","covariance_operator_relative_error_mean","descriptive_post_unseal_not_selection"
+"full_data_6_9","s6h_minimal_L111_M2__full_data_6_9__G12_10",10,-114892.995527259,TRUE,"1,0,1",2,0,1,3,0,1,FALSE,0.156531207033217,0.183826472260453,6,8,0.343354542541733,TRUE
+"full_data_6_9","s6h_minimal_L111_M2__full_data_6_9__G12_09",9,-114910.370874164,TRUE,"1,0,1",2,0,1,3,0,1,FALSE,0.156532153337337,0.183712434841745,6,8,0.343123973170911,TRUE
+"full_data_6_9","s6h_minimal_L111_M2__full_data_6_9__G12_12",12,-114948.422589669,TRUE,"1,0,0",1,0,2,2,0,2,FALSE,0.160500832458745,0.184944424653061,4,8,0.356481617893187,TRUE
+"holdout_split1_middle","s6h_minimal_L111_M2__holdout_split1_middle__G12_05",5,-108489.944950386,TRUE,"1,0,1",1,0,2,2,0,2,FALSE,0.183429934500887,0.267385394248532,4,8,2.7924046581437,TRUE
+"holdout_split1_middle","s6h_minimal_L111_M2__holdout_split1_middle__G12_10",10,-108514.94133467,FALSE,"1,1,1",1,0,2,2,0,2,FALSE,0.181805875476431,0.304327936168663,4,8,3.4330389487928,TRUE
+"holdout_split1_middle","s6h_minimal_L111_M2__holdout_split1_middle__G12_09",9,-108516.705711191,TRUE,"1,1,1",1,0,2,2,0,2,FALSE,0.188266482867707,0.308294078252781,4,8,3.49388076047084,TRUE
+"holdout_split2_upper","s6h_minimal_L111_M2__holdout_split2_upper__G12_05",5,-109079.762535829,TRUE,"1,0,1",1,0,2,2,0,2,FALSE,0.185035125648775,0.225198630753433,4,8,0.588285816715904,TRUE
+"holdout_split2_upper","s6g_minimal_L111_M2__split2_upper__cand_L111_M2__G12_02",2,-109095.457157458,FALSE,"1,1,1",1,0,2,2,0,2,FALSE,0.185797769685047,0.260413077087937,4,8,1.03624435492437,TRUE
+"holdout_split2_upper","s6g_minimal_L111_M2__split2_upper__cand_L111_M2__G12_03",3,-109124.911950394,TRUE,"1,0,1",1,0,2,2,0,2,FALSE,0.185651722473142,0.226598578944411,4,8,0.602078127266282,TRUE

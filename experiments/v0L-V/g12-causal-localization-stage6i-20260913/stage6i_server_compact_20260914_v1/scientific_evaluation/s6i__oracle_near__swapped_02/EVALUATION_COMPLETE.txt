@@ -1,0 +1,5 @@
+status=COMPLETE
+fit_id=s6i__oracle_near__swapped_02
+truth_used_for_fit=TRUE
+truth_used_for_stopping_or_selection=FALSE
+cross_dimension_selection=FALSE

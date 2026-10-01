@@ -1,0 +1,7 @@
+status=FITS_COMPLETE
+completed_utc=2026-09-14T06:08:34Z
+new_fits=10
+objective_eligible=10
+scientific_evaluation_not_yet_started=TRUE
+new_dimension_criterion_used=FALSE
+formal_paper_mc=FALSE

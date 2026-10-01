@@ -1,0 +1,10 @@
+status=COMPLETE
+fit_id=s6j__residualFPCA__02
+initialization_arm=residual_fpca
+truth_used_for_fit_stopping_or_selection=FALSE
+objective_eligible=TRUE
+elapsed_seconds=1890.32428217
+annealing_sweeps=99
+ordinary_T1_sweeps=400
+n_cpus=1
+ended_utc=2026-09-14T10:31:13Z

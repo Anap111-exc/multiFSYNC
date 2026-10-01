@@ -1,0 +1,15 @@
+status=AUTHORIZED_POST_FREEZE_STAGE6L_TRUTH_UNSEAL_AND_SCIENTIFIC_EVALUATION
+recorded_at=2026-09-15T15:51:12+08:00
+authority=explicit user request after the completed ECS bridge
+scope=read the two existing sealed truth bundles; evaluate and summarize all eight existing fixed-400 fits
+endpoints_frozen_at_utc=2026-09-15T07:44:54Z
+endpoints_sha256=3cffd7d11342e04a6aab23433f1b8bd586a39dc2c7dd15389bfb5f74528696d0
+winners_sha256=444c6b678149b82cb17dbf19fdc06b08fc3410995d65196bbf69a69f43b92712
+source_binding_sha256=e025e0bbbc64fe547cee5c177b4c6e6f5317c119624e2000b40a04611cd94f26
+truth_unseal_authorized=TRUE
+scientific_evaluation_authorized=TRUE
+existing_winner_selection_may_change=FALSE
+new_fits_authorized=FALSE
+continuations_authorized=FALSE
+additional_gate_tuning_authorized=FALSE
+formal_paper_mc_result=FALSE

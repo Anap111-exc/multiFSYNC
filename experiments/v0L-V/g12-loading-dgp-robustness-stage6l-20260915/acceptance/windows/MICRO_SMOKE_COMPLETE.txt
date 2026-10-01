@@ -1,0 +1,7 @@
+status=MICRO_SMOKE_PASS
+generated_arms=2
+fits=2
+winners=2
+truth_unseal_authorized=FALSE
+formal_v0lv_result=FALSE
+completed_utc=2026-09-15T06:58:01Z

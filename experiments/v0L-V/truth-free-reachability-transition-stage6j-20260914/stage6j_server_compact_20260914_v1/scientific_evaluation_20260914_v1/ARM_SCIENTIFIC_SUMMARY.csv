@@ -1,0 +1,3 @@
+"initialization_arm","endpoints","core_hits","exact_structure_hits","full_feature_hits","core_with_full_feature_hits","truth_free_winner_hits","max_elbo","distinct_exact_elbo_count","mean_observed_signal_nrmse","mean_dense_signal_nrmse","mean_covariance_error","mean_loading_error","mean_matched_feature_recall","median_elapsed_seconds"
+"random_gram_unit_energy",4,0,0,0,0,0,-114962.746080454,4,0.16538589441675,0.188526425108864,0.4686135942449,0.181203402572271,0.941180393504032,1993.58337640763
+"residual_fpca",4,0,0,0,0,0,-118140.81414656,1,0.214909912101297,0.232874014079411,1,,0,1887.78732049465

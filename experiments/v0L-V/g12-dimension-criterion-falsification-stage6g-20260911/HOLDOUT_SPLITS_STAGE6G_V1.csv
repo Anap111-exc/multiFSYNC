@@ -1,0 +1,4 @@
+"split_index","split_id","holdout_rule","paired_within_subject","minimum_training_times"
+1,"split1_middle","floor((n_time+1)/2)",TRUE,5
+2,"split2_upper","floor((n_time+1)/2)+1",TRUE,5
+

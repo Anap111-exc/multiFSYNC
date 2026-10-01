@@ -1,0 +1,4 @@
+"data_id","selected_config_id","minimum_loss_config_id","one_se_threshold","observed_rms","split_rank_spearman","split_minimum_winner_agreement","within_configuration_start_rule","cross_dimension_rule","selection_used_truth","continuation_started"
+"s6g_minimal_L111_M2","cand_L111_M2","cand_L121_M2",0.104340278055822,0.568467212096305,0.8,FALSE,"maximum_eligible_ordinary_T1_ELBO","paired_two_split_subject_clustered_MSE_one_SE_simplest",FALSE,FALSE
+"s6g_nonminimal_shared_L211_M2","cand_L111_M2","cand_L211_M2",0.103807805544419,0.578477265042092,0.7,FALSE,"maximum_eligible_ordinary_T1_ELBO","paired_two_split_subject_clustered_MSE_one_SE_simplest",FALSE,FALSE
+"s6g_nonminimal_rank_L111_M3","cand_L111_M2","cand_L111_M2",0.108556629513397,0.572067192255018,-0.2,FALSE,"maximum_eligible_ordinary_T1_ELBO","paired_two_split_subject_clustered_MSE_one_SE_simplest",FALSE,FALSE

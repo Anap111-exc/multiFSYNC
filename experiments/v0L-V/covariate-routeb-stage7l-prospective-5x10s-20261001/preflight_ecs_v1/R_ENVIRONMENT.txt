@@ -1,0 +1,38 @@
+R version 4.5.3 (2026-03-11)
+Platform: x86_64-redhat-linux-gnu
+Running under: Alibaba Cloud Linux 3.2104 U13.3 (OpenAnolis Edition)
+
+Matrix products: default
+BLAS/LAPACK: /usr/lib64/libopenblaso-r0.3.15.so;  LAPACK version 3.9.0
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+time zone: Asia/Shanghai
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] multiFSYNC_0.3.0.9000
+
+loaded via a namespace (and not attached):
+[1] compiler_4.5.3 tools_4.5.3    Splinets_1.5.1 splines_4.5.3  jsonlite_2.0.0
+[6] digest_0.6.39 
+                              sysname                               release 
+                              "Linux"            "5.10.134-19.8.al8.x86_64" 
+                              version                              nodename 
+"#1 SMP Fri Jul 17 15:13:51 CST 2026"             "iZbp1egmsairexm9w1rnksZ" 
+                              machine                                 login 
+                             "x86_64"                                "root" 
+                                 user                        effective_user 
+                               "root"                                "root" 
+RNGkind=Mersenne-Twister,Inversion,Rejection
+OMP_NUM_THREADS=1
+OPENBLAS_NUM_THREADS=1
+MKL_NUM_THREADS=1
+LC_ALL=C.UTF-8

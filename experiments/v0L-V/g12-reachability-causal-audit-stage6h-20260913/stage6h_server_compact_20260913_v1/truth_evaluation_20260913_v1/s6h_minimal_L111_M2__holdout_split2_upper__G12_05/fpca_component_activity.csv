@@ -1,0 +1,7 @@
+"candidate_id","block","study","candidate_factor","component","rank_cap","effective_M_99pct","retained_after_99pct","normalized_eigenvalue","cumulative_pve_percent"
+"A_1","shared",0,1,1,2,2,TRUE,0.851836681302251,85.1836681302251
+"A_1","shared",0,1,2,2,2,TRUE,0.148163318697749,100
+"B1_1","specific",1,1,1,2,2,TRUE,0.950636227036628,95.0636227036628
+"B1_1","specific",1,1,2,2,2,TRUE,0.0493637729633715,100
+"B2_1","specific",2,1,1,2,2,TRUE,0.760087186861294,76.0087186861294
+"B2_1","specific",2,1,2,2,2,TRUE,0.239912813138706,100

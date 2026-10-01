@@ -1,0 +1,5 @@
+status=COMPLETE
+fit_id=s6j__residualFPCA__04
+truth_used_for_fit_stopping_or_selection=FALSE
+cross_dimension_selection=FALSE
+continuation=FALSE

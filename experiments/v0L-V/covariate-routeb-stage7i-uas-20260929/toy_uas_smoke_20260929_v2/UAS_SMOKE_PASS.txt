@@ -1,0 +1,3 @@
+UAS_SMOKE_PASS
+package=D:\文档\Factor model\multiFSYNC\Rcode\multiFSYNC\experiments\v0L-V\covariate-routeb-stage7i-uas-20260929\stage7i_archive_lib\multiFSYNC
+U_reference_max_abs=0

@@ -1,0 +1,5 @@
+"config_index","fit_config_id","fit_L_f","fit_L_s_1","fit_L_s_2","fit_M_f","fit_M_s_1","fit_M_s_2","L_common","M_common","complexity_proxy","stage6b_source_config_id"
+1,"joint_L1_M2",1,1,1,"2","2","2",1,2,1782,"factor_L1_M2"
+2,"joint_L1_M4",1,1,1,"4","4","4",1,4,2064,"fpca_L1_M4"
+3,"joint_L2_M2",2,2,2,"2;2","2;2","2;2",2,2,3564,"factor_L2_M2"
+4,"joint_L2_M4",2,2,2,"4;4","4;4","4;4",2,4,4128,""

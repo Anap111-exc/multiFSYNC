@@ -1,0 +1,6 @@
+"fit_config_id","fits","elapsed_median_seconds","elapsed_max_seconds","peak_memory_max_bytes","warning_total","objective_eligible","practical_converged"
+"factor_L1_M2",4,4488.77354586124,4814.14234375954,204916288,0,4,4
+"factor_L2_M2",4,10660.7880980968,11935.783509016,204055240,2,4,2
+"factor_L3_M2",4,14538.4312138557,17352.94115448,205746656,2,4,2
+"fpca_L1_M3",4,4935.29399728775,6302.48510074615,204587936,1,4,3
+"fpca_L1_M4",4,5399.41572666168,6698.16964149475,204909160,0,4,4

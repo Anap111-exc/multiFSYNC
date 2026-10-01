@@ -1,0 +1,8 @@
+"role","path","sha256"
+"fit","/root/multifsync-results/stage7j_seed02_a_20260930_v1/A_full_v1/fit.rds","b396ce610b1df459e57fcf637f1d6c464c302c4e6c5b351e81af95e717d89eb0"
+"snapshots","/root/multifsync-results/stage7j_seed02_a_20260930_v1/A_full_v1/RAW_STATE_SNAPSHOTS_SELECTED.rds","9468cfd5323adb051e6c7004a68b126a64459622912e481967f4af2859a53989"
+"state_index","/root/multifsync-results/stage7j_seed02_a_20260930_v1/A_full_v1/RAW_STATE_INDEX.csv","3e754d5de8e723b6662356c47436d54bfdb0251e7c5cbaf39c2f2fd7dd63fbcb"
+"driver_trace","/root/multifsync-results/stage7j_seed02_a_20260930_v1/A_full_v1/DRIVER_TRACE.csv","488e06b2f11362288db5c0d12811d0e32ad2db434189b2dc927577ee49fd816a"
+"elbo","/root/multifsync-results/stage7j_seed02_a_20260930_v1/A_full_v1/ORDINARY_ELBO.csv","40fe5a2c39efbdd12a5ff871d82d5bc9357532c216679d7e322470d63b2dfdc5"
+"warnings","/root/multifsync-results/stage7j_seed02_a_20260930_v1/A_full_v1/WARNINGS.txt","e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+"scale_trace","/root/multifsync-results/stage7j_seed02_a_20260930_v1/A_full_v1/SCALE_TRACE.csv","b2d1c965683ce003d73dcdf1f6d8f278f7f8269e47813b8109c02313dd41eecd"

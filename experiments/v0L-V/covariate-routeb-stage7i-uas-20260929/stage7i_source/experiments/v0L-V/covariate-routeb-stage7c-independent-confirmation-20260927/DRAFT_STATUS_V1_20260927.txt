@@ -1,0 +1,15 @@
+status=DRAFT_NOT_AUTHORIZED
+protocol_id=COVARIATE_ROUTEB_STAGE7C_V1_20260927
+logical_data_seeds=3
+data_arm_rows=9
+planned_fits=108
+starts_per_data_arm=12
+seed_collision_search=NO_EXACT_COLLISIONS_FOUND_BEFORE_DRAFT
+protocol_confirmed=FALSE
+seed_schedule_confirmed=FALSE
+execution_authorized=FALSE
+stage7c_data_generated=FALSE
+stage7c_fits_started=FALSE
+truth_unseal_authorized=FALSE
+scientific_evaluation_started=FALSE
+ecs_started_by_this_draft=FALSE

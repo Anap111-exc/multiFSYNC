@@ -1,0 +1,6 @@
+"fit_config_id","reference_minimum_loss_config_id","mean_paired_mse_difference","paired_difference_se","maximum_leave_one_subject_influence","most_influential_study","most_influential_subject"
+"cand_L111_M2","cand_L111_M2",0,0,0,1,1
+"cand_L111_M3","cand_L111_M2",0.00262241859414898,0.00221834748329465,0.00197129779699263,2,26
+"cand_L111_M4","cand_L111_M2",0.000490950061515034,0.00134624026462887,0.000843028207187687,2,5
+"cand_L121_M2","cand_L111_M2",0.000582525401652664,0.000502725758964514,0.000391356340958787,2,23
+"cand_L211_M2","cand_L111_M2",0.000211245682256951,0.000374124109026041,0.000193907683001351,2,5

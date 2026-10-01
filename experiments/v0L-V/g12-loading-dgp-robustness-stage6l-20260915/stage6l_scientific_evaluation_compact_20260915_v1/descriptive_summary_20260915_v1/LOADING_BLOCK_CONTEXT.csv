@@ -1,0 +1,7 @@
+"data_id","loading_arm","block_id","sampled_generator_omega","active_count","active_fraction","loading_l2","loading_l2_per_sqrt_active"
+"s6l_01__controlled","controlled","shared_1",0.1,50,0.1,6.70820393249937,0.948683298050514
+"s6l_01__controlled","controlled","specific_s1_1",0.1,50,0.1,6.70820393249937,0.948683298050514
+"s6l_01__controlled","controlled","specific_s2_1",0.1,50,0.1,6.70820393249937,0.948683298050514
+"s6l_01__jaoua_beta10","jaoua_beta10","shared_1",0.0880885765371964,50,0.1,6.70820393249937,0.948683298050514
+"s6l_01__jaoua_beta10","jaoua_beta10","specific_s1_1",0.13935427207534,60,0.12,7.34846922834953,0.948683298050514
+"s6l_01__jaoua_beta10","jaoua_beta10","specific_s2_1",0.151897073711632,67,0.134,7.76530746332687,0.948683298050514

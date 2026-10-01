@@ -1,0 +1,3 @@
+STAGE7G_POSTHOC_COMPLETE
+read_only_from_verified_stage7g_tables=TRUE
+new_fit_started=FALSE

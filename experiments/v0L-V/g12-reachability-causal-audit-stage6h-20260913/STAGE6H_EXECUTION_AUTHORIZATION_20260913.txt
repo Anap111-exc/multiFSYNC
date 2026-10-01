@@ -1,0 +1,15 @@
+status=AUTHORIZED_POST_UNSEAL_REACHABILITY_CAUSAL_AUDIT
+authorized_by_user_in_conversation=TRUE
+authorization_date=2026-09-13
+new_stage6h_fits_authorized=TRUE
+new_fit_count=28
+existing_stage6g_fits_reused_read_only=8
+scientific_evaluation_after_endpoint_freeze_authorized=TRUE
+truth_available_to_fit=FALSE
+truth_available_to_stopping=FALSE
+truth_available_to_elbo_selection=FALSE
+truth_used_only_after_all_endpoints_frozen=TRUE
+continuation_authorized=FALSE
+cross_dimension_selection_authorized=FALSE
+formal_paper_mc=FALSE
+stage6g_outputs_mutable=FALSE

@@ -1,0 +1,9 @@
+STAGE7G_ANALYSIS_COMPLETE
+endpoint_parity_pass_required=TRUE
+truth_used_only_after_parity_for_scientific_evaluation=TRUE
+truth_used_for_fit_or_selection=FALSE
+fits=3
+states_per_fit=500
+blocks_per_state=4
+signal_energy_is_posterior_mean_l2_over_subjects_variables_and_grid=TRUE
+conditional_second_signal_omits_time_function_covariance=TRUE

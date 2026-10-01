@@ -1,0 +1,10 @@
+status=ENDPOINTS_AND_ELBO_SELECTION_FROZEN
+frozen_utc=2026-09-13T06:46:01Z
+analysis_endpoints=36
+new_stage6h_endpoints=28
+read_only_stage6g_endpoints=8
+condition_elbo_winners=3
+truth_read=FALSE
+truth_used_for_fit_stopping_or_selection=FALSE
+cross_dimension_selection=FALSE
+continuation=FALSE

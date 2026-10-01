@@ -1,0 +1,3 @@
+"batch_id","workers","worker_payload","n_cpus_per_fit","wall_seconds","passed_workers","failed_workers","sum_worker_max_rss_kb_upper_bound","max_worker_rss_kb","formal_experiment"
+"candidate2_e2e_x3","3","one independent non-formal candidate2 end-to-end micro smoke per worker","1","4.450","3","0","590312","197400","FALSE"
+"candidate2_e2e_x6","6","one independent non-formal candidate2 end-to-end micro smoke per worker","1","5.916","6","0","1177952","197520","FALSE"

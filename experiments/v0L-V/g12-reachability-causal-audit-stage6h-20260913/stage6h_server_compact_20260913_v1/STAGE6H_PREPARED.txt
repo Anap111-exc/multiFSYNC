@@ -1,0 +1,15 @@
+status=PREPARED
+prepared_utc=2026-09-13T04:34:55Z
+analysis_endpoints=36
+new_fits=28
+stage6g_read_only_fits=8
+conditions=3
+starts_per_condition=12
+n_cpus_per_fit=1
+outer_workers=7
+truth_read_during_prepare=FALSE
+truth_available_to_fit_stopping_or_elbo_selection=FALSE
+post_unseal_oracle_configuration_diagnostic=TRUE
+continuation=FALSE
+cross_dimension_selection=FALSE
+formal_paper_mc=FALSE

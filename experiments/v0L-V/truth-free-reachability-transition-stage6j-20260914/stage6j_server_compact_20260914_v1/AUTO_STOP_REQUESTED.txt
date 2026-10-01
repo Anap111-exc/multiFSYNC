@@ -1,0 +1,7 @@
+status=AUTO_STOP_REQUESTED
+outcome=truth_free_complete
+complete=8
+errors=0
+requested_at=2026-09-14T18:34:42+08:00
+instance_id=i-bp1egmsairexm9w1rnks
+stopped_mode=StopCharging

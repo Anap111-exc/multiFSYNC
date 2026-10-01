@@ -1,0 +1,13 @@
+status=TRUTH_FREE_ENDPOINTS_FROZEN
+completed_utc=2026-09-14T10:33:47Z
+fits_complete=8
+fits_error=0
+objective_eligible=8
+winner_fit_id=s6j__G12__02
+winner_initialization_arm=random_gram_unit_energy
+selection_rule=max_effective_ordinary_T1_ELBO_fixed_dimension
+truth_used_for_fit_stopping_or_selection=FALSE
+truth_unsealed=FALSE
+scientific_evaluation_run=FALSE
+cross_dimension_selection=FALSE
+formal_paper_mc=FALSE

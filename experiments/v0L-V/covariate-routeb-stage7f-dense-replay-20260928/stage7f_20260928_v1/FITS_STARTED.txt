@@ -1,0 +1,2 @@
+STAGE7F_THREE_FITS_STARTED
+registered=3

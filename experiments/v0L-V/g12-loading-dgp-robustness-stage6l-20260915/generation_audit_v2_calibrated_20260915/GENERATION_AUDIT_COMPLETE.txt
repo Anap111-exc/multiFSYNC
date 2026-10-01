@@ -1,0 +1,6 @@
+status=COMPLETE
+fit_count=0
+truth_used_for_generator_audit=TRUE
+formal_v0lv_result=FALSE
+formal_paper_mc_result=FALSE
+completed_utc=2026-09-15 03:01:15 UTC

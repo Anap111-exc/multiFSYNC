@@ -1,0 +1,9 @@
+status=START_SELECTION_FROZEN
+phase=factor_screen
+completed_utc=2026-09-03T14:42:06Z
+endpoints=12
+config_winners=3
+winner_table_sha256=bb07258ce30cb2b8918a103a920a49e784febb95b3bd6b368bd12262d1a4add7
+winner_rule=maximum_eligible_ordinary_T1_ELBO_within_configuration
+heldout_score_read_for_start_selection=FALSE
+selection_used_truth=FALSE

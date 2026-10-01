@@ -1,0 +1,8 @@
+STAGE7J_U_PREPARE_COMPLETE
+fit_id=covrb7c_02__C1__start11
+source_iteration=50
+requested_sweeps=51:499
+truth_opened=FALSE
+formal_candidate_pool=FALSE
+R_version=4.5.3
+stage7i_package_version=0.3.0.9000

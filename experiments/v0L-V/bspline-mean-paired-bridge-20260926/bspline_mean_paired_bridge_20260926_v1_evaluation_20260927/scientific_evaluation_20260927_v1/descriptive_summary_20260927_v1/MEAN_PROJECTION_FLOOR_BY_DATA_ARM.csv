@@ -1,0 +1,5 @@
+"logical_data_id","data_id","mean_arm","truth_mean_projection_floor_ise","truth_mean_projection_relative_ise"
+"meanb_01","meanb_01__independent_splinet","independent_splinet",1.52761209692561e-05,6.78938693988353e-05
+"meanb_01","meanb_01__periodic_phase","periodic_phase",6.22891226343423e-06,2.76840545041521e-05
+"meanb_02","meanb_02__independent_splinet","independent_splinet",1.02535390508945e-05,4.55712836129382e-05
+"meanb_02","meanb_02__periodic_phase","periodic_phase",1.2925003443947e-05,5.74444597508754e-05

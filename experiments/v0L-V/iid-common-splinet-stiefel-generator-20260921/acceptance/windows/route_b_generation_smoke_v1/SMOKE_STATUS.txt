@@ -1,0 +1,3 @@
+PASS
+formal_data_generated=FALSE
+model_fits_started=FALSE

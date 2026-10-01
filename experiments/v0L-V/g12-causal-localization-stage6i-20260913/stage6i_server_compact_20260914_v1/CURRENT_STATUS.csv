@@ -1,0 +1,2 @@
+"timestamp_utc","state","detail","registered_new_fits","complete_new_fits","error_new_fits","outer_workers","per_fit_n_cpus","formal_paper_mc_result"
+"2026-09-14T06:08:34Z","FITS_COMPLETE","10/10 complete and eligible",10,10,0,7,1,FALSE

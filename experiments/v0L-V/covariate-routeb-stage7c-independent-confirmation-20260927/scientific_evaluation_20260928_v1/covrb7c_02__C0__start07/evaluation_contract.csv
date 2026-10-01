@@ -1,0 +1,2 @@
+"evaluator_version","evaluator","factor_ppi_rule","oracle_L_M","truth_used_for_fit_or_selection","stage6h_original_truth_bundle_class","post_unseal_oracle_diagnostic","truth_used_for_fit_stopping_or_elbo_selection","all_endpoints_frozen_before_truth_evaluation","cross_dimension_selection","continuation"
+"v0lv_candidate2_evaluator_1.0.0-20260812","frozen_v0G_v0H_v0I_v0J",">=0.5",TRUE,FALSE,"covariate_routeb_pilot_sealed_truth",TRUE,FALSE,TRUE,FALSE,FALSE

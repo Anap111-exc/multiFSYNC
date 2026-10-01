@@ -1,0 +1,2 @@
+"paired_controls","control_core_hits","gate10_endpoints","gate10_core_hits","correct_gate_endpoint_elbo_not_lower_than_paired_control","truth_free_gate10_winner_fit_id","truth_free_gate10_winner_core","additional_gate_lengths_authorized","decision","formal_paper_mc"
+4,0,4,0,FALSE,"s6k__G12_gate10__04",FALSE,FALSE,"ZERO_OF_FOUR_CLOSE_DENSE_GATE_ROUTE",FALSE

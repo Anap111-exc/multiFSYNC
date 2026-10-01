@@ -1,0 +1,10 @@
+status=EVALUATION_STARTED
+started_utc=2026-09-13T06:46:01Z
+all_endpoints_frozen_before_truth_read=TRUE
+analysis_endpoints=36
+new_fits_to_evaluate=28
+stage6g_evaluations_reused_read_only=8
+workers=7
+cross_dimension_selection=FALSE
+continuation=FALSE
+formal_paper_mc=FALSE

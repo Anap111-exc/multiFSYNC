@@ -1,0 +1,3 @@
+"loading_arm","starts","core_hits","exact_structure_hits","full_feature_coverage_hits","winner_fit_id","winner_core","paired_logical_datasets","broad_generalization_claim"
+"controlled",4,1,1,1,"s6l__controlled__02",TRUE,1,FALSE
+"jaoua_beta10",4,1,1,1,"s6l__jaoua_beta10__02",TRUE,1,FALSE

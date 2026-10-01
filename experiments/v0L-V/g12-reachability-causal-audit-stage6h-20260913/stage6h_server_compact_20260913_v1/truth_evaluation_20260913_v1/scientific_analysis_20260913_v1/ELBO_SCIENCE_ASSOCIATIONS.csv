@@ -1,0 +1,4 @@
+"condition_id","endpoints","spearman_elbo_vs_global_correct","spearman_elbo_vs_study_correct","spearman_elbo_vs_negative_observed_nrmse","spearman_elbo_vs_negative_dense_nrmse"
+"full_data_6_9",12,0.752617809006382,0.86936576579953,0.916083916083916,0.363636363636364
+"holdout_split1_middle",12,0.752617809006382,0.752617809006382,0.622377622377623,-0.475524475524476
+"holdout_split2_upper",12,0.647750275631296,0.647750275631296,0.496503496503497,-0.370629370629371

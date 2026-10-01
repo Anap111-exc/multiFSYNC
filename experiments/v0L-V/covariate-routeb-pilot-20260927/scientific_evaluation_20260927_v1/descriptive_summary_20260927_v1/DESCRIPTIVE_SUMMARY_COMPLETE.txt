@@ -1,0 +1,6 @@
+status=COVARIATE_ROUTEB_DESCRIPTIVE_SUMMARY_COMPLETE
+fits_summarized=36
+winners_summarized=3
+truth_free_winners_unchanged=TRUE
+new_fit_or_continuation_started=FALSE
+broad_generalization_claim=FALSE

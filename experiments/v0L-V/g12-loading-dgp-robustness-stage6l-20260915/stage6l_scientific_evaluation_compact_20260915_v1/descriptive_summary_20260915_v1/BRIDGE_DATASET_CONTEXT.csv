@@ -1,0 +1,3 @@
+"data_id","loading_arm","observation_scalar_count","signal_rms","factor_signal_rms","mean_rms","noise_rms","factor_to_noise_rms_ratio","shared_specific_jaccard_mean","shared_specific_abs_cosine_mean","loading_gram_min_eigenvalue","loading_gram_condition_max","response_identity_max_abs_error"
+"s6l_01__controlled","controlled",225500,0.617267682618033,0.394743980945584,0.474354335256339,0.299051248508541,1.31998773760114,0,0,45,1,8.88178419700125e-16
+"s6l_01__jaoua_beta10","jaoua_beta10",225500,0.636746646472504,0.423905455613519,0.474354335256339,0.299051248508541,1.41750103946285,0.0668758840169731,0.0236577537609925,44.8766134682332,1.34643374047239,1.38777878078145e-15

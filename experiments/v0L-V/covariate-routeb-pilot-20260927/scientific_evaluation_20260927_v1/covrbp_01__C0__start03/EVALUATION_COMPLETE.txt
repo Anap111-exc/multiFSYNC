@@ -1,0 +1,4 @@
+status=COMPLETE
+fit_id=covrbp_01__C0__start03
+truth_used_for_fit_stopping_or_selection=FALSE
+new_fit_or_continuation_started=FALSE

@@ -1,0 +1,10 @@
+"fit_id","data_id","logical_data_id","beta_arm","start_index","fit_seed","status","objective_eligible","invalid_reasons","final_ordinary_elbo","annealing_sweeps","ordinary_t1_sweeps","strict_practical_converged","elapsed_seconds","truth_used_for_fit_or_selection"
+"covrb7c_01__C0__start06","covrb7c_01__C0","covrb7c_01","C0",6,99716106,"COMPLETE",TRUE,"",-166541.312270119,99,400,TRUE,4336.193,FALSE
+"covrb7c_01__C1__start06","covrb7c_01__C1","covrb7c_01","C1",6,99716106,"COMPLETE",TRUE,"",-171570.061238902,99,400,TRUE,4309.05,FALSE
+"covrb7c_01__C2__start01","covrb7c_01__C2","covrb7c_01","C2",1,99716101,"COMPLETE",TRUE,"",-186516.489961411,99,400,TRUE,2250.76,FALSE
+"covrb7c_02__C0__start11","covrb7c_02__C0","covrb7c_02","C0",11,99716211,"COMPLETE",TRUE,"",-168556.730497704,99,400,TRUE,4277.784,FALSE
+"covrb7c_02__C1__start11","covrb7c_02__C1","covrb7c_02","C1",11,99716211,"COMPLETE",TRUE,"",-173563.471994235,99,400,TRUE,4316.031,FALSE
+"covrb7c_02__C2__start05","covrb7c_02__C2","covrb7c_02","C2",5,99716205,"COMPLETE",TRUE,"",-190635.145226269,99,400,TRUE,2247.399,FALSE
+"covrb7c_03__C0__start07","covrb7c_03__C0","covrb7c_03","C0",7,99716307,"COMPLETE",TRUE,"",-162699.606019137,99,400,TRUE,4601.219,FALSE
+"covrb7c_03__C1__start06","covrb7c_03__C1","covrb7c_03","C1",6,99716306,"COMPLETE",TRUE,"",-168727.812512304,99,400,TRUE,4526.105,FALSE
+"covrb7c_03__C2__start07","covrb7c_03__C2","covrb7c_03","C2",7,99716307,"COMPLETE",TRUE,"",-202695.679176391,99,400,TRUE,2306.426,FALSE

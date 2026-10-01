@@ -1,0 +1,9 @@
+status=COMPLETE
+fit_id=g12s6a_01__s6b__factor_L1_M2__03
+selection_sha256=b1db347c78c2dfd72f939642676b9e85611f8a443f0a301e8a2db1f1219b689d
+selection_frozen_before_truth_read=TRUE
+fit_or_selection_used_truth=FALSE
+new_fits_after_unseal=0
+continuation_started=FALSE
+final_full_data_refit_started=FALSE
+formal_paper_mc_result=FALSE

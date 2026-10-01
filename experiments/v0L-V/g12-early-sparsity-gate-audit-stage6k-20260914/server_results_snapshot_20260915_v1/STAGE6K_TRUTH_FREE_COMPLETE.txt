@@ -1,0 +1,13 @@
+status=TRUTH_FREE_ENDPOINTS_FROZEN
+completed_utc=2026-09-14T14:25:23Z
+fits_complete=4
+fits_error=0
+objective_eligible=4
+winner_fit_id=s6k__G12_gate10__04
+selection_rule=max_effective_ordinary_T1_ELBO_gate10_arm
+truth_used_for_fit_stopping_or_selection=FALSE
+truth_unsealed=FALSE
+scientific_evaluation_run=FALSE
+new_data=FALSE
+continuation=FALSE
+formal_paper_mc=FALSE

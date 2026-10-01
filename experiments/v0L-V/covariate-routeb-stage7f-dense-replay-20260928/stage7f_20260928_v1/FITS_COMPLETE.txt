@@ -1,0 +1,3 @@
+STAGE7F_FITS_COMPLETE
+fits=3
+endpoint_parity_not_yet_verified=TRUE

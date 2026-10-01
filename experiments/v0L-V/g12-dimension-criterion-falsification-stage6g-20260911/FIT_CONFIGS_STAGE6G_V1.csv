@@ -1,0 +1,7 @@
+"config_index","fit_config_id","fit_L_f","fit_L_s_1","fit_L_s_2","fit_M_common","fit_M_f","fit_M_s_1","fit_M_s_2","total_candidate_factors","complexity_proxy","included_in_all_scenarios"
+1,"cand_L111_M2",1,1,1,2,"2","2","2",3,1782,TRUE
+2,"cand_L111_M3",1,1,1,3,"3","3","3",3,1923,TRUE
+3,"cand_L111_M4",1,1,1,4,"4","4","4",3,2064,TRUE
+4,"cand_L121_M2",1,2,1,2,"2","2;2","2",4,2356,TRUE
+5,"cand_L211_M2",2,1,1,2,"2;2","2","2",4,2416,TRUE
+

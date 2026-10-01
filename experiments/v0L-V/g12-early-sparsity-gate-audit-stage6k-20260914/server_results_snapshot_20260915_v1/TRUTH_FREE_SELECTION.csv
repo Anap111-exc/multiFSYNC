@@ -1,0 +1,2 @@
+"fit_id","paired_control_fit_id","seed_index","fit_seed","dense_gate_sweeps","final_ordinary_elbo","objective_eligible","practical_converged","convergence_status","elapsed_seconds","warning_count","annealing_sweeps","ordinary_t1_sweeps","dense_gate_released","post_release_sweeps","truth_used_for_fit_stopping_or_selection","selection_rule","truth_used_for_selection"
+"s6k__G12_gate10__04","s6j__G12__04",4,84611104,10,-114905.785761973,TRUE,TRUE,"converged_practical",1394.34701943398,0,99,400,TRUE,489,FALSE,"max_effective_ordinary_T1_ELBO_gate10_arm",FALSE

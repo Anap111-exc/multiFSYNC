@@ -1,0 +1,6 @@
+"file","target","sha256","all_study_loop_hits","literal_study1_index_hits","formula_branch_is_study_generic","sequential_order_or_rng_can_still_be_position_dependent"
+"R/update_xi.R","specific scores","e6614ea59ab14636c95b5b146aa31eb2948d6a3e8886e2f2e3848596a3ca2f15",1,0,TRUE,TRUE
+"R/update_eigenfunctions.R","specific time functions","a1782cf0898a43aec493a8d00d3efc87f8c5b54b2f3187b61d83d179a85f6e25",5,0,TRUE,TRUE
+"R/update_loadings.R","specific loadings","feb2dbe383eee359d6055c860421a36711a0af94e21872d99658e185f5f183a4",6,0,TRUE,TRUE
+"R/multi_core.R","initialization and update schedule","f06a14c853dd16c3695ef43447ef2fe341534070a54cd3d627b0608465816b52",26,4,TRUE,TRUE
+"R/pre_score_interface.R","pre-score public interface","b8e7d74d318aabfc7e936089b75f64ed2e4c5c6182ecd0df06af984c1359662f",0,0,TRUE,TRUE

@@ -1,0 +1,10 @@
+"condition_id","block","study","endpoints","retained","median_factor_ppi","median_expected_active_loading_count"
+"full_data_6_9","shared",0,12,10,1,41.7912469530616
+"full_data_6_9","specific",1,12,1,3.56882459140451e-08,3.56882461513927e-08
+"full_data_6_9","specific",2,12,5,3.47175178050385e-08,3.47175192043921e-08
+"holdout_split1_middle","shared",0,12,11,1,41.1642611419679
+"holdout_split1_middle","specific",1,12,5,3.8948365255198e-08,3.89483665829302e-08
+"holdout_split1_middle","specific",2,12,10,1,249.095659001854
+"holdout_split2_upper","shared",0,12,11,1,38.6429189344435
+"holdout_split2_upper","specific",1,12,2,3.86544651842513e-08,3.86544666035268e-08
+"holdout_split2_upper","specific",2,12,10,1,195.990706060525

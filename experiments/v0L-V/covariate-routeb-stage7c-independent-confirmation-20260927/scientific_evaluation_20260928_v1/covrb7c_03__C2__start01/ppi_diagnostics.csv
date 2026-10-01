@@ -1,0 +1,4 @@
+"block","study","candidate_factor","factor_ppi","recomputed_union_ppi","union_abs_error","expected_active_loading_count","retained"
+"shared",0,1,1,1,0,434.7555498459,TRUE
+"specific",1,1,1,1,0,55.8150640263618,TRUE
+"specific",2,1,1,1,0,340.198348406747,TRUE

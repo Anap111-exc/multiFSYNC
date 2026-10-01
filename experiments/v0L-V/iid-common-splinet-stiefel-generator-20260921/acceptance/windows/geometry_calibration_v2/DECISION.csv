@@ -1,0 +1,2 @@
+"audit_id","audit_seed","n_draw_per_candidate","selected_candidate","decision","formal_data_generated","model_fits_started"
+"IID_COMMON_SPLINET_STIEFEL_GEOMETRY_V2_20260922",20260922,500,"P_S3","GEOMETRY_PASS_PERIODIC_REQUIRES_SCIENTIFIC_BOUNDARY_DECISION",FALSE,FALSE

@@ -1,0 +1,13 @@
+status=STAGE6J_SCIENTIFIC_EVALUATION_COMPLETE
+completed_utc=2026-09-14T10:50:51Z
+fits_evaluated=8
+evaluation_errors=0
+truth_unsealed_after_endpoint_freeze=TRUE
+truth_used_for_fit_stopping_or_selection=FALSE
+new_fits_started_by_evaluation=FALSE
+continuation_started=FALSE
+cross_dimension_selection=FALSE
+g12_core_hits=0
+residual_fpca_core_hits=0
+truth_free_winner_core=FALSE
+decision=BOTH_TRUTH_FREE_INITIALIZATION_ARMS_FAILED_CORE_REACHABILITY

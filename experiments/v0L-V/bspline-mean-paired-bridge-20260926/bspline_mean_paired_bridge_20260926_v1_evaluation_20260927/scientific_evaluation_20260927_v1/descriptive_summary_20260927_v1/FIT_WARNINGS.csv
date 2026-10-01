@@ -1,0 +1,6 @@
+"fit_id","logical_data_id","mean_arm","start_index","message"
+"meanb_01__periodic_phase__start02","meanb_01","periodic_phase",2,"The requested practical fit did not produce an eligible result within 400 T = 1 sweeps; marking this fit as a slow case."
+"meanb_01__periodic_phase__start09","meanb_01","periodic_phase",9,"The requested practical fit did not produce an eligible result within 400 T = 1 sweeps; marking this fit as a slow case."
+"meanb_01__independent_splinet__start09","meanb_01","independent_splinet",9,"The requested practical fit did not produce an eligible result within 400 T = 1 sweeps; marking this fit as a slow case."
+"meanb_02__periodic_phase__start08","meanb_02","periodic_phase",8,"The requested practical fit did not produce an eligible result within 400 T = 1 sweeps; marking this fit as a slow case."
+"meanb_02__independent_splinet__start12","meanb_02","independent_splinet",12,"The requested practical fit did not produce an eligible result within 400 T = 1 sweeps; marking this fit as a slow case."

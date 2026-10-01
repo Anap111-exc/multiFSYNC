@@ -1,0 +1,2 @@
+"phase","selected_fit_config_id","minimum_loss_fit_config_id","selected_factor_count","primary_score","one_se_scale","one_se_threshold_mse","selection_used_truth","heldout_score_used_for_start_selection"
+"factor_screen","factor_L1_M2","factor_L1_M2",1,"heldout_nrmse","mean_subject_time_mse",0.129835391439453,FALSE,FALSE

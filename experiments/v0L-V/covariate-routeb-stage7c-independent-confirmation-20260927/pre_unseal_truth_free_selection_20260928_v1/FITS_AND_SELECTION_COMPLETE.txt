@@ -1,0 +1,7 @@
+status=MAIN_FITS_TERMINAL_AND_SELECTION_FROZEN
+complete=108
+errors=0
+outer_workers=8
+per_fit_n_cpus=1
+truth_unseal_authorized=FALSE
+scientific_evaluation_started=FALSE

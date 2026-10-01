@@ -1,0 +1,5 @@
+"study","true_id","true_role","true_factor","loading_structure_status","candidate_id","factor_matched","true_M","estimated_effective_M","truth_kernel_hs_norm","kernel_relative_ise","kernel_relative_hs_error","kernel_projection_floor_relative_ise","kernel_estimate_to_projection_relative_ise"
+1,"A0_1","shared",1,"correct","A_1",TRUE,2,2,0.824621125123533,0.108941494923876,0.33006286510887,0.0933887229122416,0.0173338078871295
+1,"B10_1","specific",1,"correct","B1_1",TRUE,2,2,0.824621125123532,0.0481054031291813,0.219329439722946,0.0205818385830911,0.028666731659432
+2,"A0_1","shared",1,"correct","A_1",TRUE,2,2,0.824621125123533,0.108941494923876,0.33006286510887,0.0933887229122416,0.0173338078871295
+2,"B20_1","specific",1,"correct","B2_1",TRUE,2,2,0.824621125123531,0.264566755255644,0.514360530421653,0.0520430438634789,0.220873993202857

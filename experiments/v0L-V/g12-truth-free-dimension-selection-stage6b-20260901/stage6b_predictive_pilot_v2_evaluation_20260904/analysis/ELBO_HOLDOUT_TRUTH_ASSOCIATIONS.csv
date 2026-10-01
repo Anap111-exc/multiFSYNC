@@ -1,0 +1,8 @@
+"scope","x","y","spearman"
+"all_20_fits","final_elbo","heldout_nrmse",-0.745864661654135
+"all_20_fits","final_elbo","dense_signal_nrmse",0.0887218045112782
+"all_20_fits","heldout_nrmse","dense_signal_nrmse",-0.0421052631578947
+"all_20_fits","heldout_nrmse","feature_ise",0.249624060150376
+"five_config_winners","heldout_nrmse","dense_signal_nrmse",0.5
+"five_config_winners","heldout_nrmse","feature_ise",0.5
+"five_config_winners","heldout_nrmse","covariance_operator_error",0.3

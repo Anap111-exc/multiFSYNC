@@ -1,0 +1,9 @@
+status=START_SELECTION_FROZEN
+phase=fpca_screen
+completed_utc=2026-09-03T19:00:06Z
+endpoints=8
+config_winners=2
+winner_table_sha256=2c04a72770683cb319c0f153aef326274e2d9799edc8f51f1b0eaa6dca574ea1
+winner_rule=maximum_eligible_ordinary_T1_ELBO_within_configuration
+heldout_score_read_for_start_selection=FALSE
+selection_used_truth=FALSE

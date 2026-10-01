@@ -1,0 +1,4 @@
+STAGE7L_DATA_GENERATED_AND_SEALED
+datasets=5
+arms=C1
+fit_reads_truth=FALSE

@@ -1,0 +1,6 @@
+"check_id","passed","detail"
+"truth_free_hashes_verified",TRUE,"all frozen truth-free CSV SHA256 values match"
+"scientific_rows_56",TRUE,"56"
+"assignment_join_complete",TRUE,"336"
+"selector_strata_complete",TRUE,"8 strata for every view-threshold-selector combination"
+"no_fit_or_continuation_started",TRUE,"evaluation script contains no fitting or continuation call"

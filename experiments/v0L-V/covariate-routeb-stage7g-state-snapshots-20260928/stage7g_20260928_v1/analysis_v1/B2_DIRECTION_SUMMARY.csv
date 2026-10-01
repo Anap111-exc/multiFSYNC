@@ -1,0 +1,4 @@
+"fit_id","early_max_raw_loading_abs_cosine_to_true_B2","early_max_interpretable_cosine_to_true_B2","first_sweep_cosine_at_least_0_5","first_sweep_cosine_at_least_0_9","first_sweep_mean_signal_ratio_at_least_0_1","endpoint_raw_loading_abs_cosine_to_true_B2","endpoint_mean_signal_ratio_to_truth"
+"covrb7c_01__C1__start06",0.627843976127397,0.142053382550947,,,0,,0
+"covrb7c_02__C1__start11",0.281602736921329,0.13433133901686,,,0,,0
+"covrb7c_03__C1__start06",0.0805700809084164,0.0805700809084164,,,0,0.999665784409168,1.03884783527835

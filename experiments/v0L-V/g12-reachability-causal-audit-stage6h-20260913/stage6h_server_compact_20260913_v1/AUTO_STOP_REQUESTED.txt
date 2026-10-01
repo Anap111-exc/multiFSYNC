@@ -1,0 +1,8 @@
+status=AUTO_STOP_REQUESTED
+outcome=complete_evaluated
+complete_new=28
+errors=0
+terminal_records=28
+requested_at=2026-09-13T14:46:55+08:00
+instance_id=i-bp1egmsairexm9w1rnks
+stopped_mode=StopCharging

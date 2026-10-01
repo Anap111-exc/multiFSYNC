@@ -1,0 +1,14 @@
+status=EVALUATION_COMPLETE
+completed_utc=2026-09-13T06:46:11Z
+analysis_endpoints=36
+new_endpoints_evaluated=28
+stage6g_endpoint_evaluations_reused=8
+evaluation_errors=0
+core_hits=0
+exact_structure_hits=0
+decision_code=NEITHER_REACHABLE_G12_OR_SIGNAL_GEOMETRY_REMAINS_BLOCKER
+all_endpoints_frozen_before_truth_read=TRUE
+fit_stopping_and_elbo_selection_used_truth=FALSE
+cross_dimension_selection=FALSE
+continuation=FALSE
+formal_paper_mc=FALSE

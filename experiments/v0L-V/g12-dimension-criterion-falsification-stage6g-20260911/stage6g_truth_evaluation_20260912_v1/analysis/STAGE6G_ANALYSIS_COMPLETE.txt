@@ -1,0 +1,12 @@
+status=STAGE6G_SCIENTIFIC_ANALYSIS_COMPLETE
+completed_utc=2026-09-12T10:48:04Z
+endpoints=120
+data_scenarios=3
+core_truth_hits=0
+exact_thresholded_structure_hits=0
+one_se_correct_dimensions=1/3
+minimum_loss_correct_dimensions=1/3
+selection_frozen_before_truth_read=TRUE
+new_fits_after_unseal=0
+continuation_started=FALSE
+formal_paper_mc_result=FALSE

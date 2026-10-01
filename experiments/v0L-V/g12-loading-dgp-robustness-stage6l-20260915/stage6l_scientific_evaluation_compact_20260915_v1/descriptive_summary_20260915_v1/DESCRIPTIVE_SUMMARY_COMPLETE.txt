@@ -1,0 +1,6 @@
+status=DESCRIPTIVE_SUMMARY_COMPLETE
+existing_fits_readonly=TRUE
+winner_selection_changed=FALSE
+new_fit_or_continuation=FALSE
+data_replicates=one_paired_logical_dataset
+fit_seeds_not_treated_as_independent_dataset_replicates=TRUE

@@ -1,0 +1,10 @@
+STAGE7J_U_PARITY_PASS
+snapshots_compared=449
+state_field_checks=19307
+max_state_abs_difference=0
+max_elbo_abs_difference=0
+state_tolerance=1e-8+1e-10*abs(reference)
+elbo_absolute_tolerance=1e-6
+ppi_zero_pattern_exact=TRUE
+truth_opened=FALSE
+formal_candidate_pool=FALSE

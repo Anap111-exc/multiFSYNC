@@ -1,0 +1,9 @@
+status=BSPLINE_MEAN_BRIDGE_SCIENTIFIC_EVALUATION_COMPLETE
+fits_evaluated=48
+winners_evaluated=4
+truth_read_after_all_within_data_by_mean_arm_selection_freezes=TRUE
+truth_used_for_fit_stopping_or_selection=FALSE
+cross_mean_arm_ELBO_comparison=FALSE
+new_fit_or_continuation_started=FALSE
+broad_generalization_claim=FALSE
+completed_utc=2026-09-27T02:35:13Z

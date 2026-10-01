@@ -1,0 +1,13 @@
+"basin_view","similarity_threshold","selector","strata","strata_with_core_available","selected_core_truth","strata_with_exact_factor_available","selected_exact_factor_structure","strata_with_exact_joint_available","selected_exact_joint","dense_signal_nrmse_mean","feature_ise_mean","covariance_error_mean"
+"contribution",0.8,"modal_basin_then_elbo",8,7,6,4,3,2,1,0.768717834504581,0.293609571440386,1.87742648297055
+"contribution",0.8,"raw_max_elbo",8,7,7,4,4,2,2,0.76934103724994,0.309872187741829,1.95865556684468
+"contribution",0.9,"modal_basin_then_elbo",8,7,6,4,3,2,1,0.768717834504581,0.293609571440386,1.87742648297055
+"contribution",0.9,"raw_max_elbo",8,7,7,4,4,2,2,0.76934103724994,0.309872187741829,1.95865556684468
+"contribution",0.95,"modal_basin_then_elbo",8,7,6,4,3,2,1,0.763977682700899,0.294856149794112,1.85529056025233
+"contribution",0.95,"raw_max_elbo",8,7,7,4,4,2,2,0.76934103724994,0.309872187741829,1.95865556684468
+"structural",0.8,"modal_basin_then_elbo",8,7,6,4,3,2,1,0.768717834504581,0.293609571440386,1.87742648297055
+"structural",0.8,"raw_max_elbo",8,7,7,4,4,2,2,0.76934103724994,0.309872187741829,1.95865556684468
+"structural",0.9,"modal_basin_then_elbo",8,7,6,4,3,2,1,0.768717834504581,0.293609571440386,1.87742648297055
+"structural",0.9,"raw_max_elbo",8,7,7,4,4,2,2,0.76934103724994,0.309872187741829,1.95865556684468
+"structural",0.95,"modal_basin_then_elbo",8,7,6,4,3,2,1,0.763977682700899,0.294856149794112,1.85529056025233
+"structural",0.95,"raw_max_elbo",8,7,7,4,4,2,2,0.76934103724994,0.309872187741829,1.95865556684468

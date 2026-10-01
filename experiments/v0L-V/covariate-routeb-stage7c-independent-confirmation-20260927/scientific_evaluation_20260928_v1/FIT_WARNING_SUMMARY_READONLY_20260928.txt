@@ -1,0 +1,10 @@
+status=READ_ONLY_ECS_WARNING_INVENTORY_COMPLETE
+warning_files_present=108
+warning_files_with_nonheader_rows=32
+warning_rows=32
+unique_warning_messages=1
+objective_eligible_endpoints=108
+strict_practical_converged_endpoints=76
+strict_practical_nonconverged_endpoints=32
+new_fit_started=FALSE
+continuation_started=FALSE

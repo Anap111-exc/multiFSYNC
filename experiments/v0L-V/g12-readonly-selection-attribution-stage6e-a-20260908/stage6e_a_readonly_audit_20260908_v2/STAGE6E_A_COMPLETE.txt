@@ -1,0 +1,11 @@
+status=STAGE6E_A_READONLY_SELECTION_ATTRIBUTION_COMPLETE
+input_stage6d_endpoints=180
+configuration_winners=15
+risk_methods=max_elbo_start;top3_elbo_median;top5_elbo_median
+one_se_semantics=independent_one_se;paired_difference_one_se
+truth_free_risk_and_complexity_tables_created=TRUE
+truth_join_for_posthoc_assessment=TRUE
+new_fit_started=FALSE
+continuation_started=FALSE
+ecs_used=FALSE
+formal_validation_claim=FALSE

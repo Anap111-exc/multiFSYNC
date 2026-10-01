@@ -1,0 +1,7 @@
+"check_id","passed","detail"
+"six_factor_blocks_supported",TRUE,"blocks=6"
+"route_b_metadata",TRUE,"J=8;alpha=3;K=8"
+"continuous_gram_exact",TRUE,"max=1.110e-15"
+"response_reconstruction_exact",TRUE,"max=0.000e+00"
+"irregular_observation_counts",TRUE,"6:9"
+"all_metrics_finite",TRUE,"projection_n=6;cross_n=15"

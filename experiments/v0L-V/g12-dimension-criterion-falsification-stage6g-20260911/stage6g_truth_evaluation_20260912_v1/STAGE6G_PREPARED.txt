@@ -1,0 +1,11 @@
+status=STAGE6G_PREPARED
+prepared_utc=2026-09-11T07:10:43Z
+data_sets=3
+registered_endpoints=120
+configuration_split_strata=30
+starts_per_stratum=4
+observation_bundles_exclude_generating_L_and_M=TRUE
+truth_read_by_fit_or_selection=FALSE
+truth_unseal_authorized=FALSE
+continuation_authorized=FALSE
+formal_paper_mc_result=FALSE

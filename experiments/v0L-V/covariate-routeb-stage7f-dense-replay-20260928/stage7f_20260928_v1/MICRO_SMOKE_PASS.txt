@@ -1,0 +1,4 @@
+STAGE7F_MICRO_SMOKE_PASS
+ordinary_sweeps=2
+trace_iterations=1,2
+full_diagnostic_fits=0

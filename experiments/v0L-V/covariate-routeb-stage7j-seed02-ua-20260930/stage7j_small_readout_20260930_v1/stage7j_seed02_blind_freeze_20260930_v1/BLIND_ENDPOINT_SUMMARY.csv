@@ -1,0 +1,3 @@
+"branch","fit_id","final_ordinary_elbo","b2_ppi_ge_half","b2_ppi_mean","b2_loading_norm","b2_mean_time_norm","b2_mean_product_rms","b2_full_posterior_product_second_rms","saved_snapshots","resumed_sweeps"
+"U","covrb7c_02__C1__start11",-173563.471994235,0,8.78004030877067e-11,0,0,0,5.65172700642976e-07,449,449
+"A","covrb7c_02__C1__start11",-173564.467704812,0,8.7800427718685e-11,0,0,0,5.65172763633483e-07,33,449

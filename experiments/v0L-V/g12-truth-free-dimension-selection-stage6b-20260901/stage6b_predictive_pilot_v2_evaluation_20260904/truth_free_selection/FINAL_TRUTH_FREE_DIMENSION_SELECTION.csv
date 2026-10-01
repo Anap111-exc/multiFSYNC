@@ -1,0 +1,2 @@
+"selected_factor_count","selected_fpca_cap","selected_fit_config_id","minimum_loss_fit_config_id","primary_score","one_se_scale","one_se_threshold_mse","within_configuration_start_rule","cross_dimension_rule","selection_used_truth","new_data_generated","final_full_data_refit_started","continuation_started","formal_paper_mc_result"
+1,2,"factor_L1_M2","factor_L1_M2","heldout_nrmse","mean_subject_time_mse",0.129835391439453,"maximum_eligible_ordinary_T1_ELBO","heldout_NRMSE_equivalent_MSE_one_standard_error_simplest",FALSE,FALSE,FALSE,FALSE,FALSE

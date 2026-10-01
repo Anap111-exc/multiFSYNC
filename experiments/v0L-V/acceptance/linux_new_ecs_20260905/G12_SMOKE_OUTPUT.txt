@@ -1,0 +1,6 @@
+G12_PUBLIC_INTERFACE_SMOKE_PASS
+formal_experiment=FALSE
+data_seed=9861
+fit_seed=9862
+fits=2
+continuation_started=FALSE

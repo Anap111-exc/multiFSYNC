@@ -1,0 +1,12 @@
+protocol_id=COVARIATE_ROUTEB_PILOT_V1_20260927
+authorized_by=user
+authorization_date=2026-09-27
+truth_unseal_authorized=TRUE
+scientific_evaluation_authorized=TRUE
+evaluate_all_36_frozen_endpoints=TRUE
+evaluate_3_truth_free_winners=TRUE
+truth_free_selection_must_precede_truth_read=TRUE
+new_fit_authorized=FALSE
+continuation_authorized=FALSE
+winner_change_authorized=FALSE
+model_or_estimator_change_authorized=FALSE

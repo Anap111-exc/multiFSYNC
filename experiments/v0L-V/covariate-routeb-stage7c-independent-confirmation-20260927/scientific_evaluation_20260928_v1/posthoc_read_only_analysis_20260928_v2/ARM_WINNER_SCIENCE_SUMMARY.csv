@@ -1,0 +1,4 @@
+"beta_arm","winners","core_winners","exact_winners","full_feature_winners","median_obs_full_signal_nrmse","median_dense_full_signal_nrmse","median_mean_dense_nrmse","median_covariance_operator_relative_error","median_complete_contribution_missing_zero_nrmse"
+"C0",3,1,1,1,0.304086507021769,0.336325795455673,0.156060885998498,0.51139304423105,0.342529852180602
+"C1",3,1,1,1,0.286750185839755,0.31948952090605,0.158028743334933,0.525111453964978,0.343798609092196
+"C2",3,0,0,0,0.601761961794986,0.631723811935096,0.26934898934093,0.92169908037281,0.793622929408327

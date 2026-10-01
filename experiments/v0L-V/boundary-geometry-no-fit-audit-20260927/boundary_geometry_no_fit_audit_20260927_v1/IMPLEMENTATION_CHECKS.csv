@@ -1,0 +1,8 @@
+"check_id","passed","detail"
+"expected_function_counts",TRUE,"periodic_mean=2000;nonperiodic_feature=3000"
+"all_metrics_finite",TRUE,"nonfinite=0"
+"periodic_endpoint_closure",TRUE,"max_relative_error=2.747e-15"
+"feature_zero_boundary",TRUE,"max_relative_error=1.516e-15"
+"mean_energy_target",TRUE,"max_relative_error=1.850e-15"
+"feature_energy_target",TRUE,"max_relative_error=6.217e-15"
+"no_model_fit_called",TRUE,"script contains generation, projection, summary and plotting only"

@@ -1,0 +1,6 @@
+logical_data_id,data_id,data_index,beta_arm,observation_source_data_id,data_seed,truth_basis_seed,truth_loading_seed,mean_truth_seed,beta_bspline_seed,d_generated,d_fit,truth_available_to_fit,truth_available_to_selection,truth_unseal_authorized
+covrb7l_01,covrb7l_01__C1,1,C1,covrb7l_01__C1,101011001,101012001,101013001,101014001,101015001,2,2,FALSE,FALSE,FALSE
+covrb7l_02,covrb7l_02__C1,2,C1,covrb7l_02__C1,101011002,101012002,101013002,101014002,101015002,2,2,FALSE,FALSE,FALSE
+covrb7l_03,covrb7l_03__C1,3,C1,covrb7l_03__C1,101011003,101012003,101013003,101014003,101015003,2,2,FALSE,FALSE,FALSE
+covrb7l_04,covrb7l_04__C1,4,C1,covrb7l_04__C1,101011004,101012004,101013004,101014004,101015004,2,2,FALSE,FALSE,FALSE
+covrb7l_05,covrb7l_05__C1,5,C1,covrb7l_05__C1,101011005,101012005,101013005,101014005,101015005,2,2,FALSE,FALSE,FALSE

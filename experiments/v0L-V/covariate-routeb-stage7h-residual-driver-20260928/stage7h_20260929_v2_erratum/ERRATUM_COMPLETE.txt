@@ -1,0 +1,5 @@
+STAGE7H_ERRATUM_V2_COMPLETE
+truth_rows=480
+split_rows_with_spectrum_unavailable=160
+normalized_driver_rows=3
+original_v1_tables_preserved=true

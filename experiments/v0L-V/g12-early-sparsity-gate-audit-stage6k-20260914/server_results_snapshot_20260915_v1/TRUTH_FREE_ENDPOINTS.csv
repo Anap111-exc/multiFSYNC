@@ -1,0 +1,5 @@
+"fit_id","paired_control_fit_id","seed_index","fit_seed","dense_gate_sweeps","final_ordinary_elbo","objective_eligible","practical_converged","convergence_status","elapsed_seconds","warning_count","annealing_sweeps","ordinary_t1_sweeps","dense_gate_released","post_release_sweeps","truth_used_for_fit_stopping_or_selection"
+"s6k__G12_gate10__01","s6j__G12__01",1,84611101,10,-115286.72263901,TRUE,TRUE,"converged_practical",1256.52319955826,0,99,400,TRUE,489,FALSE
+"s6k__G12_gate10__02","s6j__G12__02",2,84611102,10,-115288.367289475,TRUE,TRUE,"converged_practical",1258.89941811562,0,99,400,TRUE,489,FALSE
+"s6k__G12_gate10__03","s6j__G12__03",3,84611103,10,-115396.860620946,TRUE,TRUE,"converged_practical",1425.94322490692,0,99,400,TRUE,489,FALSE
+"s6k__G12_gate10__04","s6j__G12__04",4,84611104,10,-114905.785761973,TRUE,TRUE,"converged_practical",1394.34701943398,0,99,400,TRUE,489,FALSE

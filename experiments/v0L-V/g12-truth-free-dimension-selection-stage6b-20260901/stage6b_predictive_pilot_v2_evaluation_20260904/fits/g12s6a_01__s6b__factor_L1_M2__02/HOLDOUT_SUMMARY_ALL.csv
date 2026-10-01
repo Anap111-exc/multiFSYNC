@@ -1,0 +1,2 @@
+"factor_mode","subject_time_count","variables_per_time_min","variables_per_time_max","heldout_rmse","heldout_nrmse","heldout_mae","residual_only_nlpd","predictive_variance_scope","primary_dimension_score_ready","truth_used"
+"all",60,500,500,0.403176974874855,0.534539148136976,0.288173493130321,0.405374434021382,"residual_noise_only_not_calibrated_full_posterior",FALSE,FALSE

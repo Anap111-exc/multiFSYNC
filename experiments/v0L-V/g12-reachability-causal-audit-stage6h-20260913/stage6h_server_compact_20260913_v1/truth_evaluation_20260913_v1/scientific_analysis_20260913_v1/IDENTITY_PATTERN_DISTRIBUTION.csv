@@ -1,0 +1,12 @@
+"condition_id","global_correct","global_misplaced","global_missing","study_correct","study_misplaced","study_missing","endpoints"
+"full_data_6_9",1,0,2,2,0,2,7
+"full_data_6_9",2,0,1,3,0,1,2
+"full_data_6_9",0,1,2,0,1,3,1
+"full_data_6_9",0,2,1,0,2,2,1
+"full_data_6_9",1,1,1,1,1,2,1
+"holdout_split1_middle",1,0,2,2,0,2,9
+"holdout_split1_middle",0,1,2,0,1,3,2
+"holdout_split1_middle",0,1,2,0,2,2,1
+"holdout_split2_upper",1,0,2,2,0,2,10
+"holdout_split2_upper",0,1,2,0,2,2,1
+"holdout_split2_upper",0,2,1,0,2,2,1

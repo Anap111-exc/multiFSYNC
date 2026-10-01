@@ -1,0 +1,12 @@
+status=EVALUATION_COMPLETE
+completed_utc=2026-09-04T02:24:07Z
+fits_evaluated=20
+evaluation_errors=0
+configuration_winners_evaluated=5
+final_selected_fit_id=g12s6a_01__s6b__factor_L1_M2__01
+selection_sha256=b1db347c78c2dfd72f939642676b9e85611f8a443f0a301e8a2db1f1219b689d
+selection_frozen_before_truth_read=TRUE
+new_fits_after_unseal=0
+continuation_started=FALSE
+final_full_data_refit_started=FALSE
+formal_paper_mc_result=FALSE

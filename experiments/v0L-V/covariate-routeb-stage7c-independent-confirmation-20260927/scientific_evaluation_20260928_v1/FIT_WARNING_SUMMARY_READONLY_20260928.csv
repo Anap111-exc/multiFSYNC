@@ -1,0 +1,2 @@
+"warning_message","fit_files_with_warning","warning_rows","relationship_to_endpoint"
+"The requested practical fit did not produce an eligible result within 400 T = 1 sweeps; marking this fit as a slow case.",32,32,"exactly the 32 endpoints with strict_practical_converged=FALSE; all 108 endpoints remained objective_eligible=TRUE"

@@ -42,15 +42,16 @@ update_nu_beta <- function(Y, C, list_cp_C, list_cp_C_Y,
   mu_q_nu_beta_new <- mu_q_nu_beta
   Sigma_q_nu_beta_new <- Sigma_q_nu_beta
 
-  for (j in 1:p) {
+  # The mean coefficients do not change during this beta update. Compute
+  # C' C mu once per subject, rather than repeating all p columns for every j.
+  list_cp_C_nu_mu <- vector("list", S)
+  for (s in 1:S) {
+    list_cp_C_nu_mu[[s]] <- lapply(1:n_s[s], function(i) {
+      sapply(1:p, function(jj) list_cp_C[[s]][[i]] %*% mu_q_nu_mu[[s]][[jj]])
+    })
+  }
 
-    # Precompute list_cp_C_nu_mu for all (s,i) — needed for mu subtraction
-    list_cp_C_nu_mu <- vector("list", S)
-    for (s in 1:S) {
-      list_cp_C_nu_mu[[s]] <- lapply(1:n_s[s], function(i) {
-        sapply(1:p, function(jj) list_cp_C[[s]][[i]] %*% mu_q_nu_mu[[s]][[jj]])
-      })
-    }
+  for (j in 1:p) {
 
     for (r in 1:d) {
 

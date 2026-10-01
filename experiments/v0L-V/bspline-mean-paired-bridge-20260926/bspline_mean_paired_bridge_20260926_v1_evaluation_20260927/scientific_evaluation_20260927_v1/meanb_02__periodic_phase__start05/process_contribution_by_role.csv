@@ -1,0 +1,5 @@
+"study","true_role","true_factor","true_id","estimated_block","estimated_factor","loading_structure_status","matched_by_loading","loading_norm_ratio","loading_abs_cosine","true_path_rms","estimated_path_rms","factor_process_nrmse_matched","factor_process_nrmse_missing_as_zero","complete_contribution_nrmse_matched","complete_contribution_nrmse_missing_as_zero"
+1,"shared",1,"A0_1",,,"missing",FALSE,,,1.09583328137014,,,1,,1
+1,"specific",1,"B10_1",,,"missing",FALSE,,,1.14457964444835,,,1,,1
+2,"shared",1,"A0_1","specific",1,"misplaced",TRUE,1.10182126338555,0.999780510189231,1.22071221580263,1.07623240679578,0.204769961409173,0.204769961409173,0.178891994964629,0.178891994964629
+2,"specific",1,"B20_1","shared",1,"misplaced",TRUE,0.612232380664855,0.999588392118122,0.926808568619104,1.49543396208442,0.637851035908701,0.637851035908701,0.139949359603817,0.139949359603817

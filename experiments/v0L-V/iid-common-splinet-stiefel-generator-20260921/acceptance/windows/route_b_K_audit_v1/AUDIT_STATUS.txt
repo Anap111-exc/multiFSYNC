@@ -1,0 +1,4 @@
+MINIMUM_K_GEOMETRY_PASS
+selected_K=8
+formal_data_generated=FALSE
+model_fits_started=FALSE

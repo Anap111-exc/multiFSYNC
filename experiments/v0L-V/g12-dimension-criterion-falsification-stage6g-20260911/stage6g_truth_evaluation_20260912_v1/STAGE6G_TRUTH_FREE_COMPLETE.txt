@@ -1,0 +1,9 @@
+status=STAGE6G_TRUTH_FREE_COMPLETE
+registered_endpoints=120
+endpoint_errors=0
+split_configuration_winners=30
+dimension_selections=3
+truth_read=FALSE
+truth_unseal_authorized=FALSE
+continuations=0
+completed_utc=2026-09-11T19:41:27Z
