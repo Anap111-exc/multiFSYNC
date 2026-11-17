@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "checks": 18,
+  "true_global_roles": 6,
+  "true_study_roles": 8,
+  "true_components": 16,
+  "posterior_updates": 0,
+  "new_fits": 0,
+  "synthetic_fixture": true,
+  "production_data_generated": false
+}

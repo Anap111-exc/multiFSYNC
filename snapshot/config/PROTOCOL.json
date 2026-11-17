@@ -1,0 +1,126 @@
+{
+  "schema": "CAVI_TRUE222_FIT444_M4_V1",
+  "experiment_id": "cavi_true222_fit444_m4_20261117_v1",
+  "status": "FROZEN",
+  "authorization": "User explicitly chose ten new datasets and 120 original-CAVI fits; truth222 fitted444 and FPCA2 fitted4. Direct use/start of existing ECS authorized. No formal 100-repetition simulation.",
+  "design": {
+    "independent_training_datasets": 10,
+    "independent_populations": 10,
+    "starts_per_dataset": 12,
+    "full_fit_attempts": 120,
+    "arms": [
+      "original"
+    ],
+    "S": 2,
+    "n_each_study": 60,
+    "p": 500,
+    "true_factor_counts": [
+      2,
+      2,
+      2
+    ],
+    "fitted_factor_capacities": [
+      4,
+      4,
+      4
+    ],
+    "true_FPCA_rank_each_factor": 2,
+    "fitted_FPCA_capacity_each_factor": 4,
+    "covariates_generated": 0,
+    "covariates_fitted": 0,
+    "generator": "Frozen original NC generator, Linux-generated new populations",
+    "truth_basis_dimension": 8,
+    "fitting_nonlinear_basis_dimension": 9,
+    "FPCA_variance_weights": [
+      0.8,
+      0.2
+    ],
+    "sparsity": {
+      "active_per_column": 50,
+      "loading_squared_norm_each_factor": 45,
+      "within_study_disjoint_loading_supports": true
+    },
+    "noise_sd": 0.3,
+    "observations_per_subject": [
+      6,
+      9
+    ],
+    "domain": [
+      0,
+      1
+    ],
+    "selection_subjects": 0,
+    "same_subject_new_time_points": 3,
+    "test_time_range": "Within each subject observed training range",
+    "population_seeds": "config/DATASET_REGISTRATION.csv",
+    "initialization_seeds": "generation/FIT_SEED_REFERENCE.csv; reused by replicate from prior original-CAVI experiment"
+  },
+  "fitting": {
+    "source": "28 previously verified candidate/R numerical files; original mode only",
+    "factor_shrinkage": null,
+    "initialization": "random, gram_unit_energy, pre_score_sweeps=1",
+    "annealing_sweeps": 99,
+    "ordinary_sweeps": 400,
+    "maximum_iterations": 499,
+    "new_algorithm_changes": false,
+    "fit_wall_time_cutoff_seconds": null,
+    "global_wall_time_cutoff_seconds": null,
+    "extra_starts": 0,
+    "automatic_retries": 0,
+    "replacement_seeds": 0,
+    "full_state_preserved": true
+  },
+  "selector": {
+    "winner": "Maximum complete ordinary ELBO among eligible registered endpoints within each 12-start dataset pool",
+    "truth_read_before_winner_seal": false,
+    "exact_tie": "smallest registered start index; record ties",
+    "practical_convergence": "Reported independently; valid complete endpoints remain eligible",
+    "formal_factor_count": "Count factors with PPI >= 0.5; identical boundary convention to NC formal science",
+    "live_diagnostic_count": "Preserve existing PPI > 0.5 live trace as diagnostic only",
+    "extra_screening": false,
+    "external_prediction_score": false
+  },
+  "evaluation": {
+    "primary": [
+      "per-block estimated factor count mean SD MCSE bias MAE RMSE and under/exact/over rates",
+      "joint exact factor-count vector and matched factor structure, reported separately",
+      "shared and specific complete raw contribution recovery at observed points and continuous grid"
+    ],
+    "secondary": [
+      "loading subspace MTA MTB and loading errors",
+      "all six true-factor functions and scores with first and second modes",
+      "mean and total signal recovery",
+      "same-subject heldout-time prediction",
+      "postprocessing effective FPCA rank",
+      "runtime peak-memory convergence and failure rates"
+    ],
+    "candidate_pool_diagnostics": "Retain as research record; not formal paper parameter table",
+    "oracle_winners": "Not used for selection",
+    "complete_denominator": "Ten registered datasets; failed/absent endpoints explicit",
+    "generalization_boundary": "Descriptive feasibility at true222 n60; not a 100-repetition accuracy guarantee"
+  },
+  "operations": {
+    "local_root": "E:\\multiFSYNC-results\\cavi_true222_fit444_m4_20261117_v1",
+    "remote_exec": "/root/cavi-true222-fit444-m4-exec-20261117-v1",
+    "remote_output": "/root/multifsync-results/cavi_true222_fit444_m4_20261117_v1",
+    "remote_stage": "/root/cavi-true222-fit444-m4-stage-20261117-v1",
+    "instance_id": "i-bp1egmsairexm9w1rnks",
+    "region": "cn-hangzhou",
+    "initial_concurrency": 2,
+    "max_concurrency": 8,
+    "pilot_seconds": 300,
+    "threads_per_R_process": 1,
+    "system_reserve_bytes": 3221225472,
+    "minimum_disk_free_bytes": 3221225472,
+    "automatic_completion_stopcharging": true,
+    "normal_stop_only": true,
+    "local_return_required_before_stop": false,
+    "progress_polling": "No repeated interactive progress polling; durable automatic task and resource supervision only",
+    "no_resource_resize_or_purchase": true,
+    "historical_outputs_readonly": true
+  },
+  "operational_failure": "No retry or replacement. Preserve known numerical failures and continue registered tasks; halt new submissions on integrity/unknown failure or insufficient resource, drain only owned processes then completion handling.",
+  "resource_probe": "At most one independent short resource probe on first generated observations; no annealing and two ordinary sweeps, separate seed200611171 excluded from formal registry. No truth read. XZ endpoint and full-object components inform conservative storage margin; not statistical evidence.",
+  "created_utc": "2026-11-17T14:04:39.446768+00:00",
+  "frozen_utc": "2026-11-17T14:19:40.867081+00:00"
+}

@@ -1,0 +1,241 @@
+{
+  "status": "PASS_PREPARED_FOR_PACKAGING",
+  "experiment": "cavi_true222_fit444_m4_20261117_v1",
+  "arm": "original",
+  "registered_datasets": 10,
+  "registered_full_fits": 120,
+  "true_counts": [
+    2,
+    2,
+    2
+  ],
+  "fit_counts": [
+    4,
+    4,
+    4
+  ],
+  "true_M": 2,
+  "fit_M": 4,
+  "local_oracle": {
+    "status": "PASS",
+    "checks": 18,
+    "true_global_roles": 6,
+    "true_study_roles": 8,
+    "true_components": 16,
+    "posterior_updates": 0,
+    "new_fits": 0,
+    "synthetic_fixture": true,
+    "production_data_generated": false
+  },
+  "local_summary": {
+    "status": "PASS",
+    "cases": [
+      {
+        "case": "all_available",
+        "status": "PASS",
+        "registered_datasets": 10,
+        "registered_starts": 120,
+        "true_role_denominator": 60
+      },
+      {
+        "case": "one_missing",
+        "status": "PASS",
+        "registered_datasets": 10,
+        "registered_starts": 120,
+        "true_role_denominator": 60
+      },
+      {
+        "case": "all_missing",
+        "status": "PASS",
+        "registered_datasets": 10,
+        "registered_starts": 120,
+        "true_role_denominator": 60
+      }
+    ],
+    "new_fits": 0
+  },
+  "frozen_science_files_byte_identical": 19,
+  "production_whitelist_records": 32,
+  "whitelist_sha256": "0d448352ccfd54bb33303ac1a4fecfe0d9f72de8b800b03c3a1180f9d8299396",
+  "new_fits_by_science": 0,
+  "posterior_updates": 0,
+  "package_ready": true,
+  "cloud_full_science_smoke_pending": true,
+  "cloud_smoke_endpoint": "OUT/resource_probe/original_L4M4_2sweep/PROBE_FIT.rds",
+  "cloud_smoke_pass": "OUT/resource_probe/SCIENCE_SMOKE/PASS.json",
+  "cloud_smoke_is_performance_evidence": false,
+  "fit_selection": "maximum_valid_complete_ordinary_ELBO_before_truth",
+  "formal_count_threshold": "factor PPI >= 0.5",
+  "data_role_denominator": 6,
+  "study_role_denominator": 8,
+  "true_function_component_rows": 16,
+  "changes": [
+    "single-arm driver and aggregate; no artificial paired method comparison",
+    "formal factor-count truth generalized from 111 to metadata-derived counts",
+    "raw role metrics generalized to every true factor; one-to-one retained own-block matching",
+    "full shared/specific raw contributions use unchanged all-factor frozen NC implementations",
+    "failure and unavailable-winner/role denominators explicitly retained"
+  ],
+  "files": [
+    {
+      "relative_path": "evaluation/endpoint.R",
+      "bytes": 1814,
+      "sha256": "fabdd046f461c7bf597ad7ddb6889eabea8c99b94796aa4a010603d16e1d475f"
+    },
+    {
+      "relative_path": "evaluation/frozen/evaluate_aligned.R",
+      "bytes": 37619,
+      "sha256": "c7e4b5e9449877bc5b692b4424bb0b3382952072d835f538539f2aa131ef1b19"
+    },
+    {
+      "relative_path": "evaluation/io.R",
+      "bytes": 3969,
+      "sha256": "5786ec107c364f9be184779e9068a99a82d31996fbcf45f71115677039693ae7"
+    },
+    {
+      "relative_path": "evaluation/legacy/scripts/dependencies/legacy/v0g_evaluation.R",
+      "bytes": 12437,
+      "sha256": "6b765191657f88db46a027a95acd3917c602b35cb6cee8947d917652f9c6b271"
+    },
+    {
+      "relative_path": "evaluation/legacy/scripts/dependencies/legacy/v0h_evaluation.R",
+      "bytes": 38055,
+      "sha256": "45639c2d9f14e4df0187d519a62837ef3b3be090ed315123cd97c725f8576dd4"
+    },
+    {
+      "relative_path": "evaluation/legacy/scripts/dependencies/stage7m_reconstruct.R",
+      "bytes": 5914,
+      "sha256": "51d83c1864dbc346bb4fee0e25feee7e099698080e2cfc38199970f7fd92ea27"
+    },
+    {
+      "relative_path": "evaluation/legacy/scripts/nc_evaluation_setup.R",
+      "bytes": 13830,
+      "sha256": "7bb40a877daad6999ea6a046027a5299b6187c15f57fd8eceee4d0c0e87ee9a5"
+    },
+    {
+      "relative_path": "science/evaluate_dataset.R",
+      "bytes": 15431,
+      "sha256": "3ba6245bbca4094f4585862f890bc5e885dad83e8e941e97ef95effb2b2d1d5a"
+    },
+    {
+      "relative_path": "science/evaluate_timing_endpoint.R",
+      "bytes": 5671,
+      "sha256": "c15d743f0d6d27ef398b5fb5578b0066dcb56a7b4474313f8037489bab2aea2a"
+    },
+    {
+      "relative_path": "science/frozen/band_moments.R",
+      "bytes": 6402,
+      "sha256": "9a35a61f7209177837e1c4840f9e3343511a07e04b327c78e7db620fb0ae4571"
+    },
+    {
+      "relative_path": "science/frozen/dependencies/auc_tie_groups.R",
+      "bytes": 1004,
+      "sha256": "eb4740b78077ba4e5576eaf2aeb52a087d994aba784fbbab0eb3ead66bb914af"
+    },
+    {
+      "relative_path": "science/frozen/dependencies/legacy/candidate2_evaluation.R",
+      "bytes": 26505,
+      "sha256": "5ef50d51572e946e158a6b67ee28601c4b8d8847f9830fa11d881e682df24d1e"
+    },
+    {
+      "relative_path": "science/frozen/dependencies/legacy/stage6a_common.R",
+      "bytes": 50235,
+      "sha256": "bc8e692899c792d440f1e470648f6be7dc0feafb6aab6b4fbe89b630e1841ae6"
+    },
+    {
+      "relative_path": "science/frozen/dependencies/legacy/stage6h_helpers.R",
+      "bytes": 8279,
+      "sha256": "5d6327289579a0624b058aafe6d6db5164b377e89d4efb18fe26abc1bb57f221"
+    },
+    {
+      "relative_path": "science/frozen/dependencies/legacy/stage7c_evaluator.R",
+      "bytes": 46088,
+      "sha256": "1ecb4901eac60e53f4e7969735847542a1d78c4b734cfb5611deadbacbbc43b8"
+    },
+    {
+      "relative_path": "science/frozen/dependencies/legacy/v0g_evaluation.R",
+      "bytes": 12437,
+      "sha256": "6b765191657f88db46a027a95acd3917c602b35cb6cee8947d917652f9c6b271"
+    },
+    {
+      "relative_path": "science/frozen/dependencies/legacy/v0h_evaluation.R",
+      "bytes": 38055,
+      "sha256": "45639c2d9f14e4df0187d519a62837ef3b3be090ed315123cd97c725f8576dd4"
+    },
+    {
+      "relative_path": "science/frozen/dependencies/legacy/v0i_truth_diagnostic.R",
+      "bytes": 23039,
+      "sha256": "127615551ef1e4dbe14b8c486e3e3ad27ba45eea77f764c7ed7c2fba8318b194"
+    },
+    {
+      "relative_path": "science/frozen/dependencies/legacy/v0j_evaluation.R",
+      "bytes": 29343,
+      "sha256": "3c91af1e07b0ba1aac4539a2c1e28d8abcfe2f5ee239a2a2daed7fcb2714a833"
+    },
+    {
+      "relative_path": "science/frozen/dependencies/stage7m_reconstruct.R",
+      "bytes": 5914,
+      "sha256": "51d83c1864dbc346bb4fee0e25feee7e099698080e2cfc38199970f7fd92ea27"
+    },
+    {
+      "relative_path": "science/frozen/dependencies/stage7m_science.R",
+      "bytes": 15857,
+      "sha256": "8fe1198843e7334aeaa3de6f3799d9e75d0f79436590be1eb10fc824e6c0d0d8"
+    },
+    {
+      "relative_path": "science/frozen/nc_evaluation_setup.R",
+      "bytes": 13830,
+      "sha256": "7bb40a877daad6999ea6a046027a5299b6187c15f57fd8eceee4d0c0e87ee9a5"
+    },
+    {
+      "relative_path": "science/frozen/nc_science.R",
+      "bytes": 5396,
+      "sha256": "859775154fe82c0253907f109cc1f016d91a023542b0350d20e32684791d6b34"
+    },
+    {
+      "relative_path": "science/frozen_adaptation_science.R",
+      "bytes": 9974,
+      "sha256": "2f3b5be5da82b89a6a22e7ed3ddc195ace82b3a55157554aa4ae926e92d20c03"
+    },
+    {
+      "relative_path": "science/frozen_count_contract.R",
+      "bytes": 5069,
+      "sha256": "ba358ba0dae38eecb38308075e562869247368fb8c1906e80483bf6aa4c538fb"
+    },
+    {
+      "relative_path": "science/FROZEN_DEPENDENCIES.csv",
+      "bytes": 2887,
+      "sha256": "51ffb67d4a019cc120c481a9696177327855c98370a647f4c669963c0a9dc28c"
+    },
+    {
+      "relative_path": "science/generalized_roles.R",
+      "bytes": 9130,
+      "sha256": "e85dcb23e70ac328f63d4af08c035d20d8f7e2dbe360c7a4e5ecf1dacbef9720"
+    },
+    {
+      "relative_path": "science/pair_science.R",
+      "bytes": 8543,
+      "sha256": "a9c64f01f5ebb8c79bacdce5b575744c11b38f6cd74adec524ce648d3f7e9351"
+    },
+    {
+      "relative_path": "science/SCIENCE_CONTRACT.md",
+      "bytes": 5025,
+      "sha256": "e32c2afc3abca055b3c877ad64c139a3af272d97c2080e29e3b0c644289bb182"
+    },
+    {
+      "relative_path": "science/summarize.py",
+      "bytes": 15904,
+      "sha256": "56962a9adcb5860d37638e07d7f524d4b6f2c09a5e1e20c67746f132f966c69b"
+    },
+    {
+      "relative_path": "tests/science_oracle.R",
+      "bytes": 10623,
+      "sha256": "d3e2131d560665a03e9df82a53d699caf0f50c91118d9fedc21170e9d2d8bc46"
+    },
+    {
+      "relative_path": "tests/science_summary.py",
+      "bytes": 5248,
+      "sha256": "cdc2691c0a547d729d9a601cda39f4b65ec3af25de3206814811f40049278f25"
+    }
+  ]
+}

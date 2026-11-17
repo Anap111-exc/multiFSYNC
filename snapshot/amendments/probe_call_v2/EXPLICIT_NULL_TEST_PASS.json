@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "explicit_null_named_argument": true,
+  "public_wrapper_forwarding": true,
+  "actual_core_validation_and_initialization_passed": true,
+  "CAVI_updates": 0,
+  "formal_fit_attempts": 0,
+  "new_scientific_starts": 0,
+  "source_modified": false,
+  "test_data": "existing deterministic tiny observation fixture, not production data",
+  "probe_seed_unchanged": 200611171
+}

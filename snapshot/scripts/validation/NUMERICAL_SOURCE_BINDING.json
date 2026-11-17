@@ -1,0 +1,205 @@
+[
+  {
+    "relative_path": "candidate/R/continuation_state.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\continuation_state.R",
+    "sha256": "363c791f99b22e74e0bab809283d79ba1f48a15d099e30e322ee38a02a600eaf",
+    "bytes": 10178,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/convergence_practical.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\convergence_practical.R",
+    "sha256": "8cf9a5a119fbaa23dfeb3abb81a90ea31e6565977629327821e3538ed93bf5fc",
+    "bytes": 13966,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/diagnostic_annealing_light_trace.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\diagnostic_annealing_light_trace.R",
+    "sha256": "92a5907542d53189699581314314a1214ea91beb1d80e988edd24031bea86f4e",
+    "bytes": 8042,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/diagnostic_block_rss_probe.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\diagnostic_block_rss_probe.R",
+    "sha256": "bbde2c4017f978a116472315df4e0dbfbd9875036240e223a28e27f154c58378",
+    "bytes": 5837,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/diagnostic_block_schedule_probe.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\diagnostic_block_schedule_probe.R",
+    "sha256": "b09e855e908bf43a19c34dd03289ef5e34f6a9f710bb16285f755a3ace513a5d",
+    "bytes": 1374,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/diagnostic_driver_trace.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\diagnostic_driver_trace.R",
+    "sha256": "2e48b3d936196b9e2ddc3146afba6f8cc347d8797bcc5ef1ca340a3a936e9af5",
+    "bytes": 17115,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/diagnostic_phi_component_order_probe.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\diagnostic_phi_component_order_probe.R",
+    "sha256": "90a716fe565b5f39f0866aaeb831bebe9dc177feb493985e4be03655e4f00a97",
+    "bytes": 1673,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/diagnostic_phi_driver_decomposition.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\diagnostic_phi_driver_decomposition.R",
+    "sha256": "c301129e962397edfa6bacc150c983af46bcbda53e2ec2241f477d9046473610",
+    "bytes": 4614,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/diagnostic_scale_trace.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\diagnostic_scale_trace.R",
+    "sha256": "2e6a6e02c23300f2f8151c68a6521cb29ec30a55f563c2b990d7b9867f432da3",
+    "bytes": 19910,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/factor_shrinkage.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\factor_shrinkage.R",
+    "sha256": "99f6c1287e0d2109db5cb8011f169ae71812b45bfa1ace96aaa818650a4e5a81",
+    "bytes": 11726,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/g12_stopping_control.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\g12_stopping_control.R",
+    "sha256": "90b3a2597547fdc926caa0045dcfa353396cdd48f6cc0cad81216dd795c20f34",
+    "bytes": 1443,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/generate_data_osullivan.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\generate_data_osullivan.R",
+    "sha256": "3143b1b19c36071ff2f2c550b2769e385689503f36980d73d511a7ceccafd169",
+    "bytes": 19662,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/generate_data_structured.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\generate_data_structured.R",
+    "sha256": "226131949adf52a28fc5e8e91b765a8cdb98a4e2c3a2ffbfa7ee40fc7bc932dd",
+    "bytes": 53593,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/generate_data.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\generate_data.R",
+    "sha256": "3dea8c3cb7f790882ef81b236e2686b8641c999f4a84dac7fbda60ef40ad2767",
+    "bytes": 12143,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/initialization.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\initialization.R",
+    "sha256": "b69f4f1537222aecfca02103a03dc1add3c156529b9f4bbce88d78bad0face1b",
+    "bytes": 15350,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/multi_core.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\multi_core.R",
+    "sha256": "c2d4b003f0b71db35919aaf49e65ad12f215c9d28b0aa410352811cde9ce7769",
+    "bytes": 123178,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/multistart.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\multistart.R",
+    "sha256": "9dbf22760459fe315e22302773039556ad59807f1aeccf3b6fc2d4af01f9ba5e",
+    "bytes": 33800,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/orthonormalise_multi.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\orthonormalise_multi.R",
+    "sha256": "30ca5865faa584e7a79bc0210887f6779191b49e89f5bf3ab1ea544341989444",
+    "bytes": 14884,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/pre_score_interface.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\pre_score_interface.R",
+    "sha256": "b8e7d74d318aabfc7e936089b75f64ed2e4c5c6182ecd0df06af984c1359662f",
+    "bytes": 3531,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/update_beta.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\update_beta.R",
+    "sha256": "7194257f581f48338590c595b10121f0cd2186820513bc6ddfb1d7bc425e2876",
+    "bytes": 4872,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/update_eigenfunctions.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\update_eigenfunctions.R",
+    "sha256": "a1782cf0898a43aec493a8d00d3efc87f8c5b54b2f3187b61d83d179a85f6e25",
+    "bytes": 32067,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/update_loadings.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\update_loadings.R",
+    "sha256": "3d7b779259ef07d3a00157ae0e6bbfa4f8cd658d7e0e28d97b2f3642e19fc739",
+    "bytes": 19726,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/update_mu.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\update_mu.R",
+    "sha256": "6894ec0f64f69703415a16f48be58bc3bc9dcc86c2a3e0eeda22c24fefae6323",
+    "bytes": 6487,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/update_omega.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\update_omega.R",
+    "sha256": "9709b6a4a6c76feab0b700cfea4071b7be7b41ce58b06471b5f7bc2f58736ae0",
+    "bytes": 5573,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/update_variance.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\update_variance.R",
+    "sha256": "171c715c21d04cf3b0b1078956fd4803b28763f6f91bf4574f9496db3f074507",
+    "bytes": 30408,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/update_xi.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\update_xi.R",
+    "sha256": "e6614ea59ab14636c95b5b146aa31eb2948d6a3e8886e2f2e3848596a3ca2f15",
+    "bytes": 8275,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/update_zeta.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\update_zeta.R",
+    "sha256": "517b5423ac85e6a325ec9a5a1c05c246c0bd7999b498ce14e4b07e5f79e0a1f8",
+    "bytes": 8706,
+    "identical": true
+  },
+  {
+    "relative_path": "candidate/R/utils_multi.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\candidate\\R\\utils_multi.R",
+    "sha256": "6dd4ba95fa094baa18f624c85f0963987c1596c765cd04c2a33fae4fdb1b9b29",
+    "bytes": 38290,
+    "identical": true
+  },
+  {
+    "relative_path": "runtime_patch/diagnostic_preallocation_patch.R",
+    "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\runtime_patch\\diagnostic_preallocation_patch.R",
+    "sha256": "e319d15c81ed7395a018eb55804d36b19a17c3cee46f7fab28a91c8f3c7dd51a",
+    "bytes": 3288,
+    "identical": true
+  }
+]

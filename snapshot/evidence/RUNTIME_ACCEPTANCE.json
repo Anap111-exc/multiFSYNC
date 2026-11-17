@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "stopcharging_permission_dryrun": true,
+  "startup_original_gate": true,
+  "science_tests": true,
+  "registration_checked": true,
+  "runtime_library_binding_sha256": "e2a6cd67c31065b180cf299e3ca6e7d7bdf06fe78862b6c18e77b2e2eec5ff6a",
+  "actual_science_smoke": true,
+  "resource_probe_acceptance": true,
+  "formal_fit_attempts": 0,
+  "actual_stop_requests": 0,
+  "original_failure_retained": true,
+  "inference_and_registered_budget_unchanged": true,
+  "probe_call_correction_sha256": "cdfb3bea10914921026918289e45758d0d6b103e3f8fb470e64ff987b0c08f86",
+  "operational_amendment_sha256": "058f3cf661f6c3a651ce184d264235531928c5bc91c757148e91b3b5c28b023e",
+  "prepared_data_sha256": "0b242747b493a1248f086c5e763f6d6902b18e8edc2bc5646e47dbd01934ab73"
+}

@@ -1,0 +1,65 @@
+#!/usr/bin/env Rscript
+# Full schema/scientific-evaluator smoke on the registered two-sweep resource probe.
+# This is not an accuracy, convergence, candidate-selection, or formal fit result.
+options(warn=1);compiler::enableJIT(0)
+args<-commandArgs(TRUE)
+stopifnot(length(args)==8L,setequal(args[c(1,3,5,7)],c('--exec-root','--output-root','--data-id','--fit-path')))
+arg<-setNames(args[c(2,4,6,8)],args[c(1,3,5,7)])
+ex<-normalizePath(arg[['--exec-root']],winslash='/',mustWork=TRUE)
+out<-normalizePath(arg[['--output-root']],winslash='/',mustWork=TRUE)
+id<-arg[['--data-id']];path<-normalizePath(arg[['--fit-path']],winslash='/',mustWork=TRUE)
+source(file.path(ex,'science/pair_science.R'));evaluation<-pair_load(ex);iv_threads()
+dest<-file.path(out,'resource_probe/SCIENCE_SMOKE')
+iv_assert(!file.exists(dest),'Refuse science-smoke overwrite or automatic retry');dir.create(dest,recursive=TRUE)
+started<-proc.time()[['elapsed']];checks<-list();truth_reads<-0L
+add<-function(name,pass){checks[[length(checks)+1L]]<<-data.frame(check=name,pass=isTRUE(pass));iv_assert(pass,name)}
+status<-tryCatch({
+  manifest<-iv_verify_package(ex);hash<-iv_sha(path);raw<-readRDS(path);state_hash<-iv_hash(raw)
+  add('registered_resource_probe_shape',raw$S==2L&&raw$p==500L&&all(raw$n_s==60L)&&raw$d==0L&&
+    raw$L_f==4L&&all(raw$L_s_by_study==4L)&&all(raw$M_f==4L)&&all(unlist(raw$M_s)==4L))
+  add('registered_resource_probe_counters',raw$t1_sweeps==2L&&raw$annealing_sweeps==0L&&length(raw$ELBO)==2L)
+  add('original_CAVI_only',is.null(raw$factor_shrinkage_state)&&is.null(raw$factor_shrinkage))
+  obs<-iv_read_binding(iv_data_binding(out,id,'observation'))
+  fixed<-iv_read_binding(iv_data_binding(out,id,'metadata'))
+  design<-iv_read_binding(iv_data_binding(out,id,'test_design'))
+  iv_json(list(status='PROBE_FIXED_BEFORE_TRUTH',data_id=id,fit_path=path,fit_sha256=hash,
+    object_sha256=state_hash,truth_reads=0L,fit_updates=0L,accuracy_gate=FALSE,
+    endpoint_rule='registered_resource_probe_only_no_endpoint_selection'),file.path(dest,'ENDPOINT_FROZEN_BEFORE_TRUTH.json'))
+  Sys.setenv(FSYNC_EXEC_ROOT=ex,FSYNC_OUTPUT_ROOT=out);source(file.path(ex,'scripts/common.R'))
+  inference<-load_source('candidate');legacy<-ae_legacy_environment(file.path(ex,'evaluation/legacy'))
+  fit<-iv_report_endpoint(raw,inference);gate<-fc_basis_ppi_check(fit,obs,fixed,legacy)
+  prediction<-stage7m_prediction(fit,obs,fixed$basis,design)
+  add('prediction_truth_blind',isFALSE(prediction$truth_read))
+  truth<-adapt_evaluation_truth(iv_read_binding(iv_data_binding(out,id,'truth')),obs,fixed);truth_reads<-truth_reads+1L
+  testtruth<-iv_read_binding(iv_data_binding(out,id,'test_truth'));truth_reads<-truth_reads+1L
+  tr<-truth$data$true_params
+  add('true_222_M2',tr$L_f==2L&&all(tr$L_s_by_study==2L)&&all(lengths(tr$lambda_phi_true)==2L)&&
+    all(vapply(tr$lambda_psi_true,function(x)all(lengths(x)==2L),logical(1))))
+  result<-pair_winner_science(fit,obs,fixed,truth,testtruth,prediction,evaluation)
+  formal<-ae_formal_structure(fit,tr,obs,legacy);basic<-ae_raw_metrics(fit,tr,obs,fixed)
+  add('six_global_roles_present_even_if_missing',nrow(basic$roles)==6L&&nrow(formal$global_truth)==6L&&nrow(formal$study_truth)==8L)
+  add('sixteen_true_components_present_even_if_missing',nrow(result$extended$component_metrics)==16L)
+  add('full_science_tables_present',all(c('subject_metrics','role_metrics','component_metrics','loading_metrics','variable_metrics',
+      'prediction_metrics','alignment_maps','score_points','loading_points','postprocess_metrics')%in%names(result$extended)))
+  add('continuous_metrics_finite',all(is.finite(result$raw$summary$mse))&&all(is.finite(result$raw$summary$rmse))&&
+    all(is.finite(result$extended$component_metrics$stage7m_function_ise))&&all(is.finite(result$extended$component_metrics$score_nrmse))&&
+    all(is.finite(result$extended$prediction_metrics$signal_mse))&&all(is.finite(result$supplement$noise$rmse)))
+  add('interval_metrics_finite',all(is.finite(result$intervals$summary$coverage))&&all(is.finite(result$intervals$summary$mean_width)))
+  add('raw_and_source_unchanged',identical(iv_hash(raw),state_hash)&&identical(iv_sha(path),hash)&&identical(iv_verify_package(ex),manifest))
+  for(nm in c('component_metrics','loading_metrics','prediction_metrics','alignment_maps'))iv_csv(result$extended[[nm]],file.path(dest,paste0(toupper(nm),'.csv')))
+  iv_csv(result$raw$summary,file.path(dest,'RAW_COMPONENT_METRICS.csv'))
+  iv_csv(result$intervals$summary,file.path(dest,'INTERVAL_METRICS.csv'))
+  iv_csv(result$historical$primary$block_subspace,file.path(dest,'BLOCK_SUBSPACE.csv'))
+  iv_csv(result$supplement$noise,file.path(dest,'NOISE.csv'))
+  iv_csv(basic$roles,file.path(dest,'ROLE_RECOVERY.csv'))
+  iv_csv(formal$summary,file.path(dest,'STRUCTURE_DIAGNOSTIC_NOT_ACCURACY_GATE.csv'))
+  list(status='PASS',data_id=id,registered_probe_only=TRUE,fit_path=path,fit_sha256=hash,object_sha256=state_hash,
+    true_global_roles=6L,true_study_roles=8L,true_components=16L,new_fits=0L,fit_updates=0L,
+    truth_reads=truth_reads,truth_used_for_selection=FALSE,accuracy_gate=FALSE,formal_scientific_results=FALSE,
+    raw_and_source_unchanged=TRUE,seconds=proc.time()[['elapsed']]-started)
+},error=function(e)list(status='FAIL',error=conditionMessage(e),truth_reads=truth_reads,new_fits=0L,fit_updates=0L,seconds=proc.time()[['elapsed']]-started))
+if(length(checks))iv_csv(do.call(rbind,checks),file.path(dest,'CHECKS.csv'))
+iv_json(status,file.path(dest,'STATUS.json'))
+if(status$status=='PASS')iv_json(status,file.path(dest,'PASS.json'))
+cat('SCIENCE_SMOKE',status$status,'seconds',status$seconds,'\n')
+if(status$status!='PASS')quit(status=1L)

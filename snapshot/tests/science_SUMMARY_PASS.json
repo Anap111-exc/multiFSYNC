@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "all_available",
+      "status": "PASS",
+      "registered_datasets": 10,
+      "registered_starts": 120,
+      "true_role_denominator": 60
+    },
+    {
+      "case": "one_missing",
+      "status": "PASS",
+      "registered_datasets": 10,
+      "registered_starts": 120,
+      "true_role_denominator": 60
+    },
+    {
+      "case": "all_missing",
+      "status": "PASS",
+      "registered_datasets": 10,
+      "registered_starts": 120,
+      "true_role_denominator": 60
+    }
+  ],
+  "new_fits": 0
+}

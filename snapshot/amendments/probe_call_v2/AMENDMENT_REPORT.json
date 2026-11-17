@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "purpose": "zero-update explicit NULL call repair only",
+  "original_frozen_files_unchanged": true,
+  "probe_seed": 200611171,
+  "registered_fit_attempts": 0,
+  "additional_scientific_starts": 0,
+  "ordinary_probe_budget": 2,
+  "prior_probe_updates": 0,
+  "storage_formula_unchanged": true,
+  "python_grammar": "3.6 PASS",
+  "R_test": {
+    "status": "PASS",
+    "explicit_null_named_argument": true,
+    "public_wrapper_forwarding": true,
+    "actual_core_validation_and_initialization_passed": true,
+    "CAVI_updates": 0,
+    "formal_fit_attempts": 0,
+    "new_scientific_starts": 0,
+    "source_modified": false,
+    "test_data": "existing deterministic tiny observation fixture, not production data",
+    "probe_seed_unchanged": 200611171
+  },
+  "files": [
+    {
+      "relative_path": "resource_probe.R",
+      "sha256": "4dbaacbd2e84cc1ac6262029f9833ed499de42dfd75ba36d9fc1781f274ec4bf",
+      "bytes": 6926
+    },
+    {
+      "relative_path": "assess_resource_probe.py",
+      "sha256": "06378d5db406a1d1ecfea8f04731a1e40fee0078c2265965456fcd46cbba8aa5",
+      "bytes": 7669
+    },
+    {
+      "relative_path": "test_explicit_null.R",
+      "sha256": "0f65c007e563cdabb7e53ef634ba684e522ca85e9c5347ad511de7e14d382fbb",
+      "bytes": 2154
+    },
+    {
+      "relative_path": "EXPLICIT_NULL_TEST_PASS.json",
+      "sha256": "6a1023139a6bad83bc9817ecde0d782801efe8c3fd49dbceef31d512d823d78c",
+      "bytes": 403
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "status": "FROZEN",
+  "reason": "R list NULL assignment omitted anneal argument; prior call failed before any CAVI update",
+  "formal_configuration_changed": false,
+  "numerical_source_changed": false,
+  "new_training_data": false,
+  "additional_scientific_starts": 0,
+  "previous_probe_sweeps": 0,
+  "authorized_probe_sweeps_remaining": 2,
+  "files": [
+    {
+      "relative_path": "resource_probe.R",
+      "sha256": "4dbaacbd2e84cc1ac6262029f9833ed499de42dfd75ba36d9fc1781f274ec4bf",
+      "bytes": 6926
+    },
+    {
+      "relative_path": "assess_resource_probe.py",
+      "sha256": "06378d5db406a1d1ecfea8f04731a1e40fee0078c2265965456fcd46cbba8aa5",
+      "bytes": 7669
+    },
+    {
+      "relative_path": "launch_registered_pipeline_v2.py",
+      "sha256": "8627c216072deb75046c8a179a7822f65acbb1f7e0c03426e8ff8f2142f8b43d",
+      "bytes": 4839
+    },
+    {
+      "relative_path": "prepare_runtime_v2.py",
+      "sha256": "c16ef78a5783b7353ca688b95ddbf2d93d9bf8ad973eee34bb3c95469bceb4c3",
+      "bytes": 3818
+    }
+  ]
+}

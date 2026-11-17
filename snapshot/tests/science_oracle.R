@@ -1,0 +1,109 @@
+# Deterministic evaluation-only fixture. No fitting, production data, or ECS.
+args<-commandArgs(TRUE);stopifnot(length(args)%in%1:2)
+ex<-normalizePath(args[1],winslash='/',mustWork=TRUE)
+testout<-if(length(args)==2L)args[2]else file.path(ex,'tests')
+if(length(args)==2L)stopifnot(!dir.exists(testout),dir.create(testout,recursive=TRUE))
+source(file.path(ex,'science/pair_science.R'));env<-pair_load(ex)
+legacy<-ae_legacy_environment(file.path(ex,'evaluation/legacy'))
+checks<-list();check<-function(name,value){checks[[length(checks)+1L]]<<-data.frame(check=name,pass=isTRUE(value));stopifnot(isTRUE(value))}
+toytruth<-diag(4)[,1:2];toyestimate<-cbind(diag(4)[,3],toytruth[,2],diag(4)[,4],-toytruth[,1])
+map<-pair_component_map(toytruth,toyestimate,rep(1,4))
+check('M4_component_match_can_recover_fourth_column',identical(map$assignment,c(4L,2L))&&identical(map$function_sign,c(-1,1)))
+check('zero_component_output_explicit_missing',identical(pair_component_map(toytruth,matrix(numeric(),4,0),rep(1,4))$assignment,c(0L,0L)))
+set.seed(2117)
+S<-2L;p<-12L;n<-4L;grid<-seq(0,1,length.out=201L)
+obs<-list(time_obs=replicate(S,replicate(n,seq(.01,.99,length.out=31),simplify=FALSE),simplify=FALSE),Z=NULL)
+basis<-stage7m_basis(obs$time_obs,9L);Cgrid<-stage7m_C(grid,basis);w<-stage7m_weights(grid)
+basecoef<-matrix(0,ncol(Cgrid),2);basecoef[1,1]<-1;basecoef[1,2]<--sqrt(3);basecoef[2,2]<-2*sqrt(3)
+# Normalize in the frozen evaluator's discrete grid metric.
+for(k in 1:2)basecoef[,k]<-basecoef[,k]/sqrt(sum(w*(Cgrid%*%basecoef[,k])^2))
+coefs<-lapply(1:2,function(k)basecoef)
+A<-matrix(0,p,2);A[1:2,1]<-c(1,2);A[3:4,2]<-c(2,-1)
+B<-list(matrix(0,p,2),matrix(0,p,2));B[[1]][5:6,1]<-c(1,2);B[[1]][7:8,2]<-c(2,-1)
+B[[2]][9:10,1]<-c(1,2);B[[2]][11:12,2]<-c(2,-1)
+z<-lapply(1:S,function(s)lapply(1:2,function(k)matrix(rnorm(n*2),n,2)))
+xi<-lapply(1:S,function(s)lapply(1:2,function(k)matrix(rnorm(n*2),n,2)))
+tr<-list(S=S,p=p,n_s=rep(n,S),L_f=2L,L_s_by_study=c(2L,2L),d_use=0L,
+ a_true=A,b_true=B,zeta_fpca_true=z,xi_fpca_true=xi,t_grid_dense=grid,
+ phi_dense_list=lapply(coefs,function(x)Cgrid%*%x),psi_dense_list=replicate(S,lapply(coefs,function(x)Cgrid%*%x),simplify=FALSE),
+ lambda_phi_true=replicate(2,c(2,1),simplify=FALSE),lambda_psi_true=replicate(S,replicate(2,c(2,1),simplify=FALSE),simplify=FALSE))
+truth<-list(data=list(true_params=tr))
+# Test-only analytic truth functions avoid any production/Linux truth-basis regeneration.
+stage7m_truth_basis<-function(truth)list(test_only=TRUE)
+stage7m_truth_functions<-function(truth,t,truth_basis=NULL){f<-stage7m_C(t,basis)%*%basecoef;list(shared=replicate(2,f,simplify=FALSE),specific=replicate(S,replicate(2,f,simplify=FALSE),simplify=FALSE),mean=replicate(S,matrix(0,length(t),p),simplify=FALSE),beta=list())}
+parts<-lapply(1:S,function(s)lapply(1:n,function(i)stage7m_true_parts(tr,obs,s,i,obs$time_obs[[s]][[i]])))
+for(nm in c('f_true_values','g_true_values','mu_true_values','beta_true_values','signal_true_values')) {
+ target<-switch(nm,f_true_values='shared',g_true_values='specific',mu_true_values='mean',beta_true_values='beta',signal_true_values='signal')
+ tr[[nm]]<-lapply(parts,function(st)lapply(st,function(x)if(target%in%c('shared','specific'))do.call(cbind,x[[target]])else x[[target]]))
+}
+truth$data$true_params<-tr;truth$data$time_obs<-obs$time_obs
+obs$Y<-lapply(tr$signal_true_values,function(x)lapply(x,function(m)lapply(seq_len(ncol(m)),function(j)m[,j])))
+fixed<-list(basis=basis,C=lapply(obs$time_obs,function(x)lapply(x,stage7m_C,basis=basis)),grid=grid,weights=w)
+pad<-function(x)cbind(x,matrix(0,nrow(x),2))
+fit<-list(S=S,p=p,n_s=rep(n,S),d=0L,L_f=4L,L_s_by_study=c(4L,4L),L_s=c(4L,4L),
+ M_f=rep(4L,4),M_s=replicate(S,rep(4L,4),simplify=FALSE),time_g=grid,C_g=Cgrid,
+ mu_q_a_original=pad(A),mu_q_b_specific_original=lapply(B,pad),mu_q_gamma_a=pad(1*(A!=0)),mu_q_gamma_b=lapply(B,function(x)pad(1*(x!=0))),
+ mu_q_nu_mu_original=replicate(S,replicate(p,rep(0,ncol(Cgrid)),simplify=FALSE),simplify=FALSE),
+ mu_q_nu_phi=replicate(4,pad(basecoef),simplify=FALSE),mu_q_nu_psi=replicate(S,replicate(4,pad(basecoef),simplify=FALSE),simplify=FALSE),
+ mu_q_zeta=lapply(z,function(x)c(lapply(x,pad),replicate(2,matrix(0,n,4),simplify=FALSE))),
+ mu_q_xi=lapply(xi,function(x)c(lapply(x,pad),replicate(2,matrix(0,n,4),simplify=FALSE))),
+ factor_order_shared=1:4,factor_order_specific=replicate(S,1:4,simplify=FALSE),
+ list_effective_M=as.list(rep(2L,4)),list_effective_M_spec=replicate(S,as.list(rep(2L,4)),simplify=FALSE),
+ list_eigenvalues=replicate(4,c(2,1),simplify=FALSE),list_eigenvalues_spec=replicate(S,replicate(4,c(2,1),simplify=FALSE),simplify=FALSE))
+report<-function(f){
+ f$mu_q_a_hat<-f$mu_q_a_original;f$mu_q_b_specific_hat<-f$mu_q_b_specific_original
+ f$mu_q_gamma_a_hat<-f$mu_q_gamma_a;f$mu_q_gamma_b_hat<-f$mu_q_gamma_b
+ f$factor_ppi_shared<-apply(f$mu_q_gamma_a,2,ae_factor_ppi);f$factor_ppi_specific<-lapply(f$mu_q_gamma_b,apply,2,ae_factor_ppi)
+ f$list_Phi_hat<-lapply(f$mu_q_nu_phi,function(x)Cgrid%*%x[,1:2,drop=FALSE])
+ f$list_Phi_hat_spec<-lapply(f$mu_q_nu_psi,function(x)lapply(x,function(y)Cgrid%*%y[,1:2,drop=FALSE]))
+ f$list_Zeta_hat<-lapply(1:4,function(l)do.call(rbind,lapply(f$mu_q_zeta,function(x)x[[l]][,1:2,drop=FALSE])))
+ f$list_Zeta_hat_spec<-lapply(f$mu_q_xi,function(x)lapply(x,function(y)y[,1:2,drop=FALSE]));f
+}
+fit<-report(fit)
+evaluate<-function(f){list(basic=ae_raw_metrics(f,tr,obs,fixed),formal=ae_formal_structure(f,tr,obs,legacy),raw=adapt_raw_metrics(f,obs,fixed,truth))}
+oracle<-evaluate(fit)
+check('six_true_global_roles',nrow(oracle$basic$roles)==6L&&oracle$formal$summary$formal_global_correct==6L)
+check('oracle_exact_structure',oracle$formal$summary$formal_nc_exact_loading_structure_08&&oracle$basic$summary$legacy_PPI_exact_09)
+check('oracle_all_functions_rank2',all(oracle$basic$roles$matched_fpca_exact_09))
+check('oracle_complete_grid_and_observed_contributions',max(oracle$raw$summary$mse)<1e-25&&nrow(oracle$raw$summary)==10L)
+paths<-legacy$v0g_reported_paths_by_study(fit,truth$data)
+fm<-legacy$v0h_functional_recovery(fit,truth$data,oracle$formal$study_truth,paths,legacy$v0h_default_thresholds())
+historical<-list(primary=list(functional_recovery=fm$factors))
+prediction<-stage7m_prediction(fit,obs,basis,list(time=obs$time_obs))
+testtruth<-list(signal=tr$signal_true_values,Y=tr$signal_true_values)
+extended<-stage7m_endpoint_science(fit,obs,fixed,truth,historical,prediction,testtruth)
+check('all_true_components_evaluated',nrow(extended$component_metrics)==16L&&all(extended$component_metrics$component_matched))
+check('oracle_function_score_loading_recovery',max(extended$component_metrics$stage7m_function_ise)<1e-24&&max(extended$component_metrics$score_nrmse)<1e-12&&max(extended$loading_metrics$loading_relative_l2)<1e-12)
+check('MTA_MTB_oracle',all(abs(oracle$formal$block_subspace$truth_energy_trace_coverage[oracle$formal$block_subspace$metric_class=='correct_block']-1)<1e-12))
+# Permute factor columns in every block and preserve state coupling.
+perm<-c(4,2,1,3);f<-fit
+f$mu_q_a_original<-f$mu_q_a_original[,perm];f$mu_q_gamma_a<-f$mu_q_gamma_a[,perm];f$mu_q_nu_phi<-f$mu_q_nu_phi[perm];f$mu_q_zeta<-lapply(f$mu_q_zeta,function(x)x[perm])
+f$mu_q_b_specific_original<-lapply(f$mu_q_b_specific_original,function(x)x[,perm]);f$mu_q_gamma_b<-lapply(f$mu_q_gamma_b,function(x)x[,perm]);f$mu_q_nu_psi<-lapply(f$mu_q_nu_psi,function(x)x[perm]);f$mu_q_xi<-lapply(f$mu_q_xi,function(x)x[perm]);f<-report(f)
+permres<-evaluate(f)
+check('factor_permutation_invariance',permres$formal$summary$formal_nc_exact_loading_structure_08&&max(permres$raw$summary$mse)<1e-24&&all(permres$basic$roles$matched_fpca_exact_09))
+f<-fit;scales<-c(-2,.25,1,1);f$mu_q_a_original<-sweep(f$mu_q_a_original,2,scales,'*');f$mu_q_zeta<-lapply(f$mu_q_zeta,function(x)lapply(1:4,function(l)x[[l]]/scales[l]));f<-report(f);scaled<-evaluate(f)
+check('loading_score_sign_scale_invariant_contributions_and_structure',scaled$formal$summary$formal_nc_exact_loading_structure_08&&max(scaled$raw$summary$mse)<1e-24)
+# Function/score reciprocal scaling, also preserving factor contributions.
+f<-fit;f$mu_q_nu_phi[[2]]<-3*f$mu_q_nu_phi[[2]];f$mu_q_zeta<-lapply(f$mu_q_zeta,function(x){x[[2]]<-x[[2]]/3;x});f<-report(f)
+check('function_score_scale_invariant_complete_contributions',max(evaluate(f)$raw$summary$mse)<1e-24)
+f<-fit;f$mu_q_a_original[,2]<-0;f$mu_q_gamma_a[,2]<-0;f<-report(f);missing<-evaluate(f)
+check('missing_second_shared_factor_penalized',!missing$formal$summary$formal_nc_exact_loading_structure_08&&sum(missing$basic$roles$loading_core_present_09)==5L&&nrow(missing$basic$roles)==6L&&missing$basic$summary$live_shared==1L&&sum(missing$raw$summary$mse)>0)
+f<-fit;f$mu_q_a_original[5,3]<-1;f$mu_q_gamma_a[5,3]<-1;f$mu_q_zeta<-lapply(f$mu_q_zeta,function(x){x[[3]]<-x[[1]];x});f<-report(f);extra<-evaluate(f)
+check('extra_factor_penalized_and_included_in_contribution',!extra$formal$summary$formal_nc_exact_loading_structure_08&&extra$basic$summary$live_shared==3L&&sum(extra$raw$summary$mse)>0&&nrow(extra$basic$roles)==6L)
+# Exchange a shared and specific direction in study1 while conserving its total signal.
+f<-fit;a<-f$mu_q_a_original[,2];b<-f$mu_q_b_specific_original[[1]][,2];za<-f$mu_q_zeta[[1]][[2]];xb<-f$mu_q_xi[[1]][[2]]
+f$mu_q_a_original[,2]<-b;f$mu_q_b_specific_original[[1]][,2]<-a
+f$mu_q_gamma_a[,2]<-as.numeric(b!=0);f$mu_q_gamma_b[[1]][,2]<-as.numeric(a!=0)
+f$mu_q_zeta[[1]][[2]]<-xb;f$mu_q_xi[[1]][[2]]<-za;f<-report(f);conf<-evaluate(f)
+e<-conf$raw$subject;study1<-e[e$study==1,]
+check('shared_specific_confusion_detected_despite_study1_total_fit',!conf$formal$summary$formal_nc_exact_loading_structure_08&&sum(study1$mse[study1$object=='signal'])<1e-24&&sum(study1$mse[study1$object=='shared_contribution'])>0)
+f<-fit;f$mu_q_gamma_a[,3]<-0;f$mu_q_gamma_a[1,3]<-.5;f<-report(f)
+check('factor_PPI_exact_half_is_formally_included',evaluate(f)$basic$summary$live_shared==3L)
+attempts<-data.frame(fit_id=paste0('x',1:12),start=1:12,valid=TRUE,ELBO=c(12,1:11))
+check('truth_blind_max_ELBO_choice',fc_choose(attempts)$selected_fit_id=='x1')
+attempts$valid<-FALSE
+check('no_valid_pool_retained',identical(fc_choose(attempts)$status,'no_valid_candidate'))
+write.csv(do.call(rbind,checks),file.path(testout,'science_ORACLE_CHECKS.csv'),row.names=FALSE)
+jsonlite::write_json(list(status='PASS',checks=length(checks),true_global_roles=6L,true_study_roles=8L,true_components=16L,
+ posterior_updates=0L,new_fits=0L,synthetic_fixture=TRUE,production_data_generated=FALSE),file.path(testout,'science_ORACLE_PASS.json'),auto_unbox=TRUE,pretty=TRUE)
+cat('SCIENCE_MULTI_FACTOR_ORACLE_PASS',length(checks),'checks\n')

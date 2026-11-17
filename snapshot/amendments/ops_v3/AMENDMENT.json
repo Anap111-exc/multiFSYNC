@@ -1,0 +1,37 @@
+{
+  "status": "FROZEN",
+  "reason": "Independent resource probe revises preliminary storage allowance; add first complete endpoint resource report inside controller thread",
+  "files": [
+    {
+      "relative_path": "EXECUTION_CONFIG.json",
+      "sha256": "54d6f4ab023c3aa43d6606804677a24d904e9a2f66f95cc0ac61066e904833e9",
+      "bytes": 1874
+    },
+    {
+      "relative_path": "observe_first_endpoint_thread.py",
+      "sha256": "5dc008f7fc8cf718e0386d250b57701b048b0b394b435677420a9d61d075635c",
+      "bytes": 18698
+    },
+    {
+      "relative_path": "pipeline_v3.py",
+      "sha256": "2e45e48c5b6199b3f081ad6b10617e4616ce93f4574e84e072f5d6a759b44c38",
+      "bytes": 15265
+    },
+    {
+      "relative_path": "launch_registered_pipeline_v3.py",
+      "sha256": "49d71011f2c46d1a845ff84512b5e44cb269f976c28bd72ef399dee9da79f006",
+      "bytes": 5060
+    },
+    {
+      "relative_path": "prepare_ops_v3.py",
+      "sha256": "5395d2ffbefb24d95c5e73537c3c82f6f0a75a40b59a32b7c52517c8f3ada51c",
+      "bytes": 3631
+    }
+  ],
+  "numerical_source_changed": false,
+  "registered_fits": 120,
+  "new_scientific_starts": 0,
+  "old_artifact_allowance_bytes": 6442450944,
+  "new_artifact_allowance_bytes": 7247757312,
+  "reserve_bytes": 3221225472
+}

@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "synthetic_tests_passed": 18,
+  "entrypoint": "main(argv=None)",
+  "thread_required": true,
+  "launch_started_wait_seconds": 5,
+  "cloud_calls": 0,
+  "fits": 0,
+  "signals_sent": 0,
+  "frozen_source_files_verified": 108,
+  "frozen_source_manifest_sha256": "9b67d91a23619eb32d64f9cf79915f4bf45aba7ff9356dc2a005f620869a4fd2",
+  "thread_observer_sha256": "5dc008f7fc8cf718e0386d250b57701b048b0b394b435677420a9d61d075635c",
+  "independent_observer_unchanged_sha256": "5f7e7bc001c1735adbd4adb26e0f63acb4ef06fa81d00b668757d132cdf8e5d9",
+  "linux_inotify_not_executed_locally": true
+}

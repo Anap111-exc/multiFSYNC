@@ -1,0 +1,61 @@
+{
+  "observed_unix": 1794926241.38858,
+  "pipeline_alive": true,
+  "launch": {
+    "status": "STARTED",
+    "experiment_id": "cavi_true222_fit444_m4_20261117_v1",
+    "pid": 3017,
+    "pgrp": 3017,
+    "start_ticks": 114692,
+    "started_unix": 1794926220.8694139,
+    "registered_datasets": 10,
+    "registered_fits": 120,
+    "starts_per_dataset": 12,
+    "arms": [
+      "original"
+    ],
+    "fitted_factor_capacity": [
+      4,
+      4,
+      4
+    ],
+    "fitted_fpca_capacity": 4,
+    "initial_concurrency": 2,
+    "max_concurrency": 8,
+    "automatic_retries": 0,
+    "automatic_completion_stopcharging": true,
+    "local_return_required_before_stop": false,
+    "process_baseline_sha256": "c20d4bd3e3730474c9c30567199703943bd3e9ef9809343811e71835fc308acb",
+    "resource_acceptance_sha256": "4360acd99fc2f251fd881fc1d3f76442239d347f578263478b58535d6562a587",
+    "external_stopped_confirmation_pending": true
+  },
+  "registered_workers": [
+    {
+      "pid": 3020,
+      "state": "R",
+      "pgrp": 3020,
+      "start_ticks": 114710,
+      "rss_bytes": 17575936,
+      "started_unix": 1794926221.111045,
+      "plan_sha256": "733e5f2b6987a4c2ba9a6003927d780d71636745390254573931f5a8c0b0707b",
+      "release_sha256": "fe54f9103677f3cd83f8388d2801ad173d7d814bc09fdda763301f7bc34b348e",
+      "alive": true,
+      "fit_id": "NC01_TRUE222_20261117__rep01__original__start01"
+    },
+    {
+      "pid": 3021,
+      "state": "R",
+      "pgrp": 3021,
+      "start_ticks": 114711,
+      "rss_bytes": 17580032,
+      "started_unix": 1794926221.1188276,
+      "plan_sha256": "733e5f2b6987a4c2ba9a6003927d780d71636745390254573931f5a8c0b0707b",
+      "release_sha256": "fe54f9103677f3cd83f8388d2801ad173d7d814bc09fdda763301f7bc34b348e",
+      "alive": true,
+      "fit_id": "NC01_TRUE222_20261117__rep01__original__start02"
+    }
+  ],
+  "final_status_present": false,
+  "pipeline.stdout.log": [],
+  "pipeline.stderr.log": []
+}

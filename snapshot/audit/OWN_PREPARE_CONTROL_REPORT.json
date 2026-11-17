@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "python_compatibility": "AST grammar 3.6; pure resource decisions executed on local Python3.12",
+  "files": [
+    {
+      "path": "control\\prepare_cloud_runtime.py",
+      "sha256": "e75e985916aa2fecae1e1618a8853a72e174b3850e227da94cae610acbc36f0b"
+    },
+    {
+      "path": "control\\assess_resource_probe.py",
+      "sha256": "26454765eb6a1aa9686b22f893b1b867c7cdf4d3dd48455c636507db64e45a7d"
+    }
+  ],
+  "checks": [
+    {
+      "name": "feasible_padded_120_candidate_storage_and_two_workers",
+      "pass_": true,
+      "predicted_bytes": 5781998064
+    },
+    {
+      "name": "registered_6_plus_3_disk_floor_blocks",
+      "pass_": true
+    },
+    {
+      "name": "two_worker_memory_with_reserve_blocks",
+      "pass_": true
+    },
+    {
+      "name": "oversized_120_candidate_prediction_blocks",
+      "pass_": true
+    },
+    {
+      "name": "two_sweeps_never_claim_full_fit_bound",
+      "pass_": true
+    },
+    {
+      "name": "dryrun_only_and_python36_process_arguments",
+      "pass_": true
+    }
+  ],
+  "cloud_calls": 0,
+  "R_processes": 0,
+  "formal_fits": 0,
+  "launch_contract_checked": "control/launch_registered_pipeline.py",
+  "science_interfaces_checked": true,
+  "limitations": "Cloud library bindings, R runtime, DryRun authorization and measured resources are pending actual ECS invocation."
+}

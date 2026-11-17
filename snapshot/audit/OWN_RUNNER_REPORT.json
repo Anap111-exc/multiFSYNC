@@ -1,0 +1,147 @@
+{
+  "status": "LOCAL_PREPARATION_PASS_CLOUD_ACCEPTANCE_PENDING",
+  "scope": "runner_source_and_resource_probe_only",
+  "new_root": "E:\\multiFSYNC-results\\cavi_true222_fit444_m4_20261117_v1",
+  "numerical_source_reference": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1",
+  "numerical_whitelist_manifest": "scripts/validation/NUMERICAL_SOURCE_BINDING.json",
+  "numerical_files_identical": 29,
+  "candidate_R_files": 28,
+  "active_model": "original_CAVI",
+  "MGP_enabled": false,
+  "new_scientific_algorithms": false,
+  "fit_capacity": [
+    4,
+    4,
+    4
+  ],
+  "fpca_capacity": 4,
+  "initialization": "random plus original G12 gram_unit_energy and one pre_score sweep",
+  "annealing_sweeps": 99,
+  "ordinary_sweeps": 400,
+  "ordinary_ELBO_length": 400,
+  "baseline_library": "/root/stage7i-exec-20260929-v1/stage7i_lib_ecs_20260929_v1",
+  "baseline_package_hash_manifest": "scripts/validation/HOST_INSTALLED_PACKAGE_HASHES.csv",
+  "fit_loading": "explicit verified baseline library for initial-state equality; white-listed candidate files sourced into private environment; unchanged diagnostic preallocation patch",
+  "required_R_packages": [
+    "digest",
+    "jsonlite",
+    "pracma",
+    "splines",
+    "multiFSYNC from verified historical library"
+  ],
+  "generation_extra_R_packages": [
+    "Splinets",
+    "historical package dependencies"
+  ],
+  "global_library_installs_or_mutations": 0,
+  "scripts": {
+    "startup": "scripts/startup_acceptance.R",
+    "resource": "scripts/resource_probe.R",
+    "fit": "scripts/run_cloud_fit.R <fit_id>",
+    "alias": "scripts/run_fit.R <fit_id>",
+    "local_parse": "scripts/validation/parse_and_config.R <execution_root>"
+  },
+  "environment": [
+    "FSYNC_EXEC_ROOT",
+    "FSYNC_OUTPUT_ROOT",
+    "single-thread BLAS/OpenMP"
+  ],
+  "gates": {
+    "generation": "DATA_READY.txt and hashes",
+    "startup": "RUNNER_ACCEPTANCE.json PASS with zero-CAVI initial-state/RNG equality; source manifest bound",
+    "formal_fit": "original-only registered PLAN row, projected observations and metadata only, full initial-state/RNG gate every fit",
+    "endpoint": "XZ RDS v3, identical full-state roundtrip, object SHA256 and file SHA256, 99/400, finite valid ordinary objective and metadata matching"
+  },
+  "probe": {
+    "seed": 200611171,
+    "independent_of_formal_seeds": true,
+    "annealing": 0,
+    "ordinary": 2,
+    "formal_candidate": false,
+    "formal_fit_budget_used": 0,
+    "outputs": [
+      "RESOURCE_PROBE_COMPLETE.json",
+      "PROBE_FIT.rds",
+      "PROBE_STORAGE.json",
+      "COMPACT_DIAGNOSTICS.rds",
+      "INITIAL_FIELD_OBJECT_SIZES.csv",
+      "FIELD_OBJECT_SIZES.csv",
+      "PRACTICAL_LAST_STATE_SIZES.json"
+    ],
+    "initial_object_size_zero_CAVI": true,
+    "full_history_internal_not_serialized": true,
+    "can_measure_full_fit_runtime_or_compressed_upper_bound": false,
+    "next_storage_gate": "First complete formal endpoint must re-estimate all remaining endpoints and diagnostics; scheduler may halt new launch without changing registered scientific budget"
+  },
+  "historical_storage_only": {
+    "count": 120,
+    "fit_xz_bytes_min": 8153412,
+    "fit_xz_bytes_median": 8285188.0,
+    "fit_xz_bytes_max": 8515744,
+    "fit_plus_compact_xz_bytes_max": 11913888,
+    "source_root": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\returned\\science_20261107_v1\\fits",
+    "previous_capacity": [
+      3,
+      3,
+      3
+    ],
+    "previous_fpca": 4,
+    "previous_n_each": 30,
+    "transferable_bound": false
+  },
+  "local_acceptance": {
+    "status": "PASS",
+    "parsed_files": 37,
+    "numerical_source_files": 28,
+    "capacity": [
+      4,
+      4,
+      4
+    ],
+    "fpca_capacity": 4,
+    "annealing_sweeps": 99,
+    "ordinary_sweeps": 400,
+    "active_MGP": false,
+    "random_numbers_drawn": false,
+    "fit_calls": 0,
+    "CAVI_updates": 0,
+    "diagnostic_preallocation_patch": {
+      "patch_id": "diagnostic_piece_preallocation_v1",
+      "function_name": ".scale_trace_mean_contributions",
+      "original_function_sha256": "8222f39307c7ea607bc886b9809921bdf618e3dc2e2d7e3a669b010290828000",
+      "replacement_function_sha256": "82e869f4d5bb302a91a87b7b8dcc128cb7f79bfa27a2ad8a57ae0ce47d301f78",
+      "changed_estimation_functions": 0,
+      "diagnostics_disabled": false
+    },
+    "R_version": "R version 4.5.1 (2025-06-13 ucrt)"
+  },
+  "generation_independent_review": {
+    "files_read": [
+      "generation/generate_registered.R",
+      "generation/nc_generation_core.R",
+      "generation/project_fit_inputs.R",
+      "config/DATASET_REGISTRATION.csv"
+    ],
+    "truth_factors": [
+      2,
+      2,
+      2
+    ],
+    "truth_fpca": 2,
+    "n_each": 60,
+    "p": 500,
+    "d_generated_and_fit": 0,
+    "true_loading_active_count": 50,
+    "loading_squared_norm": 45,
+    "score_weights": [
+      0.8,
+      0.2
+    ],
+    "basis": "frozen Linux baseline get_grid_objects and original generator; C match tolerance1e-12",
+    "projection_whitelist_drops_true_factor_and_FPCA_dimensions": true,
+    "runner_reads_only_fit_inputs": true,
+    "generator_executed_by_this_agent": false,
+    "formal_fit_executed_by_this_agent": false
+  },
+  "ECS_actions_by_this_agent": 0
+}

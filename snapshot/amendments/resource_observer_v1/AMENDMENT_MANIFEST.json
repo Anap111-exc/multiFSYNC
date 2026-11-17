@@ -1,0 +1,30 @@
+{
+  "schema": "observation_only_resource_amendment_v1",
+  "experiment_id": "cavi_true222_fit444_m4_20261117_v1",
+  "files": [
+    {
+      "relative_path": "observe_first_endpoint.py",
+      "sha256": "5f7e7bc001c1735adbd4adb26e0f63acb4ef06fa81d00b668757d132cdf8e5d9",
+      "bytes": 16884
+    },
+    {
+      "relative_path": "test_observer.py",
+      "sha256": "e74616930e4d4f27b83d156d91b7e33252ece526d86dd654db4bf680bbe646d9",
+      "bytes": 8039
+    },
+    {
+      "relative_path": "README.txt",
+      "sha256": "cd9044a89a4926a420b1921b10ee321c7f0136af34deb57635950dee91709470",
+      "bytes": 2793
+    },
+    {
+      "relative_path": "TEST_ACCEPTANCE.json",
+      "sha256": "f89e76a3888dc269237afdb1f204492b350a03f38e73fcb0e7cce789a5143374",
+      "bytes": 552
+    }
+  ],
+  "frozen_source_manifest_sha256": "9b67d91a23619eb32d64f9cf79915f4bf45aba7ff9356dc2a005f620869a4fd2",
+  "frozen_sources_modified": false,
+  "deployment_by_parent_only": true,
+  "no_process_or_scheduling_control": true
+}

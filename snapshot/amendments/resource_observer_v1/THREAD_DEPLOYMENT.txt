@@ -1,0 +1,29 @@
+Use observe_first_endpoint_thread.py inside the registered pipeline process.
+The independent observe_first_endpoint.py is not the deployment route.
+
+Interface: main(argv=None), returning0 for a completed observation/terminal
+report and2 for an observation failure. Pass an explicit argv list containing
+--observer-source-sha256 THREAD_FILE_SHA256 and
+--source-manifest-sha256 ORIGINAL_FROZEN_CODE_MANIFEST_SHA256.
+
+Import the thread file without running it. Create one Python thread whose
+target calls main(argv). Standalone/main-thread execution is explicitly rejected.
+The caller writes FINAL_STATUS, then joins this observer thread before invoking
+the unchanged lifecycle finalizer. The observer requires Linux inotify; missing
+inotify causes prompt failure, not a resident independent monitor process.
+
+The launch receipt is allowed at most5seconds to become STARTED. Missing,
+partially written or PENDING receipts may be observed during this bounded wait.
+Failure becomes an OBSERVATION_FAILED report; no resource or fit action follows.
+
+Resource inputs are now exclusively:
+STAGE/RESOURCE_PROBE_ACCEPTANCE_V3.json
+STAGE/amendments/ops_v3/EXECUTION_CONFIG.json
+The latter must be FROZEN,120fits,8maximum workers,6.75GiB artifact allowance,
+3GiB disk reserve. Both input hashes are recorded and rechecked before reporting.
+The original numerical CODE_SHA256SUMS.txt remains unchanged and is verified
+at both ends of the observation. No old observer source is modified.
+
+All endpoint integrity, forecast, partial-file and peak-RSS semantics are the
+same as the original read-only observer. The report is advisory and does not
+grant resource capacity, authorize retries, cancel work, stop ECS or change fits.

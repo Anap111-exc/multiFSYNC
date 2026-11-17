@@ -1,0 +1,13 @@
+{
+  "status": "FROZEN",
+  "protocol_sha256": "16d07993a0e823a6892d6524554bdc86e02fed5d88302e616f8dd74dfbe42608",
+  "execution_config_sha256": "529a186f7ff6ec006fd9ebfdc44ec02857dc0d96835e926d1c05977e9bd08545",
+  "plan_sha256": "d31d85f7871ed4f7a80f89460e636af370035ee183f5bc2e9be463cb1ed28853",
+  "science_preparation_sha256": "756f8bbe780bf6be9110df56634fee46e0829c5fcb2edfe03d3d1f4a0275279f",
+  "new_datasets": 10,
+  "registered_full_fits": 120,
+  "arms": [
+    "original"
+  ],
+  "extra_resource_probe_sweeps": 2
+}

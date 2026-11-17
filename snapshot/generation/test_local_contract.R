@@ -1,0 +1,63 @@
+options(warn=1,stringsAsFactors=FALSE)
+root<-'E:/multiFSYNC-results/cavi_true222_fit444_m4_20261117_v1'
+gen<-file.path(root,'generation')
+source(file.path(gen,'nc_common.R'))
+source(file.path(gen,'nc_generation_core.R'))
+source(file.path(gen,'nc_fixed_metadata.R'))
+source(file.path(gen,'project_fit_inputs.R'))
+checks<-list()
+add<-function(name,okay){checks[[name]]<<-isTRUE(okay);assert(okay,name)}
+original<-new.env(parent=globalenv())
+extract_functions('E:/multiFSYNC-results/mgp_factor_count_pilot_m3_20261101_v3/package_src/generation/nc_generation.R',
+                  c('nc_calibrate_all_loadings','nc_generate_dataset','nc_generation_qc'),original)
+extract_functions('E:/multiFSYNC-results/mgp_factor_count_pilot_m3_20261101_v3/package_src/generation/nc_runtime.R',
+                  c('nc_canonical_function_sha256','nc_fixed_metadata'),original)
+for(nm in ls(original))add(paste0('unchanged_function_',nm),
+  identical(body(original[[nm]]),body(get(nm)))&&identical(formals(original[[nm]]),formals(get(nm))))
+rows<-read_csv(file.path(root,'config/DATASET_REGISTRATION.csv'))
+fitseeds<-read_csv(file.path(gen,'FIT_SEED_REFERENCE.csv'))
+allseeds<-read_csv(file.path(gen,'SEED_REGISTRATION.csv'))
+cfg<-nc_generator_config(rows[1,,drop=FALSE])
+add('ten_new_registered_ids',nrow(rows)==10L&&!anyDuplicated(rows$data_id))
+add('120_unchanged_start_records',nrow(fitseeds)==120L&&all(table(fitseeds$dataset_id)==12L))
+add('new_generation_seed_uniqueness',!anyDuplicated(allseeds$seed[allseeds$seed_role!='fit_seed']))
+add('generation_start_seed_separation',!length(intersect(allseeds$seed[allseeds$seed_role!='fit_seed'],fitseeds$seed)))
+add('dimension_contract',cfg$S==2L&&all(cfg$n_s==60L)&&cfg$p==500L&&cfg$L_f==2L&&all(cfg$L_s==2L)&&
+    all(cfg$M_f==2L)&&all(unlist(cfg$M_s)==2L)&&cfg$truth_basis_dim==8L)
+A<-B1<-B2<-matrix(0,500,2)
+A[1:50,1]<-seq(.1,1,length.out=50);A[51:100,2]<-seq(-1,-.1,length.out=50)
+B1[101:150,1]<-1;B1[151:200,2]<-2;B2[201:250,1]<-3;B2[251:300,2]<--1
+f<-matrix(c(1,2,3,4,2,1,4,3),4,2);g<-f/2
+tr<-list(L_f=2L,S=2L,n_s=c(1L,1L),p=500L,a_true=A,b_true=list(B1,B2),
+ mu_true_values=list(list(matrix(0,4,500)),list(matrix(0,4,500))),
+ beta_true_values=list(list(matrix(0,4,500)),list(matrix(0,4,500))),
+ f_true_values=list(list(f),list(f)),g_true_values=list(list(g),list(g)),
+ signal_true_values=list(list(matrix(0,4,500)),list(matrix(0,4,500))),
+ noise_true_values=list(list(matrix(.1,4,500)),list(matrix(.1,4,500))))
+dat<-list(Y=list(list(NULL),list(NULL)),true_params=tr)
+cal<-nc_calibrate_all_loadings(dat)
+add('all_six_column_norms_45',max(abs(unlist(lapply(c(list(cal$true_params$a_true),cal$true_params$b_true),
+ function(x)colSums(x^2)))-45))<1e-10)
+add('loading_supports_preserved',identical(A!=0,cal$true_params$a_true!=0)&&
+ identical(B1!=0,cal$true_params$b_true[[1]]!=0)&&identical(B2!=0,cal$true_params$b_true[[2]]!=0))
+add('observation_noise_preserved',max(abs(do.call(cbind,cal$Y[[1]][[1]])-
+ cal$true_params$signal_true_values[[1]][[1]]-.1))<1e-12)
+ob<-list(bundle_class='nc_observation_only_v1',experiment_id=basename(root),scenario_id='NC01_TRUE222',data_id=rows$data_id[1],
+ Y=cal$Y,Z=NULL,time_obs=list(list(1:4),list(1:4)),dimensions=list(S=2L,n_s=c(1L,1L),p=500L,d=0L,K=9L,L_f=2L,L_s=c(2L,2L),M_f=c(2L,2L),M_s=list(c(2L,2L),c(2L,2L))),
+ generated_d=0L,truth_available_to_fit=FALSE,test_response_available_to_fit=FALSE)
+fx<-list(schema='nc_fixed_train_only_metadata_v1',basis=list(knots=c(0,.5,1),transform=diag(2)),grid=c(0,1),weights=c(.5,.5),
+ C=list(list(diag(2))),fit_metadata=c(ob$dimensions,list(K_total=11L,C_g=diag(2),time_g=c(0,1),list_cp_C=list(diag(2)),list_hyper=list())),
+ aggregation=list(study_weight=.5),truth_read=FALSE)
+pr<-project_unseen_fit_inputs(ob,fx)
+add('fit_projection_removes_true_factor_rank_fields',!any(c('L_f','L_s','M_f','M_s')%in%names(pr$observation$dimensions))&&
+ !any(c('L_f','L_s','M_f','M_s')%in%names(pr$metadata$fit_metadata)))
+add('fit_projection_preserves_observations_and_basis',identical(pr$observation$Y,ob$Y)&&identical(pr$metadata$basis,fx$basis)&&identical(pr$metadata$C,fx$C))
+assert(requireNamespace('jsonlite',quietly=TRUE),'jsonlite unavailable')
+source_paths<-list.files(gen,pattern='[.]R$',full.names=TRUE)
+invisible(lapply(source_paths,parse))
+result<-list(status='PASS',checks=checks,full_fits=0L,original_generator_calls=0L,
+ parsed_R_files=length(source_paths),source_sha256=as.list(setNames(vapply(source_paths,sha,character(1)),basename(source_paths))),
+ generation_contract_sha256=sha(file.path(gen,'GENERATION_CONTRACT.json')),
+ Linux_generation_still_required=TRUE,local_contract_test_only=TRUE)
+jsonlite::write_json(result,file.path(gen,'LOCAL_ACCEPTANCE.json'),auto_unbox=TRUE,pretty=TRUE)
+cat('PASS',length(checks),'contract checks; no original-generator call and no fitting\n')

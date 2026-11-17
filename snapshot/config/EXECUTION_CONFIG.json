@@ -1,0 +1,53 @@
+{
+  "schema": "CAVI_TRUE222_FIT444_M4_CONFIG_V1",
+  "status": "FROZEN",
+  "baseline_library": "/root/stage7i-exec-20260929-v1/stage7i_lib_ecs_20260929_v1",
+  "fitting_function": "bayesSYNC_multi_pre_score",
+  "new_fit_count": 120,
+  "datasets": 10,
+  "starts_per_dataset": 12,
+  "arms": [
+    "original"
+  ],
+  "fitted_factor_capacities": [
+    4,
+    4,
+    4
+  ],
+  "fitted_fpca_capacity": 4,
+  "planned_updates": 499,
+  "annealing_sweeps": 99,
+  "ordinary_t1_sweeps": 400,
+  "enable_diagnostic_preallocation": true,
+  "record_annealing_trace": true,
+  "full_initial_state_gate_each_fit": true,
+  "fit_storage": {
+    "compression": "xz",
+    "serialization_version": 3,
+    "identical_roundtrip_required": true,
+    "canonical_object_hash_required": true
+  },
+  "initial_concurrency": 2,
+  "max_concurrency": 8,
+  "pilot_observation_seconds": 300,
+  "fit_timeout_seconds": null,
+  "automatic_retries": 0,
+  "automatic_stopcharging_after_science": true,
+  "local_return_required_before_stop": false,
+  "generated_data": true,
+  "new_MGP_full_fits": 0,
+  "new_original_full_fits": 120,
+  "minimum_free_disk_bytes": 3221225472,
+  "planned_new_artifact_bytes": 6442450944,
+  "required_initial_free_disk_bytes": 9663676416,
+  "storage_estimate_status": "PRELIMINARY_REQUIRES_RESOURCE_PROBE_BEFORE_LAUNCH",
+  "compact_diagnostics_compression": "xz",
+  "execution_root": "/root/cavi-true222-fit444-m4-exec-20261117-v1",
+  "output_root": "/root/multifsync-results/cavi_true222_fit444_m4_20261117_v1",
+  "factor_shrinkage_by_arm": {
+    "original": {
+      "mode": "none"
+    }
+  },
+  "frozen_utc": "2026-11-17T14:19:40.868086+00:00"
+}

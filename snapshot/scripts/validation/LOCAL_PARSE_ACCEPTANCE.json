@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "parsed_files": 37,
+  "numerical_source_files": 28,
+  "capacity": [4, 4, 4],
+  "fpca_capacity": 4,
+  "annealing_sweeps": 99,
+  "ordinary_sweeps": 400,
+  "active_MGP": false,
+  "random_numbers_drawn": false,
+  "fit_calls": 0,
+  "CAVI_updates": 0,
+  "diagnostic_preallocation_patch": {
+    "patch_id": "diagnostic_piece_preallocation_v1",
+    "function_name": ".scale_trace_mean_contributions",
+    "original_function_sha256": "8222f39307c7ea607bc886b9809921bdf618e3dc2e2d7e3a669b010290828000",
+    "replacement_function_sha256": "82e869f4d5bb302a91a87b7b8dcc128cb7f79bfa27a2ad8a57ae0ce47d301f78",
+    "changed_estimation_functions": 0,
+    "diagnostics_disabled": false
+  },
+  "R_version": "R version 4.5.1 (2025-06-13 ucrt)"
+}

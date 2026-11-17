@@ -1,0 +1,91 @@
+{
+  "schema": "CAVI_TRUE222_GENERATION_V1",
+  "experiment_id": "cavi_true222_fit444_m4_20261117_v1",
+  "status": "REGISTERED_BEFORE_GENERATION",
+  "independent_datasets": 10,
+  "registered_fits": 120,
+  "starts_each": 12,
+  "generated_on": "Linux_only",
+  "baseline_library": "/root/stage7i-exec-20260929-v1/stage7i_lib_ecs_20260929_v1",
+  "generator_canonical_sha256": "24998da4ca8d80dfb32e2687183b976d599e4d86dfacb921f5165d57e42c9ec7",
+  "reconstruct_sha256": "51d83c1864dbc346bb4fee0e25feee7e099698080e2cfc38199970f7fd92ea27",
+  "registration_sha256": "67f8c91c700cb3702554c520261e113e930d76724a752129756f654d1861114e",
+  "fit_seed_reference_sha256": "2d98177161aa64b2756d8c155c67fac9a4f736a12b8082f22cbc83e465285ce0",
+  "seed_registration_sha256": "859b15989ba427556ca8bfdbd0c5b58a52ef814286accf91f522d5fc98af9605",
+  "source_bindings": {
+    "nc_common.R": {
+      "source": "E:\\multiFSYNC-results\\mgp_factor_count_pilot_m3_20261101_v3\\package_src\\generation\\nc_common.R",
+      "source_sha256": "05a62a5166c627d92135098f0241bf659903fab532deed532f79bf64e0c777c3",
+      "copied_sha256": "05a62a5166c627d92135098f0241bf659903fab532deed532f79bf64e0c777c3"
+    },
+    "stage7m_reconstruct.R": {
+      "source": "E:\\multiFSYNC-results\\mgp_factor_count_pilot_m3_20261101_v3\\package_src\\generation\\stage7m_reconstruct.R",
+      "source_sha256": "51d83c1864dbc346bb4fee0e25feee7e099698080e2cfc38199970f7fd92ea27",
+      "copied_sha256": "51d83c1864dbc346bb4fee0e25feee7e099698080e2cfc38199970f7fd92ea27"
+    },
+    "project_fit_inputs.R": {
+      "source": "E:\\multiFSYNC-results\\cavi_mgp_overspec_l3_m4_20261105_v1\\scripts\\project_fit_inputs.R",
+      "source_sha256": "a048e7d13badd4986173a6714a569e2bc081eab3887aff3b4ed860267b4d6edf",
+      "copied_sha256": "a048e7d13badd4986173a6714a569e2bc081eab3887aff3b4ed860267b4d6edf"
+    },
+    "nc_generation_core.R": {
+      "source": "E:\\multiFSYNC-results\\mgp_factor_count_pilot_m3_20261101_v3\\package_src\\generation\\nc_generation.R",
+      "source_sha256": "22626c1575ec0f3fd9749b6f9d94d8ca36953fa54a87890084637b9971c36bbf",
+      "change": "Keep four generation/QC functions; only dimension guard changes to S2,Lf2,Ls2. Calibration and random generator calls unchanged."
+    },
+    "nc_fixed_metadata.R": {
+      "source": "E:\\multiFSYNC-results\\mgp_factor_count_pilot_m3_20261101_v3\\package_src\\generation\\nc_runtime.R",
+      "source_sha256": "b6f1771538a901044395e1ebdc6f3da9ea1d4475119efde0ac69516d8e18a8f1",
+      "change": "Extract canonical SHA and fixed-metadata functions without body modification."
+    }
+  },
+  "design": {
+    "S": 2,
+    "n_s": [
+      60,
+      60
+    ],
+    "p": 500,
+    "d": 0,
+    "true_factor_counts": [
+      2,
+      2,
+      2
+    ],
+    "true_fpca_rank": 2,
+    "fitted_factor_capacities": [
+      4,
+      4,
+      4
+    ],
+    "fitted_fpca_capacity": 4,
+    "nonzero_loadings_each_column": 50,
+    "loading_squared_norm_each_column": 45,
+    "within_study_disjoint_support": true,
+    "truth_basis_dimension": 8,
+    "truth_basis": "iid_common_splinet_stiefel",
+    "fpca_weights": [
+      0.8,
+      0.2
+    ],
+    "noise_sd": 0.3,
+    "training_visits": [
+      6,
+      9
+    ],
+    "new_times_each_subject": 3
+  },
+  "seeds": {
+    "population_seeds": "SHA256 of experiment_id|rep|role|collision_counter; first8bytes big-endian modulo2147483646 plus1; reject collisions with previous experiment and current registration.",
+    "fit_seeds": "Exactly reuse the previous original-CAVI 12-start seed vector by rep_id, without reference to outcomes.",
+    "previous_seed_manifest_sha256": "b16469c58aa06044fdeba5e80567eed4c1171ef0d9f39812af451b7dc913228b",
+    "previous_plan_sha256": "d8fd24e481f5d74dccaaca4a2ff3be9e4cdf40b14845dcb13a374210b229994c"
+  },
+  "information_boundary": {
+    "fit": "Observation-only projected files; no true L/M, coefficients, targets or responses.",
+    "evaluation": "Separate sealed truth and test truth; read after winner selection is frozen.",
+    "generation_qc": "Legality and source checks only; never regenerate inconvenient data or change seeds."
+  },
+  "automatic_retry": false,
+  "source_model_changes": false
+}

@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "checks": {
+    "unchanged_function_nc_calibrate_all_loadings": true,
+    "unchanged_function_nc_canonical_function_sha256": true,
+    "unchanged_function_nc_fixed_metadata": true,
+    "unchanged_function_nc_generate_dataset": true,
+    "unchanged_function_nc_generation_qc": true,
+    "ten_new_registered_ids": true,
+    "120_unchanged_start_records": true,
+    "new_generation_seed_uniqueness": true,
+    "generation_start_seed_separation": true,
+    "dimension_contract": true,
+    "all_six_column_norms_45": true,
+    "loading_supports_preserved": true,
+    "observation_noise_preserved": true,
+    "fit_projection_removes_true_factor_rank_fields": true,
+    "fit_projection_preserves_observations_and_basis": true
+  },
+  "full_fits": 0,
+  "original_generator_calls": 0,
+  "parsed_R_files": 7,
+  "source_sha256": {
+    "generate_registered.R": "965fb6a00743191ddb2f949dbf4117b775f0ff79a1aeb712224d73e6bf076066",
+    "nc_common.R": "05a62a5166c627d92135098f0241bf659903fab532deed532f79bf64e0c777c3",
+    "nc_fixed_metadata.R": "0574e2c17eaaffefa3d42232425b078ebcbe971e8862913be0acff4ef1c1c349",
+    "nc_generation_core.R": "7f0ddfa3d8ecaf9d41f363946bfddf1fb29a68bc62ac9b5f1d686032378e0f8a",
+    "project_fit_inputs.R": "a048e7d13badd4986173a6714a569e2bc081eab3887aff3b4ed860267b4d6edf",
+    "stage7m_reconstruct.R": "51d83c1864dbc346bb4fee0e25feee7e099698080e2cfc38199970f7fd92ea27",
+    "test_local_contract.R": "aa134a117a13ba69b56bde21fa4edabe8b6bf0b6cae0fce3eb3cd25dc4099625"
+  },
+  "generation_contract_sha256": "69d19c0c920c571cd6220d5eba0f2cbf24f51ac3082ef7bf153f4e4f57c34a86",
+  "Linux_generation_still_required": true,
+  "local_contract_test_only": true
+}
